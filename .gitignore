@@ -34,3 +34,5 @@ comparison/nbproject/genfiles.properties
 comparison/nbproject/build-impl.xml
 
 data-collection/crawler/nbproject/genfiles.properties
+
+web/META-INF/context.xml
