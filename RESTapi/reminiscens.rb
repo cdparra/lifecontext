@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require 'rabl'
 require 'sass'
 require 'mysql2'
 require 'active_record'
@@ -22,9 +21,7 @@ def getGoogleCoordinates(loc)
   return @place
 end
 
-ActiveRecord::Base.logger = Logger.new(STDOUT)
-
-Rabl.register!
+#ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 get '/' do
   @response = "Wrong request: you need to specify a method"

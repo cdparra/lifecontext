@@ -11,9 +11,13 @@ flickrTag = "Trento"
 min_date = "1900-01-01"
 max_date = "2010-12-12"
 
+DEBUG = false
+
 def getGoogleGeoData(location,locString)
   s = Geocoder.search("Trento")
-  puts s
+  if DEBUG
+    puts s
+  end
   begin
     location.lat = s[0].latitude
   	location.lon = s[0].longitude
@@ -115,12 +119,16 @@ def createPicture(data)
     if data.accuracy!=0
       p.build_location(:location_textual => :flickrTag, :lat => data.latitude, :lon => data.longitude, :accuracy => data.accuracy)
       #chiamo api flickr per beccarmi i dati specifici
-      puts "FLICKR GEO per foto con id '#{data.id}'"
+      if DEBUG
+        puts "FLICKR GEO per foto con id '#{data.id}'"
+      end
       getFlickrGeoData(p.location,data.id)
     else
       p.build_location(:location_textual => :flickrTag, :accuracy => 2, :radius => 0)
       #chiamo google maps per sapere qualcosa dal tag
-      puts "GOOGLE MAPS per foto con id '#{data.id}'"
+      if DEBUG
+        puts "GOOGLE MAPS per foto con id '#{data.id}'"
+      end
       getGoogleGeoData(p.location,:flickrTag)
       p.location.save
       puts p.location.lat
@@ -136,21 +144,33 @@ list   = flickr.photos.search :tags => flickrTag, :license => "1%2C2%2C4%2C5%2C7
 :max_taken_date => max_date, :extras => "geo"
 
 count=1
-puts "siamo in #{list.length}"
+if DEBUG
+  puts "siamo in #{list.length}"
+end
+
 list.each do |i|
 
   photo = createPicture(i)
   tmpPhoto = Media.find_by_media_url(photo.media_url)
   if tmpPhoto.nil?
-  	puts "photo id #{i.id} saved!"
+    if DEBUG
+  	  puts "photo id #{i.id} saved!"
+    end
   	photo.save
   else
-    puts "photo id #{i.id} updated!"
+    if DEBUG
+      puts "photo id #{i.id} updated!"
+    end
     photo.media_id = tmpPhoto.media_id
 	tmpPhoto.update_attributes(photo.attributes)
-	puts photo.location.location_id
+  
+  if DEBUG
+	  puts photo.location.location_id
   end
-  	
-  puts count
+  end
+  
+  if DEBUG	
+    puts count
+  end
   count=count+1
 end
