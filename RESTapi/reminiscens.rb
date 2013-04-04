@@ -34,9 +34,7 @@ end
 #Media
 get '/media' do
 
-  if params[:min_date]!=nil && params[:min_date].match(/^(19|20)\d\d([-])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) &&
-  params[:max_date]!=nil && params[:max_date].match(/^(19|20)\d\d([-])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) &&
-  params[:min_date] <= params[:max_date]
+  if params[:decade]!=nil && params[:decade].match(/\A(18|19|20)\d0\z/)
 
     if params[:lat]!=nil && params[:lon]!=nil
 
@@ -46,10 +44,10 @@ get '/media' do
         @radius=0
       end
 
-      @media=Media.joins(:fuzzyDate, :location).where("is_public = 1 AND exact_date >= ? AND exact_date <= ?
+      @media=Media.joins(:fuzzyDate, :location).where("is_public = 1 AND decade = ?
         AND (6378.7*sqrt(POW((0.0174 * (lat - ?)),2) +
         POW((0.0174 * (lon - ?) * COS(?)),2))) <= ?",
-        params[:min_date], params[:max_date], params[:lat], params[:lon], params[:lat], @radius)
+        params[:decade], params[:lat], params[:lon], params[:lat], @radius)
 
     elsif params[:place]!=nil
 
@@ -65,14 +63,14 @@ get '/media' do
         @place=getGoogleCoordinates(params[:place])
       end
 
-      @media=Media.joins(:fuzzyDate, :location).where("is_public = 1 AND exact_date >= ? AND exact_date <= ?
+      @media=Media.joins(:fuzzyDate, :location).where("is_public = 1 AND decade = ? 
         AND (6378.7*sqrt(POW((0.0174 * (lat - ?)),2) +
         POW((0.0174 * (lon - ?) * COS(?)),2))) <= ?",
-        params[:min_date], params[:max_date], @place.lat, @place.lon, @place.lat, @radius)
+        params[:decade], @place.lat, @place.lon, @place.lat, @radius)
 
     else
 
-      @media=Media.joins(:fuzzyDate).where("is_public = 1 AND exact_date >= ? AND exact_date <= ? ", params[:min_date], params[:max_date])
+      @media=Media.joins(:fuzzyDate).where("is_public = 1 AND decade = ? ", params[:decade])
 
     end
 
@@ -119,9 +117,7 @@ end
 
 get '/events' do
 
-  if params[:min_date]!=nil && params[:min_date].match(/^(19|20)\d\d([-])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) &&
-  params[:max_date]!=nil && params[:max_date].match(/^(19|20)\d\d([-])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) &&
-  params[:min_date] <= params[:max_date]
+  if params[:decade]!=nil && params[:decade].match(/\A(18|19|20)\d0\z/)
 
     if params[:lat]!=nil && params[:lon]!=nil
 
@@ -131,10 +127,10 @@ get '/events' do
         @radius=0
       end
 
-      @events=Event.joins(:fuzzyDate, :location).where("AND exact_date >= ? AND exact_date <= ?
+      @events=Event.joins(:fuzzyDate, :location).where("AND decade = ?
         AND (6378.7*sqrt(POW((0.0174 * (lat - ?)),2) +
         POW((0.0174 * (lon - ?) * COS(?)),2))) <= ?",
-        params[:min_date], paarms[:max_date], params[:lat], params[:lon], params[:lat], @radius)
+        params[:decade], params[:lat], params[:lon], params[:lat], @radius)
 
     elsif params[:place]!=nil
 
@@ -150,14 +146,14 @@ get '/events' do
         @place=getGoogleCoordinates(params[:place])
       end
 
-      @events=Event.joins(:fuzzyDate, :location).where("exact_date >= ? AND exact_date <= ?
+      @events=Event.joins(:fuzzyDate, :location).where("decade = ?
         AND (6378.7*sqrt(POW((0.0174 * (lat - ?)),2) +
         POW((0.0174 * (lon - ?) * COS(?)),2))) <= ?",
-        params[:min_date], params[:max_date], @place.lat, @place.lon, @place.lat, @radius)
+        params[:deacde], @place.lat, @place.lon, @place.lat, @radius)
 
     else
 
-      @events=Event.joins(:fuzzyDate).where("exact_date >= ? AND exact_date <= ? ", params[:min_date], params[:max_date])
+      @events=Event.joins(:fuzzyDate).where("decade = ? ", params[:decade])
 
     end
 
@@ -203,11 +199,9 @@ end
 #Works
 get '/works' do
 
-  if params[:min_date]!=nil && params[:min_date].match(/^(19|20)\d\d([-])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) &&
-  params[:max_date]!=nil && params[:max_date].match(/^(19|20)\d\d([-])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) &&
-  params[:min_date] <= params[:max_date]
+  if params[:decade]!=nil && params[:decade].match(/\A(18|19|20)\d0\z/)
 
-    @mediaMDs=MediaMetadata.joins(:fuzzyDate).where("exact_date <= ?  AND exact_date >= ? ", params[:min_date], params[:max_date])
+    @mediaMDs=MediaMetadata.joins(:fuzzyDate).where("decade = ? ", params[:decade])
   end
 
   if defined?(@mediaMDs)
@@ -222,9 +216,7 @@ end
 #People
 get "/people" do
   if params[:type]!=nil
-    if params[:min_date]!=nil && params[:min_date].match(/^(19|20)\d\d([-])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) &&
-    params[:max_date]!=nil && params[:max_date].match(/^(19|20)\d\d([-])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) &&
-    params[:min_date] <= params[:max_date]
+      if params[:decade]!=nil && params[:decade].match(/\A(18|19|20)\d0\z/)
 
       if params[:lat]!=nil && params[:lon]!=nil
 
@@ -242,11 +234,11 @@ get "/people" do
         Location lo, Fuzzy_Date f WHERE
         l.location_id=lo.location_id AND
         l.fuzzy_startdate=f.fuzzy_date_id AND
-        exact_date <= ? AND exact_date >= ?
+        decade = ? AND
         (6378.7*sqrt(POW((0.0174 * (lat - ?)),2) +
         POW((0.0174 * (lon - ?) * COS(?)),2))) <= ? AND
         type = ? )",
-        params[:min_date], params[:max_date], params[:lat], params[:lon], params[:lat], @radius, params[:type]
+        params[:decade], params[:lat], params[:lon], params[:lat], @radius, params[:type]
         ])
 
       elsif params[:place]!=nil
@@ -271,11 +263,11 @@ get "/people" do
         Location lo, Fuzzy_Date f WHERE
         l.location_id=lo.location_id AND
         l.fuzzy_startdate=f.fuzzy_date_id AND
-        exact_date <= ? AND exact_date >= ?
+        decade = ? AND
         (6378.7*sqrt(POW((0.0174 * (lat - ?)),2) +
         POW((0.0174 * (lon - ?) * COS(?)),2))) <= ? AND
         type = ? )",
-        params[:min_date], params[:max_date], @place.lat, @place.lon, @place.lat, @radius, params[:type]
+        params[:decade], @place.lat, @place.lon, @place.lat, @radius, params[:type]
         ])
 
       else
@@ -287,7 +279,7 @@ get "/people" do
           pe.famous = 1 AND pa.life_event_id IN
           (SELECT life_event_id FROM Life_Event l,
           Fuzzy_Date f WHERE l.fuzzy_startdate=f.fuzzy_date_id AND
-          type = ? AND exact_date <= ?  AND exact_date >= ?)", params[:type], params[:min_date], params[:max_date]
+          type = ? AND decade = ? )", params[:type], params[:decade]
         ])
 
       end

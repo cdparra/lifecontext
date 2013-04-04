@@ -12,7 +12,7 @@ child :fuzzyDate => :time do |time|
   attributes :accuracy unless time.accuracy.nil?
 end
 
-child :location do |loc|
+child :location => :location do |loc|
   attributes :name unless loc.name.nil?
   attributes :description unless loc.description.nil?
   attributes :city unless loc.city.nil?
