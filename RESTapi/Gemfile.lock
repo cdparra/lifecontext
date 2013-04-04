@@ -20,11 +20,11 @@ GEM
     builder (3.0.4)
     geocoder (1.1.6)
     i18n (0.6.1)
-    jbuilder (1.0.2)
-      activesupport (>= 3.0.0)
     multi_json (1.6.1)
     mysql (2.9.1)
     oj (2.0.7)
+    rabl (0.8.0)
+      activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-protection (1.4.0)
       rack
@@ -41,6 +41,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord-mysql-adapter
   geocoder
-  jbuilder
   oj
+  rabl
   sinatra

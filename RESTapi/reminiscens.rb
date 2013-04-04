@@ -2,6 +2,8 @@ require 'rubygems'
 require 'sinatra'
 require 'sass'
 require 'mysql2'
+require 'rabl'
+require 'oj'
 require 'active_record'
 require 'active_support/core_ext'
 require 'active_support/inflector'
@@ -10,6 +12,8 @@ require 'geocoder'
 
 load 'config/settings.rb'
 load 'db/models/models.rb'
+
+Rabl.register!
 
 #Geocoder.configure(:timeout => 10000000) # da cambiare!!! (la vm fa schifo come velocita')
 
@@ -20,8 +24,6 @@ def getGoogleCoordinates(loc)
   @place.lon=s[0].longitude
   return @place
 end
-
-#ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 get '/' do
   @response = "Wrong request: you need to specify a method"
@@ -103,16 +105,13 @@ get '/media' do
     @media=Media.joins(:location).where("is_public = 1 AND (6378.7*sqrt(POW((0.0174 * (lat - ?)),2) +
       POW((0.0174 * (lon - ?) * COS(?)),2))) <= ?",
       @place.lat, @place.lon, @place.lat, @radius)
-
-  else
-
-    @media="Usage: parameters \"min_date\" and \"max_date\" should be in the form \"yyyy-mm-dd\"
-      \n Warning: you need to specify at least one parameter!"
-
   end
 
-  content_type :json
-  @media.to_json
+  if defined?(@media)
+    render :rabl, :media, :format => "json"
+  else
+    render :rabl, :param_errors, :format => "json"
+  end
 
 end
 
@@ -191,16 +190,13 @@ get '/events' do
     @events=Event.joins(:location).where("(6378.7*sqrt(POW((0.0174 * (lat - ?)),2) +
       POW((0.0174 * (lon - ?) * COS(?)),2))) <= ?",
       @place.lat, @place.lon, @place.lat, @radius)
-
-  else
-
-    @events="Usage: parameters 'min_date' and 'max_date' should be should follow the pattern 'yyyy-mm-dd'
-      \n Warning: you need to specify at least one parameter!"
-
   end
 
-  content_type :json
-  @events.to_json
+  if defined?(@events)
+    render :rabl, :events, :format => "json"
+  else
+    render :rabl, :param_errors, :format => "json"
+  end
 
 end
 
@@ -212,15 +208,14 @@ get '/works' do
   params[:min_date] <= params[:max_date]
 
     @mediaMDs=MediaMetadata.joins(:fuzzyDate).where("exact_date <= ?  AND exact_date >= ? ", params[:min_date], params[:max_date])
-  else
-
-    @mediaMDs="Usage: parameters \"min_date\" and \"max_date\" should be in the form \"yyyy-mm-dd\"
-      \n Warning: you need to specify at least one parameter!"
-
   end
 
-  content_type :json
-  @mediaMDs.to_json
+  if defined?(@mediaMDs)
+    render :rabl, :works, :format => "json"
+  else
+    render :rabl, :param_errors, :format => "json"
+  end
+
 
 end
 
@@ -239,7 +234,7 @@ get "/people" do
           @radius=0
         end
 
-        @part=Person.find_by_sql([
+        @part=Participant.find_by_sql([
         "SELECT pe.*
         FROM Participant pa, Person pe
         WHERE pa.person_id=pe.person_id AND
@@ -268,7 +263,7 @@ get "/people" do
           @place=getGoogleCoordinates(params[:place])
         end
 
-        @part=Person.find_by_sql([
+        @part=Partcipant.find_by_sql([
         "SELECT pe.*
         FROM Participant pa, Person pe
         WHERE pa.person_id=pe.person_id AND
@@ -285,7 +280,7 @@ get "/people" do
 
       else
 
-        @part=Person.find_by_sql([
+        @part=Participant.find_by_sql([
           "SELECT pe.*
           FROM Participant pa, Person pe
           WHERE pa.person_id=pe.person_id AND
@@ -305,7 +300,7 @@ get "/people" do
         @radius=0
       end
 
-      @part=Person.find_by_sql([
+      @part=Participant.find_by_sql([
         "SELECT pe.*
         FROM Participant pa, Person pe
         WHERE pa.person_id=pe.person_id AND
@@ -332,7 +327,7 @@ get "/people" do
         @place=getGoogleCoordinates(params[:place])
       end
 
-      @part=Person.find_by_sql([
+      @part=Participant.find_by_sql([
         "SELECT pe.*
         FROM Participant pa, Person pe
         WHERE pa.person_id=pe.person_id AND
@@ -345,16 +340,16 @@ get "/people" do
         @place.lat, @place.lon, @place.lat, @radius, params[:type]
         ])
 
-    else
-
-      @part="Usage: parameters \"min_date\" and \"max_date\" should be in the form \"yyyy-mm-dd\"
-      \n Warning: you need to specify at least one parameter!"
-
     end
+    
+    if defined?(@part)
+      render :rabl, :people, :format => "json"
+    else
+      render :rabl, :param_errors, :format => "json"
+    end
+    
   else
-    @part="You need to specify the 'type' parameters!"
+      render :rabl, :missing_type_error, :format => "json"
   end
 
-  content_type :json
-  @part.to_json
 end
