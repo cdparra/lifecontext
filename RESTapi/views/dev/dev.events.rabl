@@ -1,23 +1,21 @@
-collection @part, :root => "people", :object_root => false
+collection @events, :root => "events", :object_root => false
 
-child :person do 
-attributes :firstname, :lastname
-attributes :fullname unless :fullname.nil?
-attributes :famous_for => :story
-attributes :source, :source_url
-attributes :event_type => :data_about
-end
+attributes :event_id
+attributes :headline
+attributes :event_type => :type
+attributes :text, :source, :source_url
 
-child :lifeEvent do
 child :fuzzyDate => :time do |time|
-  attributes :exact_date => :datetime unless :exact_date.nil?
+  attributes :fuzzy_date_id
+  attributes :exact_date => :datetime unless time.exact_date.nil?
   attributes :season unless time.season.nil?
   attributes :day_name => :dayname unless time.day_name.nil?
   attributes :day_part => :daypart unless time.day_part.nil?
   attributes :accuracy unless time.accuracy.nil?
 end
 
-child :location do |loc|
+child :location => :location do |loc|
+  attributes :location_id
   attributes :name unless loc.name.nil?
   attributes :description unless loc.description.nil?
   attributes :city unless loc.city.nil?
@@ -27,13 +25,5 @@ child :location do |loc|
   attributes :lon unless loc.lon.nil?
   attributes :coordinates_trust => :trustness unless loc.coordinates_trust.nil?
 end
-end
 
 attributes :locale
-
-
-
-
-
-
-

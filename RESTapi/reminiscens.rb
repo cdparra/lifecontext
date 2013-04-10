@@ -3,7 +3,6 @@ require 'sinatra'
 require 'sass'
 require 'mysql2'
 require 'rabl'
-require 'oj'
 require 'active_record'
 require 'active_support/core_ext'
 require 'active_support/inflector'
@@ -106,7 +105,11 @@ get '/media' do
   end
 
   if defined?(@media)
-    render :rabl, :media, :format => "json"
+    if params[:dev]!=nil
+      Rabl.render(@media, 'media.rabl', view_paths => 'views/dev/', :format => :json, :scope => self)
+    else
+      render :rabl, :media, :format => "json"
+    end
   else
     render :rabl, :param_errors, :format => "json"
   end
