@@ -1,0 +1,269 @@
+{
+	"help": "Search a datastore table.\n\n    The datastore_search action allows a user to search data in a resource.\n\n    :param resource_id: id or alias of the resource to be searched against.\n    :type resource_id: string\n    :param filters: matching conditions to select, e.g {\"key1\": \"a\", \"key2\": \"b\"}\n    :type filters: dictionary\n    :param q: full text query\n    :type q: string\n    :param plain: treat as plain text query (default: true)\n    :type plain: bool\n    :param language: language of the full text query (default: english)\n    :type language: string\n    :param limit: maximum number of rows to return (default: 100)\n    :type limit: int\n    :param offset: offset this number of rows\n    :type offset: int\n    :param fields: fields to return (default: all fields in original order)\n    :type fields: list or comma separated string\n    :param sort: comma separated field names with ordering\n                 e.g.: \"fieldname1, fieldname2 desc\"\n    :type sort: string\n\n    **Results:**\n\n    The result of this action is a dict with the following keys:\n\n    :rtype: A dictionary with the following keys\n    :param fields: fields/columns and their extra metadata\n    :type fields: list of dictionaries\n    :param offset: query offset value\n    :type offset: int\n    :param limit: query limit value\n    :type limit: int\n    :param filters: query filters\n    :type filters: list of dictionaries\n    :param total: number of total matching records\n    :type total: int\n    :param records: list of matching results\n    :type records: list of dictionaries\n\n    ",
+	"success": true,
+	"result": {
+		"resource_id": "f401c8aa-41e0-4c72-8944-edb196972208",
+		"fields": [
+			{
+				"type": "int4",
+				"id": "_id"
+			}, {
+				"type": "text",
+				"id": "url"
+			}, {
+				"type": "text",
+				"id": "Storia"
+			}, {
+				"type": "text",
+				"id": "Attivita"
+			}, {
+				"type": "text",
+				"id": "Nome"
+			}, {
+				"type": "text",
+				"id": "Data di nascita"
+			}, {
+				"type": "text",
+				"id": "Luogo di Morte"
+			}, {
+				"type": "text",
+				"id": "Luogo di Nascita"
+			}, {
+				"type": "text",
+				"id": "La vita"
+			}, {
+				"type": "text",
+				"id": "Data di morte"
+			}
+		],
+		"records": [
+			{
+				"Storia": " La deputazione trentina alle costituenti di Francoforte e Vienna - KremsierI riflessi nel Trentino del periodo costituzionaleL'involuzione politica ed i controlli di poliziaLa guerra del 1866 ed il quadro delle trattative diplomaticheLa presa di posizione dei liberali trentiniLa nascita dell'irredentismoLa deputazione trentina alla Camera di Vienna",
+				"Data di morte": null,
+				"Nome": "a Prato Giovanni",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50389&Pag=1&IdSel=1",
+				"Attivita": "deputato alle Assemblee costituenti di Francoforte e Vienna",
+				"Data di nascita": null,
+				"Luogo di Morte": null,
+				"Luogo di Nascita": null,
+				"La vita": null,
+				"_id": 1
+			}, {
+				"Storia": " Le istituzioni politiche e la lotta per l'autonomiaLe leggi fondamentali del 1867. La laicizzazione dello stato e la chiesa trentina",
+				"Data di morte": null,
+				"Nome": "a Prato Napoleone",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50646&Pag=2&IdSel=1",
+				"Attivita": null,
+				"Data di nascita": null,
+				"Luogo di Morte": null,
+				"Luogo di Nascita": null,
+				"La vita": null,
+				"_id": 2
+			}, {
+				"Storia": " Come impostare il problema",
+				"Data di morte": "Seconda met del 300",
+				"Nome": "Abbondanzio",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50552&Pag=3&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "Verso la met del 300",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "sconosciuto ",
+				"La vita": "Abbondanzio fu il secondo vescovo della Chiesa di Trento, successore di Giovino e diretto predecessore del pi celebre San Vigilio. Essendo egli appartenuto ad un periodo storico nel quale date e notizie sono alquanto rare ed incerte, non sappiamo con esattezza n l'inizio n la fine del suo episcopato. Esiste per una data molto precisa, quella del 3 settembre 381, che costituisce in proposito un prezioso punto di riferimento e ci permette di ricostruire alcune informazioni essenziali. Nel corso di quest'anno, si tenne infatti ad Aquileia il Concilio dei vescovi di Occidente, al quale anche Abbondanzio prese parte. Il Concilio tenutosi in Aquileia era presieduto dal vescovo di quella citt, Valeriano, e dal pi celebre vescovo di Milano Ambrogio. Quest'ultimo ricoprir un ruolo di importanza fondamentale per il piano di azione missionaria sul Trentino, e pu essere ricordato come uno dei protagonisti per la nostra futura storia (1).L'assemblea era stata convocata per trattare un argomento allora di estrema attualit, quello dell'arianesimo. Sessant'anni prima, nel 321, ad Alessandria, era stata condannata l'eresia di Ario, che negava la consustanzialit tra il Padre e il Figlio e riduceva la figura di Cristo ad una funzione meramente profetica. Nel 325, la condanna contro Ario veniva rinnovata nel Concilio di Nicea. Ma il pensiero ariano, che si era gi abbondantemente diffuso presso le popolazioni dell'Europa orientale e dell'est, non tardava a propagarsi anche nella zona occidentale dell'Impero. Tre anni prima della seduta di Aquileia era morto nella celebre battaglia di Adrianopoli l'imperatore Valente, che a lungo era stato accusato di rappresentare l'esponente pi illustre dell'arianesimo di quei tempi. Ad Aquileia si discusse anche in merito alla posizione di due vescovi, Palladio e Secondiano, che abbracciarono l'eresia ariana e vennero scomunicati. Al termine della seduta, fu incaricato l'imperatore Graziano di curare l'applicabilit dei suoi disposti. Tutto il Concilio venne sapientemente orchestrato dalla regia di Ambrogio, vescovo di Milano, destinato poi a far parte del novero dei personaggi canonizzati dalla Chiesa. Senza nulla togliere alla dignit dell'operato pastorale del vescovo Abbondanzio, che lott contro una delle dottrine che minarono pi fortemente alla base l'unit della Chiesa in tutta la sua storia e che pertanto ag per riportare l'armonia tra la popolazione in un periodo di contrasti assai accesi, fu dunque Ambrogio il protagonista assoluto sulla scena ecclesiastica, risultando decisivo anche per le sorti della Chiesa di Trento. Al suo confronto, la figura di Abbondanzio risulta essere quella di un degno comprimario. Note: 1. Per comprendere il valore della figura di Sant'Ambrogio per i destini del Trentino, si veda nella biografia di San Vigilio ai  2 e 4.",
+				"_id": 3
+			}, {
+				"Storia": " Nicol d'ArcoJacopo Aconcio",
+				"Data di morte": null,
+				"Nome": "Aconcio Jacopo",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50744&Pag=4&IdSel=1",
+				"Attivita": null,
+				"Data di nascita": null,
+				"Luogo di Morte": null,
+				"Luogo di Nascita": null,
+				"La vita": null,
+				"_id": 4
+			}, {
+				"Storia": " Le vicende politiche",
+				"Data di morte": "Seconda met dell'800",
+				"Nome": "Adelgiso",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50592&Pag=5&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "Prima met dell'800",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "sconosciuto ",
+				"La vita": "Il processo a carico del vescovo Adelgiso L'avvio del processo di feudalizzazione. Le tappe storiche fondamentali di questo percorso ",
+				"_id": 5
+			}, {
+				"Storia": null,
+				"Data di morte": "Primi anni del 1100 (ancora vivente nel 1104)",
+				"Nome": "Adelperone",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=458238&Pag=6&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "prima met dell'XI secolo",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "sconosciuto",
+				"La vita": "Adelperone  stato, oltrech vescovo di Trento, un potente personaggio del mondo politico dell'epoca, e a testimonianza di questo depone il fatto che egli abbia ricoperto una carica importante, quella di vice - cancelliere imperiale. Di lui si conosce con precisione la data dell'inizio del suo pontificato, il 1084, esattamente l'anno precedente alla scomparsa di uno dei pi grandi pontefici della storia, Gregorio VII. Nel 1099 concesse il monastero di Gironda, nei pressi di Cremona, all'abate Pietro di Acquanegra, riservando per a s stesso e ai suoi successori sul soglio tridentino il controllo sulla direzione e sulla vita del monastero, che si esercitava in massima parte nel diritto a nominarne l'abate. Dall'imperatore Enrico IV, col quale aveva un rapporto di estrema fiducia, ottenne anche il prestigioso incarico di dirigere l'abbazia di Benediktbeuern, situata nella diocesi di Augusta, per la quale si attiv al fine di promuoverne la riforma. Questo vescovo dedic un'attenzione particolare al culto di San Romedio, in Val di Non, che egli stesso, a quanto pare, venerava con fervore. Giunse, tra l'altro, a beneficiare il santuario di San Romedio di tre cospicue donazioni, che favorirono il rifiorire della vita di questo luogo sacro e contribuirono al consolidarsi e al diffondersi del culto del santo. Adelperone figura ancora vivente nel 1104, anno in cui  citato tra i partecipanti alla dieta di Regensburg.",
+				"_id": 6
+			}, {
+				"Storia": " Il potere dei vescovi si sviluppa allombra dellImpero",
+				"Data di morte": "Prima met del 1100",
+				"Nome": "Adelpreto",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50390&Pag=7&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "Fine dell'XI secolo",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "sconosciuto ",
+				"La vita": "Non abbiamo una data sicura in merito all'inizio dell'episcopato di Adelpreto. Sappiamo piuttosto che fu il successore del vescovo Gebardo e che venne nominato a capo della diocesi trentina fra il 1120 e il 1124, per rimanervi soltanto pochi anni. Una delle poche notizie che abbiamo di lui ce la fornisce Giovanni Hinderbach, il vescovo di Trento vissuto nel XV secolo, che nella sua attivit di grande umanista fu anche ricercatore prezioso di notizie sulla vita di alcuni suoi predecessori (1). Secondo Hinderbach, Adelpreto fece costruire nella Cattedrale di San Vigilio, nel luogo dove  situato il monumento dei martiri d'Anaunia, l'altare vecchio a colonna. L'attendibilit di tale testimonianza sarebbe stata confermata anche dagli esiti degli scavi eseguiti pi recentemente in Duomo, nel corso dei quali sono stati rinvenuti dei punti di appoggio di un ciborio costruito a protezione di un altare. Questo tabernacolo marmoreo aveva, nelle basiliche paleocristiane, una copertura sostenuta da quattro colonne, le quali con tutta probabilit sono quelle di cui si parla nella nota di Hinderbach. Nel breve periodo in cui Adelpreto rimase sul seggio di San Vigilio accadde un avvenimento di fondamentale importanza per l'evoluzione delle relazioni tra Chiesa e Impero: si tratta del trattato di Worms, conclusosi nel 1122 tra l'imperatore Enrico V e il pontefice Callisto II, che prevedeva l'accordo tra le due potenze in merito alle procedure per la designazione dei vescovi. Il buon esito della trattativa, voluta insistentemente ed intelligentemente dal papa dopo avere constatato che i rapporti con il clero germanico stavano rischiando forti spaccature, concluse, perlomeno formalmente, il lungo periodo della \"lotta per le investiture\": le pretese assolute dell'imperatore ad essere l'unico a poter decidere sulle nomine dei vescovi non furono accolte, in quanto i patti prevedevano che i dignitari della Chiesa locale venissero nominati da un'assemblea di ecclesiastici. Tuttavia l'autorit imperiale, tramite una fitta rete di clientele che coinvolgevano molto da vicino il clero locale, riusc a controllare ancora a lungo le assegnazioni di sedi vescovili; inoltre, ad essa sarebbe spettata la scelta decisiva nei casi di disaccordo con la Chiesa sulla designazione. Una congettura relativa al vescovo Adelpreto  contenuta nelle ricerche di Fabio Cusin, secondo il quale questo presule avrebbe potuto, nel contesto del conflitto per le investiture, essersi schierato senza molto successo contro la posizione sostenuta dalla Santa Sede. Note:1. In merito alle raffinate qualit di umanista e di studioso proprie di Giovanni Hinderbach, si pu fare riferimento alla sua biografia, in particolare ai  4 e 5.",
+				"_id": 7
+			}, {
+				"Storia": " Il potere dei vescovi si sviluppa allombra dellImpero",
+				"Data di morte": "Prima met del 1200",
+				"Nome": "Adelpreto di Ravenstein",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50601&Pag=8&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "Seconda met del 1100",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "Ravenstein (presso Bolzano)",
+				"La vita": "Il periodo dell'insediamento dei frati a Trento Le figure di riferimento del vescovo Adelpreto nella sua azione politica ",
+				"_id": 8
+			}, {
+				"Storia": " Scuola e cultura del XIX secolo",
+				"Data di morte": null,
+				"Nome": "Baldessari Luciano",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50760&Pag=39&IdSel=22",
+				"Attivita": "architetto",
+				"Data di nascita": null,
+				"Luogo di Morte": null,
+				"Luogo di Nascita": null,
+				"La vita": null,
+				"_id": 39
+			}, {
+				"Storia": null,
+				"Data di morte": "Prima met del 500",
+				"Nome": "Adeodato I",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=458242&Pag=9&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "Seconda met del 400",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "sconosciuto",
+				"La vita": "Dalla menzione ricavata dal Dittico Udalriciano, Adeodato risulta essere il primo vescovo di Trento nel VI secolo. Esercit quindi il suo ministero durante il primo periodo del regno di Teodorico, il condottiero ostrogoto che, eliminando dalla scena politica Odoacre, il precedente dominatore dell'Italia, era diventato nel 493 sovrano della penisola ed aveva intrapreso una politica di equilibrio mirante a conciliare l'elemento barbarico con quello romanico. Un'epoca storica travagliata anche per la diocesi trentina, la cui popolazione fu costretta ad affrontare un duro periodo di carestia dopo la terribile pestilenza che era scoppiata ai tempi di Odoacre, senza che Teodorico fosse riuscito in tempi brevi a realizzare un decisivo miglioramento delle condizioni di vita. Siamo completamente privi di altre informazioni sul vescovo Adeodato, ma esiste a proposito una congettura interessante che ha dato luogo ad un singolare dibattito. Il suo nome potrebbe essere stato sdoppiato con la citazione di un altro Adeodato, segnalato nel Dittico Udalriciano relativamente alla seconda met del secolo VI, immediatamente prima dell'episcopato di Agnello, quello nel quale avvenne il grande scisma della Chiesa trentina. Molte supposizioni sono state avanzate in merito alla sussistenza di questo doppio nome, ma quella oggi prevalentemente seguita sembra essere la seguente: mentre nessun dubbio si pu ormai avanzare in merito all'effettiva esistenza di un primo Adeodato,  probabile che anche il secondo sia veramente esistito, e sia stato designato vescovo di Trento nell'ambito di un progetto comune fra le diocesi di Trento e di Brescia per convertire al cattolicesimo romano quella frangia della popolazione ariana aderente al cosiddetto \"scisma dei tre capitoli\" (1). Cadrebbe pertanto, secondo questo orientamento, la supposizione relativa allo sdoppiamento del nome. Note: 1. Per una trattazione pi esaustiva sullo scisma dei tre capitoli, si veda nelle biografia dei vescovi Adeodato II ( 2) ed Agnello ( 1). ",
+				"_id": 9
+			}, {
+				"Storia": null,
+				"Data di morte": "A cavallo tra il 500 e il 600",
+				"Nome": "Adeodato II",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=458244&Pag=10&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "Prima met del 500",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "sconosciuto",
+				"La vita": "La controversa identificazione del vescovo Adeodato e il progetto di evangelizzazione che nel Nord Italia coinvolgeva anche la diocesi di TrentoLe origini dello scisma dei tre capitoli e le sue conseguenze sulla diocesi trentinaIl dilagare delle divisioni all'interno della Chiesa durante l'episcopato di Adeodato II ",
+				"_id": 10
+			}, {
+				"Storia": " Rottura secolare dell'unit della penisolaLa presenza della Chiesa",
+				"Data di morte": "A cavallo tra il 500 e il 600",
+				"Nome": "Agnello",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50573&Pag=11&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "Prima met del 500",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "sconosciuto ",
+				"La vita": "I momenti di formazione dello scisma dei tre capitoli in Oriente come premessa per le sorti della Chiesa trentina Il ruolo dei longobardi relativamente allo scisma della Chiesa trentina Le iniziative di pace del vescovo Agnello e le sue qualit diplomatiche La partecipazione del vescovo ai vari sinodi, in particolare a quello che sanc la separazione dalla Chiesa romana.",
+				"_id": 11
+			}, {
+				"Storia": " L'avventura del duca Alachi e la fine dell'autonomia",
+				"Data di morte": null,
+				"Nome": "Alachi",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50580&Pag=12&IdSel=1",
+				"Attivita": "duca longobardo",
+				"Data di nascita": null,
+				"Luogo di Morte": null,
+				"Luogo di Nascita": null,
+				"La vita": null,
+				"_id": 12
+			}, {
+				"Storia": " La cultura delle riviste e degli annuari",
+				"Data di morte": null,
+				"Nome": "Alberti Lutti Francesca",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50767&Pag=13&IdSel=1",
+				"Attivita": null,
+				"Data di nascita": null,
+				"Luogo di Morte": null,
+				"Luogo di Nascita": null,
+				"La vita": null,
+				"_id": 13
+			}, {
+				"Storia": " Il potere dei vescovi si sviluppa allombra dellImpero",
+				"Data di morte": "Fine del 1188",
+				"Nome": "Alberto di Campo",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50599&Pag=14&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "prima met del 1100",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "Campo (valli Giudicarie)",
+				"La vita": "L'elezione al vescovado Lo sviluppo dell'autorit del vescovo e il ruolo dell'imperatore nel processo di stabilizzazione Le altre iniziative e la morte del vescovo ",
+				"_id": 14
+			}, {
+				"Storia": null,
+				"Data di morte": "26709/1982",
+				"Nome": "Baldessari Luciano",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=197564&Pag=40&IdSel=22",
+				"Attivita": "artista",
+				"Data di nascita": "10/12/1896",
+				"Luogo di Morte": null,
+				"Luogo di Nascita": "Rovereto",
+				"La vita": "Nasce a Rovereto il 10 dicembre 1896. Nel 1909, seguendo un apprendistato che lo accomuna a tanti altri artisti trentini, si iscrive alla Scuola Reale Superiore Elisabettina. A questo periodo risale l'incontro con Fortunato Depero il quale ha un'influenza non lieve sul pi giovane compagno: gi nel 1913 infatti Baldessari aderisce al Circolo futurista, acquisendo l'idea di un arte interdisciplinare rivolta, in particolare, al teatro e alla scena. Nel 1919, dopo la guerra, Baldessari si iscrive al Politecnico di Milano dove si laurea nel 1922. Il neo architetto vive negli anni successivi a Berlino, nuovo centro culturale europeo simbolo avanguardia per dada, sperimentazione espressionista e razionalismo, soggiornando anche a Parigi e Amburgo. Frequenta artisti come Kokoschka, Otto Dix, Korint e Gropius. Nel 1926 ritorna in Italia, l'esperienza tedesca e soprattutto espressionista ritorna nelle scenografie e allestimenti eseguite in quegli anni. E' restio ad aderire a movimenti o gruppi ha tuttavia continui contatti con il mondo artistico e intellettuale, con Savinio, Sironi, Garbari e Fontana. Nel 1928 partecipa alla I Esposizione Italiana di Architettura Razionale. Nel 1930 progetta con Figini e Pollini il caff Craja alla cui decorazione interna collaborano Fausto Melotti e Marcello Nizzoli. Durante gli anni Trenta porta a termine alcuni progetti, tra i quali, lo Stabilimento Italcima di Milano (1932-36), il Padiglione della stampa per la Triennale (1933), il Complesso architettonico a piazza San Babila (1936) invece, non viene realizzato. Alla fine del 1939 Baldessari parte per New York dove si tratter fino al 1948. La sua attivit torna a concentrarsi sulla scenografia, la pittura e il disegno. Tornato in Italia, nel 1951, membro della giunta esecutiva della Triennale, ne cura l'allestimento, collaborando con i migliori artisti del momento: Crippa, Dova, Soldati, Radice, Cassinari e Fontana. Negli anni Cinquanta  impegnato nel dibattito internazionale sull'architettura moderna. Alla Triennale del '51, come membro della giunta esecutiva, invita a collaborare artisti e architetti, tra cui Fontana, Cassinari, Crippa, Soldati, Radice, Cappello, Fabbri. Sempre nel 1951 e fino al 1956 realizza per la Fiera di Milano alcuni padiglioni espositivi il primo dei quali per le Acciaierie Breda. Ancora negli anni Sessanta e Settanta proseguono numerosi gli allestimenti di stand fieristici e mostre d'arte. Molto apprezzato e conosciuto all'estero, unico italiano invitato negli anni '50 a collaborare alla ricostruzione dell'Hansaviertel di Berlino, opera anche a Rovereto progettando la nuova sistemazione della Campana dei Caduti (1963) che per non sar realizzata. Saranno invece edificati alcuni condomini e l'Istituto tecnico Fratelli Fontana (1961-73). Baldessari si spegne a Milano il 26 settembre 1982. Bibliografia Belli C., Luciano Baldessari pittore, in ?Trentino?, a. II, n.7, luglio 1926, pp. 171-174; Piovan C., La mostra di Luciano Baldessari a Rovereto, in ?Trentino?, a. II, n.11, novembre 1926, pp. 258-259; Veronesi G., Luciano Baldessari architetto, C. A. T., Trento, 1957; Luciano Baldessari, (cat. della mostra Munchen, Frankfurt) Munchen , 1958; Pica A. (a cura di) Luciano Baldessari, (cat. della mostra, Trento), Trento, 1959-60; Cinti I., Luciano Baldessari architetto, Tamari, Bologna, 1963; Monteverdi M. (a cura di ) Avanguardia a teatro dal 1915 al 1955, (cat. della mostra, Milano, Teatro della Scala), 1969-1970; Grafica 1900-1950 Alto Adige Sudtirolo Tirolo Trentino, (cat. della mostra Bolzano, Trento, Innsbruck) Innsbruck 1981-1982, p.124; AA.VV., Gli anni trenta arte e cultura in Italia, (cat. della mostra Milano) Milano, 1982, pp. 46, 50, 318, 639, 641-644; Fagone V., Baldessari Progetti e scenografie, Milano, Electa, 1982; Mosca Baldessari Z., Luciano Baldessari, (cat.della mostra Trento, Milano), Milano, 1985; Belli G., Marzari G., Boschiero N., Pettenella P., (a cura di) Artisti del '900. Protagonisti di Rovereto., (cat. della mostra Rovereto) Rovereto, 1991; Boschiero N., (a cura di) Luciano Baldessari, in Espressione e Oggettivit, (cat. della mostra Innsbruck, Trento, Bolzano) Innsbruck, 1994, pp. 128-135; Ciag G. L., Luciano Baldessari Nelle carte dell?archivio del ?900, Angelo Guarini e associati, Milano, 1997 Degasperi F., Nicoletti G., Pisetta R. (a cura di), Dizionario degli artisti trentini tra ?800 e ?900, Edizioni Il Castello, Trento, 1998, pp. 34-37; Scudiero M. (a cura di), Arte trentina del '900, 1900-1950, Trento, 2000, p. 176; Chini E., Mich E., Pizzamano P. (a cura di), L'arte riscoperta. Opere delle collezioni civiche di Rovereto e dell'Accademia Roveretana degli Agiati dal Rinascimento al Novecento, Rovereto, 2000. a cura di Nicoletta Boschiero - Museo d'arte moderna e contemporanea di Trento e Rovereto",
+				"_id": 40
+			}, {
+				"Storia": " Trento e il Tirolo sono oggetto del contendere sullo scacchiere europeoGli Asburgo diventano conti del Tirolo e impongono ai vescovi le \"compattate\"Dalle seconde \"compattate\" del 1454 al libello territoriale del 1511: la sovranit dei vescovi nel quadro del legame col Tirolo",
+				"Data di morte": "9 settembre 1390",
+				"Nome": "Alberto di Ortenburg",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50394&Pag=15&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "Prima met del 1300",
+				"Luogo di Morte": "Trento ",
+				"Luogo di Nascita": "Ortenburg (Carinzia)",
+				"La vita": "L'influenza del ducato d'Austria sulla scelta del nuovo vescovo Le condizioni contenute nelle \"compattate\" del 1363. La resa del potere vescovile di fronte a quello dei duchi d'AustriaLe perplessit degli studiosi sulla reale esistenza delle \"compattate\" del 1363 in rapporto a quelle del 1365La crisi del principato vescovile",
+				"_id": 15
+			}, {
+				"Storia": " Rottura secolare dell'unit della penisolaOccupazione del Trentino",
+				"Data di morte": null,
+				"Nome": "Alboino",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50568&Pag=16&IdSel=1",
+				"Attivita": "re longobardo",
+				"Data di nascita": null,
+				"Luogo di Morte": null,
+				"Luogo di Nascita": null,
+				"La vita": null,
+				"_id": 16
+			}, {
+				"Storia": " Il potere dei vescovi si sviluppa allombra dellImperoL'imperatore Federico II pone a Trento un podestCresce la potenza dei Tirolo-Gorizia",
+				"Data di morte": "inizio del 1247",
+				"Nome": "Aldrighetto di Campo",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50395&Pag=17&IdSel=1",
+				"Attivita": "Vescovo di Trento",
+				"Data di nascita": "A cavallo tra il 1100 e il 1200",
+				"Luogo di Morte": "sconosciuto",
+				"Luogo di Nascita": "Campo (Valli Giudicarie)",
+				"La vita": "Le origini storiche dell'istituto dell' \"avvocazia\". Le insidie del conte Alberto Il cedimento di Aldrighetto alle pressioni del conte Alberto. Le accuse di ghibellinismo nei confronti del vescovo",
+				"_id": 17
+			}, {
+				"Storia": " Il potere dei vescovi si sviluppa allombra dellImpero",
+				"Data di morte": null,
+				"Nome": "Aldrighetto di Castelbarco ",
+				"url": "http://www.trentinocultura.net/asp_cat/main.asp?IDProspettiva=19&TipoVista=Scheda&IdObj=50396&Pag=18&IdSel=1",
+				"Attivita": null,
+				"Data di nascita": null,
+				"Luogo di Morte": null,
+				"Luogo di Nascita": null,
+				"La vita": null,
+				"_id": 18
+			}
+		],
+		"limit": 20,
+		"_links": {
+			"start": "/api/action/datastore_search?limit=20&resource_id=f401c8aa-41e0-4c72-8944-edb196972208",
+			"next": "/api/action/datastore_search?offset=20&limit=20&resource_id=f401c8aa-41e0-4c72-8944-edb196972208"
+		},
+		"total": 463
+	}
+}
