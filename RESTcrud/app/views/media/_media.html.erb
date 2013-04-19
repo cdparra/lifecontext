@@ -1,0 +1,34 @@
+<h4>Media</h4>
+<table summary="Medium Fields">
+	<tr>
+		<th><%= f.label(:caption)%></th>
+		<td><%= f.text_field(:caption)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:media_type)%></th>
+		<td><%= f.text_field(:media_type)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:text)%></th>
+		<td><%= f.text_field(:text)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:media_url)%></th>
+		<td><%= f.url_field(:media_url)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:source)%></th>
+		<td><%= f.text_field(:source)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:source_url)%></th>
+		<td><%= f.url_field(:source_url)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:is_public)%></th>
+		<td><%= f.text_field(:is_public)%></td>
+	</tr>
+</table>
+<p>
+	Note that URL fields must include the protocol ("http://", "https://", "ftp://", ...)
+</p>

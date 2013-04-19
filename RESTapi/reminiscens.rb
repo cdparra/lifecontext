@@ -3,6 +3,7 @@ require 'sinatra'
 require 'sass'
 require 'mysql2'
 require 'rabl'
+require 'oj'
 require 'active_record'
 require 'active_support/core_ext'
 require 'active_support/inflector'
@@ -31,6 +32,7 @@ get '/' do
 end
 
 #Media
+
 get '/media' do
 
   if params[:decade]!=nil && params[:decade].match(/\A(18|19|20)\d0\z/)

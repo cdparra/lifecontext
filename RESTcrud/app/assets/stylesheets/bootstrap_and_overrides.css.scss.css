@@ -1,0 +1,4 @@
+@import "bootstrap";
+body { padding-top: 30px; padding-left: 60px;}
+table { border-collapse:separate; border-spacing: 10px; }
+@import "bootstrap-responsive";

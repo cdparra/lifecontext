@@ -1,0 +1,32 @@
+<% @page_title = "Media List" %>
+
+<div>
+	<h2>Media list</h2>
+	
+	<%= link_to('Add new medium', new_media_path, :class => 'action new') %>
+	
+	<div><%= pluralize(@media.size, 'medium') %> found</div>
+	
+	<table class="listing" summary="media list">
+		<tr>
+			<th>Id</th>
+			<th>Caption</th>
+			<th>Url</th>
+		</tr>
+		
+		<% @media.each do |m| %>
+		<tr>
+			<td><%= m.media_id %></td>
+			<td><%= m.caption %></td>
+			<td><a href="<%= m.media_url %>" target="_blank"><%= m.media_url %></a></td>
+			<td class="actions">
+				<%= link_to('Edit', edit_media_path(m.media_id), :class => 'action edit')%>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	
+</div>
+	
+	
+</div>

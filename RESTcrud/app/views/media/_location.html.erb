@@ -1,0 +1,51 @@
+<h4>Location</h4>
+<table summary="Location Fields">
+	<tr>
+		<th><%= l.label(:location_textual)%></th>
+		<td><%= l.text_field(:location_textual)%></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:accuracy)%></th>
+		<td><%= l.number_field :accuracy, :min => 1, :max => 20 %></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:name)%></th>
+		<td><%= l.text_field(:name)%></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:description)%></th>
+		<td><%= l.text_field(:description)%></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:country)%></th>
+		<td><%= l.text_field(:country)%></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:region)%></th>
+		<td><%= l.text_field(:region)%></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:city)%></th>
+		<td><%= l.text_field(:city)%></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:coordinates_trust)%></th>
+		<td><%= l.number_field :coordinates_trust, :min => 0, :max => 1, :step => 1 %></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:lat)%></th>
+		<td><%= l.text_field(:lat)%></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:lon)%></th>
+		<td><%= l.text_field(:lon)%></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:locale)%></th>
+		<td><%= l.text_field(:locale)%></td>
+	</tr>
+	<tr>
+		<th><%= l.label(:radius)%></th>
+		<td><%= l.text_field :radius%></td>
+	</tr>
+</table>

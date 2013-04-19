@@ -1,0 +1,59 @@
+<h4>Time</h4>
+<table summary="FuzzyDate Fields">
+	<tr>
+		<th><%= d.label :textual_date %></th>
+		<td><%= d.text_field :textual_date %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :exact_date %></th>
+		<td><%= d.text_field :exact_date %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :decade %></th>
+		<td><%= d.number_field :decade, :min => 1800, :max => 2010, :step => 10 %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :year %></th>
+		<td><%= d.number_field :year, :min => 1800, :max => 2010, :step => 1 %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :season %></th>
+		<td><%= d.text_field :season %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :month %></th>
+		<td><%= d.number_field :month, :min => 1, :max => 12, :step => 1 %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :day %></th>
+		<td><%= d.number_field :day, :min => 1, :max => 31, :step => 1 %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :day_name %></th>
+		<td><%= d.text_field :day_name %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :day_part %></th>
+		<td><%= d.text_field :day_part %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :hour %></th>
+		<td><%= d.number_field :hour, :min => 0, :max => 23, :step => 1 %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :minute %></th>
+		<td><%= d.number_field :minute, :min => 0, :max => 59, :step => 1 %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :second %></th>
+		<td><%= d.number_field :second, :min => 0, :max => 59, :step => 1 %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :accuracy %></th>
+		<td><%= d.number_field :accuracy, :min => 1, :max => 11, :step => 1 %></td>
+	</tr>
+	<tr>
+		<th><%= d.label :locale %></th>
+		<td><%= d.text_field :locale %></td>
+	</tr>
+</table>

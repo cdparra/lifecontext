@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+<html lang="en" manifest="/it-IT/cache.manifest?v=49">
+  <head>
+    
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">>
+  <meta name="viewport" content="width = 1000">
+      
+  <link rel="image_src" href="http://www.20thingsilearned.com/css/images/front-cover.jpg" />
+  
+  <title>20 cose che ho imparato sui browser e sul Web</title>
+  
+  <link type="text/css" href="/css/twentythings.min.css?v=49" rel="stylesheet" media="screen" /><link type="text/css" href="/css/print.css?v=49" rel="stylesheet" media="print" />  
+    
+    <script type="text/javascript"> 
+      document.write('<link rel="stylesheet" type="text/css" media="all" href="/css/hideOnLoad.css" />');
+      
+      if( window.location.hash.match('\/') ) {
+        window.location = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + window.location.hash.slice(1);
+      }
+
+      var SERVER_VARIABLES = {
+        PAGE: "Pagina",
+        PAGES:  "Pagine",
+        THING:  "CAP.",
+        FOREWORD:  "PREFAZIONE",
+        LANG: "it-IT",
+        SITE_VERSION: 49,
+        FACEBOOK_MESSAGE: "Un divertente manuale di Google sulle cose che avresti sempre voluto sapere a proposito dei browser e del Web (ma che non hai mai osato chiedere)",
+        FACEBOOK_MESSAGE_SINGLE: "Una cosa divertente che ho imparato oggi dal manuale di Google sui browser e sul Web.",
+        TWITTER_MESSAGE: "Un divertente manuale di Google sulle cose che avresti sempre voluto sapere a proposito dei browser e del Web:",
+        TWITTER_MESSAGE_SINGLE: "Una cosa divertente che ho imparato oggi dal manuale di Google sui browser e sul Web: ",
+        BUZZ_MESSAGE: "Un divertente manuale di Google sulle cose che avresti sempre voluto sapere a proposito dei browser e del Web (ma che non hai mai osato chiedere): http://goo.gl/20things",
+        BUZZ_MESSAGE_SINGLE: "Una cosa divertente che ho imparato oggi dal manuale di Google sui browser e sul Web: ",
+        SOLID_BOOK_COLOR: "#5873a0"      };
+      
+      // Set language for use by Google +1 button.
+      window.___gcfg = {lang: SERVER_VARIABLES.LANG};
+    </script>
+
+  
+
+</head>
+<body class="it-IT ">
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-19264787-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>  
+    
+  <div id="preloader">
+    <div class="contents">
+      <canvas class="animation"></canvas>
+      <div class="progress">
+        <div class="fill"></div>
+      </div>
+    </div>
+  </div>
+  
+  <header>
+    <h1><a class="logo"  href="/">20 cose che ho imparato sui browser e sul Web</a></h1>
+    <nav>
+      <ul>
+        <li class="table-of-things"><a href="/table-of-things">SOMMARIO</a></li>
+        <li class="divider1"></li>
+        <li class="about"><a href="/foreword/1">PREFAZIONE</a></li>
+        <li class="divider2"></li>
+        <li class="credits"><a href="/credits">RINGRAZIAMENTI</a></li>
+        <li class="divider2"></li>
+      </ul>
+    </nav>
+    
+    <div id="language-selector">
+      <div id="language-selector-title"><a>
+      italiano      </a></div>
+      <div id="language-selector-list">
+        <ul>
+          <li data-locale="cs-CZ"><a href="/cs-CZ/what-is-the-internet/1">čeština</a></li><li data-locale="de-DE"><a href="/de-DE/what-is-the-internet/1">Deutsch</a></li><li data-locale="en-GB"><a href="/en-GB/what-is-the-internet/1">English (UK)</a></li><li data-locale="en-US"><a href="/en-US/what-is-the-internet/1">English (US)</a></li><li data-locale="es-419"><a href="/es-419/what-is-the-internet/1">español (Latinoamérica y el Caribe)</a></li><li data-locale="es-ES"><a href="/es-ES/what-is-the-internet/1">español (ES)</a></li><li data-locale="fil-PH"><a href="/fil-PH/what-is-the-internet/1">Filipino</a></li><li data-locale="fr-FR"><a href="/fr-FR/what-is-the-internet/1">français</a></li><li data-locale="in-ID"><a href="/in-ID/what-is-the-internet/1">Bahasa Indonesia</a></li><li data-locale="it-IT"><a href="/it-IT/what-is-the-internet/1">italiano</a></li><li data-locale="ja-JP"><a href="/ja-JP/what-is-the-internet/1">日本語</a></li><li data-locale="nl-NL"><a href="/nl-NL/what-is-the-internet/1">Nederlands</a></li><li data-locale="pl-PL"><a href="/pl-PL/what-is-the-internet/1">polski</a></li><li data-locale="pt-BR"><a href="/pt-BR/what-is-the-internet/1">português</a></li><li data-locale="ru-RU"><a href="/ru-RU/what-is-the-internet/1">русский</a></li><li data-locale="zh-CN"><a href="/zh-CN/what-is-the-internet/1">中文（简体中文）</a></li><li data-locale="zh-TW"><a href="/zh-TW/what-is-the-internet/1">中文 (繁體中文)</a></li>        </ul>
+      </div>
+    </div>
+    
+    <!-- Input type="search" is currently too inconsistent across browsers and platforms -->
+    <input id="search-field" type="text" value="Cerca nel libro">
+  </header>
+  
+  <!-- Holds search results -->
+  <div id="search-dropdown">
+    <div class="fader">
+      <div class="background-top"></div>
+      <div class="background-bottom"></div>
+      <div class="results">
+        <div class="things">
+          <h4><span>Cerca nel libro</span></h4>
+          <hr>
+        </div>
+        <div class="keywords">
+          <h4><span>PAROLE CHIAVE</span></h4>
+          <hr>
+        </div>
+        <div class="empty">Nessun risultato trovato.</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Left side grey overlay that masks out the book -->
+  <div id="grey-mask"></div>
+  
+  <div id="book">
+    <div id="shadow">
+      <div class="shadow-left"></div>
+      <div class="shadow-right"></div>
+    </div>
+    <div id="spine">
+      <div class="spine-top"></div>
+      <div class="spine-bottom"></div>
+    </div>
+    <div id="front-cover-bookmark">
+      <div class="content">
+        <p>Che cos'è un cookie? Come faccio a difendermi sul Web? E soprattutto: che cosa succederebbe se il mio laptop fosse travolto da un camion?</p><p>Per conoscere le cose che avresti sempre voluto sapere sul Web ma che non hai mai osato chiedere, continua a leggere.</p>        <a href="/it-IT/what-is-the-internet/2" class="open-book">APRI IL LIBRO</a>
+        <canvas id="flip-intro"></canvas>
+      </div>
+    </div>
+    <div id="sharer">
+      <div class="background-top"></div>
+      <div class="background-bottom"></div>
+      <div class="content">
+        <ul>
+          <li class="facebook"><a href="#" title="Facebook"></a></li>
+          <li class="twitter"><a href="#" title="Twitter"></a></li>
+          <li class="gplus"></li>
+          <li class="print"><a href="#" target="_blank" title="Stampa elemento">Stampa elemento</a></li>
+        </ul>
+        <p class="index">CAP.</p>
+        <p class="instruction">CONDIVIDI </p>
+      </div>
+    </div>
+    <div id="front-cover">
+      <img src="/css/images/front-cover.jpg" width="830" height="520">
+    </div>
+    <div id="back-cover">
+      <img src="/css/images/back-cover.jpg" data-src-flipped="/css/images/back-cover-flipped.jpg" width="830" height="520">
+    </div>
+    <div id="page-shadow-overlay"></div>
+    <div id="pages">
+<section class="template-start-7 title-what-is-the-internet page-1"><div class="page"><div class="page-title"><h2>Che cos&#039;è Internet?</h2><h3>C&#039;è chi dice Internét, io lo chiamo TCP/IP</h3></div><div class="image1"><img src="" data-src="/media/illustrations/internet01.png" /></div>
+<div class="left">
+	<p class="drop-cap">Che cos’è esattamente Internet? Per alcuni di noi, Internet è il posto ideale per rimanere in contatto con gli amici, ricevere notizie, fare acquisti e giocare. Per altri, Internet può coincidere con i loro fornitori di banda larga a livello locale o con i cavi sotterranei e i cavi in </p>
+</div>
+<div class="right">
+	<p class="continuation">fibra ottica che trasportano i dati tra le città attraversando gli oceani. Chi ha ragione?</p>
+	<p>Per rispondere a questa domanda, dobbiamo tornare indietro nel tempo fino al 1974. In quell’anno, alcuni brillanti ricercatori informatici inventarono l’Internet Protocol Suite </p>
+</div>
+</div></section>			
+			</div>
+			<div id="left-page">
+				<img src="/css/images/left-page.jpg" data-src-flipped="/css/images/left-page-flipped.jpg" width="830" height="520">
+			</div>
+			<div id="right-page">
+				<div id="paperstack">
+					<div class="paper s1"></div>
+					<div class="paper s2"></div>
+					<div class="paper s3"></div>
+					<div class="paper s4"></div>
+					<div class="paper s5"></div>
+					<div class="paper s6"></div>
+					<div class="paper s7"></div>
+					<div class="shadow"></div>
+				</div>
+				<img src="/css/images/right-page.jpg" width="830" height="520">
+			</div>
+		</div>
+		
+		<nav id="chapter-nav">
+			<p>20 cose</p>
+			<ul>
+											
+				<li class="what-is-the-internet">
+					<a href="/what-is-the-internet" class="cnItem" title="Che cos&#039;è Internet?"  data-title="Che cos&#039;è Internet?" data-subtitle="C&#039;è chi dice Internét, io lo chiamo TCP/IP" data-article="what-is-the-internet" data-globalstartpage="4" data-globalendpage="6" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>1</span>
+					</a>
+					<a class="over" href="/what-is-the-internet">
+						<div class="description">
+							<p class="title">Che cos&#039;è Internet?</p>
+							<p class="pagenumber">4-6</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">1</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="cloud-computing">
+					<a href="/cloud-computing" class="cnItem" title="Cloud computing"  data-title="Cloud computing" data-subtitle="Perché non c&#039;è problema se il tuo laptop viene travolto da un camion" data-article="cloud-computing" data-globalstartpage="7" data-globalendpage="8" data-numberofpages="2">
+						<div class="illustration"></div>
+						<span>2</span>
+					</a>
+					<a class="over" href="/cloud-computing">
+						<div class="description">
+							<p class="title">Cloud computing</p>
+							<p class="pagenumber">7-8</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">2</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="web-apps">
+					<a href="/web-apps" class="cnItem" title="Applicazioni web"  data-title="Applicazioni web" data-subtitle="Il Web è una repubblica fondata sulle app" data-article="web-apps" data-globalstartpage="9" data-globalendpage="11" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>3</span>
+					</a>
+					<a class="over" href="/web-apps">
+						<div class="description">
+							<p class="title">Applicazioni web</p>
+							<p class="pagenumber">9-11</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">3</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="html">
+					<a href="/html" class="cnItem" title="HTML, JavaScript, CSS e altro"  data-title="HTML, JavaScript, CSS e altro" data-subtitle="AJAX non è solo una marca di detersivo" data-article="html" data-globalstartpage="12" data-globalendpage="14" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>4</span>
+					</a>
+					<a class="over" href="/html">
+						<div class="description">
+							<p class="title">HTML, JavaScript, CSS e altro</p>
+							<p class="pagenumber">12-14</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">4</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="html5">
+					<a href="/html5" class="cnItem" title="HTML5"  data-title="HTML5" data-subtitle="In principio non c&#039;era il &lt;video&gt;" data-article="html5" data-globalstartpage="15" data-globalendpage="16" data-numberofpages="2">
+						<div class="illustration"></div>
+						<span>5</span>
+					</a>
+					<a class="over" href="/html5">
+						<div class="description">
+							<p class="title">HTML5</p>
+							<p class="pagenumber">15-16</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">5</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="threed">
+					<a href="/threed" class="cnItem" title="Il 3D nel browser"  data-title="Il 3D nel browser" data-subtitle="Navigare in una nuova dimensione" data-article="threed" data-globalstartpage="17" data-globalendpage="19" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>6</span>
+					</a>
+					<a class="over" href="/threed">
+						<div class="description">
+							<p class="title">Il 3D nel browser</p>
+							<p class="pagenumber">17-19</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">6</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="old-vs-new-browsers">
+					<a href="/old-vs-new-browsers" class="cnItem" title="Ode al browser"  data-title="Ode al browser" data-subtitle="Browser antiquati contro browser moderni" data-article="old-vs-new-browsers" data-globalstartpage="20" data-globalendpage="23" data-numberofpages="4">
+						<div class="illustration"></div>
+						<span>7</span>
+					</a>
+					<a class="over" href="/old-vs-new-browsers">
+						<div class="description">
+							<p class="title">Ode al browser</p>
+							<p class="pagenumber">20-23</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">7</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="plugins">
+					<a href="/plugins" class="cnItem" title="Plug-in"  data-title="Plug-in" data-subtitle="Come trasformare una Margherita in una Quattro stagioni" data-article="plugins" data-globalstartpage="24" data-globalendpage="25" data-numberofpages="2">
+						<div class="illustration"></div>
+						<span>8</span>
+					</a>
+					<a class="over" href="/plugins">
+						<div class="description">
+							<p class="title">Plug-in</p>
+							<p class="pagenumber">24-25</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">8</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="browser-extensions">
+					<a href="/browser-extensions" class="cnItem" title="Estensioni del browser "  data-title="Estensioni del browser " data-subtitle="I superpoteri per il tuo browser" data-article="browser-extensions" data-globalstartpage="26" data-globalendpage="28" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>9</span>
+					</a>
+					<a class="over" href="/browser-extensions">
+						<div class="description">
+							<p class="title">Estensioni del browser </p>
+							<p class="pagenumber">26-28</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">9</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="sync">
+					<a href="/sync" class="cnItem" title="Sincronizzazione del browser"  data-title="Sincronizzazione del browser" data-subtitle="Perché non c&#039;è problema se il tuo laptop viene travolto da un camion, parte seconda" data-article="sync" data-globalstartpage="29" data-globalendpage="30" data-numberofpages="2">
+						<div class="illustration"></div>
+						<span>10</span>
+					</a>
+					<a class="over" href="/sync">
+						<div class="description">
+							<p class="title">Sincronizzazione del browser</p>
+							<p class="pagenumber">29-30</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">10</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="browser-cookies">
+					<a href="/browser-cookies" class="cnItem" title="Cookie del browser"  data-title="Cookie del browser" data-subtitle="Grazie dei ricordi" data-article="browser-cookies" data-globalstartpage="31" data-globalendpage="32" data-numberofpages="2">
+						<div class="illustration"></div>
+						<span>11</span>
+					</a>
+					<a class="over" href="/browser-cookies">
+						<div class="description">
+							<p class="title">Cookie del browser</p>
+							<p class="pagenumber">31-32</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">11</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="browser-privacy">
+					<a href="/browser-privacy" class="cnItem" title="I browser e la privacy"  data-title="I browser e la privacy" data-subtitle="Le varie opzioni per proteggere la tua privacy nel browser" data-article="browser-privacy" data-globalstartpage="33" data-globalendpage="36" data-numberofpages="4">
+						<div class="illustration"></div>
+						<span>12</span>
+					</a>
+					<a class="over" href="/browser-privacy">
+						<div class="description">
+							<p class="title">I browser e la privacy</p>
+							<p class="pagenumber">33-36</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">12</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="malware">
+					<a href="/malware" class="cnItem" title="Malware, phishing e rischi per la sicurezza"  data-title="Malware, phishing e rischi per la sicurezza" data-subtitle="Fidarsi è bene, ma non fidarsi è meglio" data-article="malware" data-globalstartpage="37" data-globalendpage="39" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>13</span>
+					</a>
+					<a class="over" href="/malware">
+						<div class="description">
+							<p class="title">Malware, phishing e rischi per la sicurezza</p>
+							<p class="pagenumber">37-39</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">13</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="browser-protection">
+					<a href="/browser-protection" class="cnItem" title="In che modo i browser moderni ti proteggono da malware e phishing"  data-title="In che modo i browser moderni ti proteggono da malware e phishing" data-subtitle="Attenzione ai furfanti!" data-article="browser-protection" data-globalstartpage="40" data-globalendpage="42" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>14</span>
+					</a>
+					<a class="over" href="/browser-protection">
+						<div class="description">
+							<p class="title">In che modo i browser moderni ti proteggono da malware e phishing</p>
+							<p class="pagenumber">40-42</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">14</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="url">
+					<a href="/url" class="cnItem" title="Utilizzo degli indirizzi web per mantenere la sicurezza"  data-title="Utilizzo degli indirizzi web per mantenere la sicurezza" data-subtitle="L&#039;importanza di chiamarsi URL" data-article="url" data-globalstartpage="43" data-globalendpage="47" data-numberofpages="5">
+						<div class="illustration"></div>
+						<span>15</span>
+					</a>
+					<a class="over" href="/url">
+						<div class="description">
+							<p class="title">Utilizzo degli indirizzi web per mantenere la sicurezza</p>
+							<p class="pagenumber">43-47</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">15</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="dns">
+					<a href="/dns" class="cnItem" title="Indirizzi IP e DNS"  data-title="Indirizzi IP e DNS" data-subtitle="L&#039;invisibile elenco telefonico del Web" data-article="dns" data-globalstartpage="48" data-globalendpage="50" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>16</span>
+					</a>
+					<a class="over" href="/dns">
+						<div class="description">
+							<p class="title">Indirizzi IP e DNS</p>
+							<p class="pagenumber">48-50</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">16</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="identity">
+					<a href="/identity" class="cnItem" title="Convalida delle identità online"  data-title="Convalida delle identità online" data-subtitle="Lo strano caso del dottor Jekyll e del signor Hyde" data-article="identity" data-globalstartpage="51" data-globalendpage="53" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>17</span>
+					</a>
+					<a class="over" href="/identity">
+						<div class="description">
+							<p class="title">Convalida delle identità online</p>
+							<p class="pagenumber">51-53</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">17</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="page-load">
+					<a href="/page-load" class="cnItem" title="Evoluzione verso un Web più veloce"  data-title="Evoluzione verso un Web più veloce" data-subtitle="Velocizzare immagini, video e JavaScript sul Web" data-article="page-load" data-globalstartpage="54" data-globalendpage="57" data-numberofpages="4">
+						<div class="illustration"></div>
+						<span>18</span>
+					</a>
+					<a class="over" href="/page-load">
+						<div class="description">
+							<p class="title">Evoluzione verso un Web più veloce</p>
+							<p class="pagenumber">54-57</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">18</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="open-source">
+					<a href="/open-source" class="cnItem" title="L&#039;open source e i browser"  data-title="L&#039;open source e i browser" data-subtitle="Siamo nani seduti sulle spalle dei giganti" data-article="open-source" data-globalstartpage="58" data-globalendpage="59" data-numberofpages="2">
+						<div class="illustration"></div>
+						<span>19</span>
+					</a>
+					<a class="over" href="/open-source">
+						<div class="description">
+							<p class="title">L&#039;open source e i browser</p>
+							<p class="pagenumber">58-59</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">19</p>
+						</div>
+					</a>
+				</li>
+				
+														
+				<li class="conclusion">
+					<a href="/conclusion" class="cnItem" title="19 cose dopo..."  data-title="19 cose dopo..." data-subtitle="Quattro passi tra le nuvole" data-article="conclusion" data-globalstartpage="60" data-globalendpage="61" data-numberofpages="2">
+						<div class="illustration"></div>
+						<span>20</span>
+					</a>
+					<a class="over" href="/conclusion">
+						<div class="description">
+							<p class="title">19 cose dopo...</p>
+							<p class="pagenumber">60-61</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">20</p>
+						</div>
+					</a>
+				</li>
+				
+							
+			</ul>
+		</nav>
+		
+		<div id="overlay">
+			<div class="bookmark">
+				<div class="content">
+					<a class="close" href="#">CHIUDI</a>
+					<h3>RIPRENDERE<br/>LA LETTURA?</h3>
+					<p>Puoi riprendere la lettura dal punto in cui l'avevi interrotta l'ultima volta o cominciare dall'inizio. Desideri:</p>
+					<a class="action resume" href="#">RIPRENDERE<br/>LA LETTURA</a>
+					<a class="action restart" href="#">RINIZIARE</a>
+				</div>
+			</div>
+			
+			<div class="print">
+					<a class="close" href="#">CHIUDI</a>
+					<a class="printBook" href="/it-IT/all/print"_blank">
+						<h2>Stampa il libro</h2>
+						<p>Stampa il libro (solo in formato Lettera o A4)</p>
+					</a>
+					<a class="downloadPdf" target="_blank" href="/media/20ThingsILearnedaboutBrowsersandtheWeb.pdf">
+						<h2>Scarica PDF</h2>
+						<p>Scarica il libro in PDF. Dimensioni: 3,3 MB</p>
+					</a>
+			</div>
+		</div>
+		
+		<div id="credits">
+			<div class="header">
+				<h2><span>RINGRAZIAMENTI</span></h2>
+				<hr>
+			</div>
+			<div class="people">
+				<ul>
+					<li><h3>Illustrazione</h3><a href="http://www.christophniemann.com/" target="_blank">Christoph Niemann</a></li>
+					<li><h3>Autori/editor</h3>Min Li Chan, Fritz Holznagel, Michael Krantz</li>
+					<li><h3>Curatore del progetto</h3>Min Li Chan &amp; <br/>The Google Chrome Team</li>
+					<li><h3>Design</h3><a href="http://f-i.com" target="_blank">Fi</a><br/><a href="http://monocubed.com/" target="_blank">Paul Truong</a></li>
+					<li><h3>Sviluppo</h3><a href="http://f-i.com" target="_blank">Fi</a></li>
+				</ul>
+				<h4>Ringraziamenti speciali a</h4>
+				<p class="special-thanks">Brian Rakowski, Ian Fette, Chris DiBona, Alex Russell, Erik Kay, Jim Roskind, Mike Belshe, Dimitri Glazkov, Henry Bridge, Gregor Hochmuth, Jeffrey Chang, Mark Larson, Aaron Boodman, Wieland Holfelder, Jochen Eisinger, Bernhard Bauer, Adam Barth, Cory Ferreria, Erik Arvidsson, John Abd-Malek, Carlos Pizano, Justin Schuh, Wan-Teh Chang, Vangelis Kokkevis, Mike Jazayeri, Brad Chen, Darin Fisher, Johanna Wittig,  Maxim Lobanov, Marion Fabing Nicolas, Jana Vorechovska, Daniele De Santis, Laura van Nigtevegt, Wojtek Cyprys, Dudley Carr, Richard Rabbat, Ji Lee, Glen Murphy, Valdean Klump, Aaron Koblin, Paul Irish, John Fu, Chris Wright, Sarah Nahm, Christos Apartoglou, Meredith Papp, Eric Antonow, Eitan Bencuya, Jay Nancarrow, Ben Lee, Gina Weakley, Linus Upson, Sundar Pichai & The Google Chrome Team</p>
+				<p class="html5-logo">Realizzato in HTML5<img src="/media/images/HTML5_Badge_32.png" title="Built in HTML5"></img></p>
+			</div>
+			<hr>
+			<div class="share">
+				<p>Condividi questo libro e quello che hai imparato con amici e parenti. www.20thingsilearned.com</p>
+				<ul>
+					<li class="facebook"><a href="http://www.facebook.com/sharer.php?u=http://20thingsilearned.com&amp;t=20%20Things%20I%20learned%20About%20Browsers%20and%20the%20Web" title="Facebook"><span class="icon"></span><span class="text">Condividi su</span></a></li>
+					<li class="twitter"><a href="http://twitter.com/share?original_referer=http://20thingsilearned.com&amp;text=20%20Things%20I%20learned%20About%20Browsers%20and%20the%20Web&amp;url=http://20thingsilearned.com" title="Twitter"><span class="icon"></span><span class="text">Condividi su</span></a></li>
+					<li class="gplus"></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="articleId">what-is-the-internet</div><div id="pageNumber">1</div>	<div id="pagination-prev" class=""><a href="/it-IT/foreword/3"><div class="arrow">LOCALE_PREVIOUS_PAGE</div></a></div>
+	<div id="pagination-next" class=""><a href="/it-IT/what-is-the-internet/2"><div class="arrow">LOCALE_NEXT_PAGE</div></a></div>
+		
+		<div id="table-of-contents">
+			<div class="center">
+				<div class="header">
+					<a class="go-back" href="/">Indietro</a>
+					<h2><span>Sommario</span></h2>
+					<hr>
+				</div>
+				<ul>
+									
+							<li class="what-is-the-internet">
+								<a href="/what-is-the-internet" data-article="what-is-the-internet">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 1</p>
+									</div>
+									<h3>Che cos&#039;è Internet?</h3>
+									<p>C&#039;è chi dice Internét, io lo chiamo TCP/IP</p>
+								</a>
+							</li>
+									
+							<li class="cloud-computing">
+								<a href="/cloud-computing" data-article="cloud-computing">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 2</p>
+									</div>
+									<h3>Cloud computing</h3>
+									<p>Perché non c&#039;è problema se il tuo laptop viene travolto da un camion</p>
+								</a>
+							</li>
+									
+							<li class="web-apps">
+								<a href="/web-apps" data-article="web-apps">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 3</p>
+									</div>
+									<h3>Applicazioni web</h3>
+									<p>Il Web è una repubblica fondata sulle app</p>
+								</a>
+							</li>
+									
+							<li class="html">
+								<a href="/html" data-article="html">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 4</p>
+									</div>
+									<h3>HTML, JavaScript, CSS e altro</h3>
+									<p>AJAX non è solo una marca di detersivo</p>
+								</a>
+							</li>
+									
+							<li class="html5">
+								<a href="/html5" data-article="html5">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 5</p>
+									</div>
+									<h3>HTML5</h3>
+									<p>In principio non c&#039;era il &lt;video&gt;</p>
+								</a>
+							</li>
+									
+							<li class="threed">
+								<a href="/threed" data-article="threed">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 6</p>
+									</div>
+									<h3>Il 3D nel browser</h3>
+									<p>Navigare in una nuova dimensione</p>
+								</a>
+							</li>
+									
+							<li class="old-vs-new-browsers">
+								<a href="/old-vs-new-browsers" data-article="old-vs-new-browsers">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 7</p>
+									</div>
+									<h3>Ode al browser</h3>
+									<p>Browser antiquati contro browser moderni</p>
+								</a>
+							</li>
+									
+							<li class="plugins">
+								<a href="/plugins" data-article="plugins">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 8</p>
+									</div>
+									<h3>Plug-in</h3>
+									<p>Come trasformare una Margherita in una Quattro stagioni</p>
+								</a>
+							</li>
+									
+							<li class="browser-extensions">
+								<a href="/browser-extensions" data-article="browser-extensions">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 9</p>
+									</div>
+									<h3>Estensioni del browser </h3>
+									<p>I superpoteri per il tuo browser</p>
+								</a>
+							</li>
+									
+							<li class="sync">
+								<a href="/sync" data-article="sync">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 10</p>
+									</div>
+									<h3>Sincronizzazione del browser</h3>
+									<p>Perché non c&#039;è problema se il tuo laptop viene travolto da un camion, parte seconda</p>
+								</a>
+							</li>
+									
+							<li class="browser-cookies">
+								<a href="/browser-cookies" data-article="browser-cookies">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 11</p>
+									</div>
+									<h3>Cookie del browser</h3>
+									<p>Grazie dei ricordi</p>
+								</a>
+							</li>
+									
+							<li class="browser-privacy">
+								<a href="/browser-privacy" data-article="browser-privacy">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 12</p>
+									</div>
+									<h3>I browser e la privacy</h3>
+									<p>Le varie opzioni per proteggere la tua privacy nel browser</p>
+								</a>
+							</li>
+									
+							<li class="malware">
+								<a href="/malware" data-article="malware">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 13</p>
+									</div>
+									<h3>Malware, phishing e rischi per la sicurezza</h3>
+									<p>Fidarsi è bene, ma non fidarsi è meglio</p>
+								</a>
+							</li>
+									
+							<li class="browser-protection">
+								<a href="/browser-protection" data-article="browser-protection">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 14</p>
+									</div>
+									<h3>In che modo i browser moderni ti proteggono da malware e phishing</h3>
+									<p>Attenzione ai furfanti!</p>
+								</a>
+							</li>
+									
+							<li class="url">
+								<a href="/url" data-article="url">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 15</p>
+									</div>
+									<h3>Utilizzo degli indirizzi web per mantenere la sicurezza</h3>
+									<p>L&#039;importanza di chiamarsi URL</p>
+								</a>
+							</li>
+									
+							<li class="dns">
+								<a href="/dns" data-article="dns">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 16</p>
+									</div>
+									<h3>Indirizzi IP e DNS</h3>
+									<p>L&#039;invisibile elenco telefonico del Web</p>
+								</a>
+							</li>
+									
+							<li class="identity">
+								<a href="/identity" data-article="identity">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 17</p>
+									</div>
+									<h3>Convalida delle identità online</h3>
+									<p>Lo strano caso del dottor Jekyll e del signor Hyde</p>
+								</a>
+							</li>
+									
+							<li class="page-load">
+								<a href="/page-load" data-article="page-load">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 18</p>
+									</div>
+									<h3>Evoluzione verso un Web più veloce</h3>
+									<p>Velocizzare immagini, video e JavaScript sul Web</p>
+								</a>
+							</li>
+									
+							<li class="open-source">
+								<a href="/open-source" data-article="open-source">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 19</p>
+									</div>
+									<h3>L&#039;open source e i browser</h3>
+									<p>Siamo nani seduti sulle spalle dei giganti</p>
+								</a>
+							</li>
+									
+							<li class="conclusion">
+								<a href="/conclusion" data-article="conclusion">
+									<div class="medium-book">
+										<div class="illustration"></div>
+										<p>CAP. 20</p>
+									</div>
+									<h3>19 cose dopo...</h3>
+									<p>Quattro passi tra le nuvole</p>
+								</a>
+							</li>
+								</ul>
+			</div>
+		</div>	
+		<footer>		
+			<span class="curator">Pubblicato dal team di <a href="http://www.google.com/chrome?brand=CHJN">Google Chrome</a>. ©2010 Google Inc. Tutti i diritti riservati.</span>
+			<div class="right-side">
+				<div class="divider"></div>
+				<div class="sharing">
+					<p>CONDIVIDI IL LIBRO</p>
+					<input type="text" class="clipboard-notification" value="http://20thingsilearned.com/" readonly="readonly" />
+					<ul>
+						<li class="facebook"><a href="http://www.facebook.com/sharer.php?u=http://20thingsilearned.com&amp;t=20%20Things%20I%20learned%20About%20Browsers%20and%20the%20Web" title="Facebook"></a></li>
+						<li class="twitter"><a href="http://twitter.com/share?original_referer=http://20thingsilearned.com&amp;text=20%20Things%20I%20learned%20About%20Browsers%20and%20the%20Web&amp;url=http://20thingsilearned.com" title="Twitter"></a></li>
+						<li class="gplus"></li>
+						<li class="url"><a href="#"></a></li>
+					</ul>
+				</div>
+				<div class="divider"></div>
+				<div class="print">
+					<a href="/it-IT/all/print" target="_blank"><span class="icon"></span>STAMPA IL LIBRO</a>
+				</div>
+									<div class="divider"></div>
+					<div class="lights-wrapper">
+						<div class="lights">
+							<a href="#"><span class="icon">LUCI</span></a>
+						</div>
+					</div>
+					<div class="divider"></div>
+					<div class="fullscreen-wrapper" style="display: none;">
+						<div class="fullscreen">
+							<a href="#"><span class="icon"></span>SCHERMO INTERO</a>
+						</div>
+					</div>
+							</div>
+		</footer>
+		
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+				
+  		<script type="text/javascript" src="/js/twentythings.min.js?v=49"></script>
+  		<script type="text/javascript">
+  			TT.initialize();
+  		</script>
+		
+					
+		
+	</body>
+</html>

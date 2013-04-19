@@ -1,0 +1,27 @@
+<% @page_title = 'Create medium' %>
+
+<%= link_to('Back to list', media_index_path, :class => 'back-link')%>
+
+<div class="user new">
+	<h2>Create new medium</h2>
+	
+	<%= form_for(@medium, :url => { :action => :create }) do |f| %>
+	
+	<%= render(:partial => 'media', :locals => {:f => f})%>
+	
+    <%= f.fields_for [@medium.location, Location.new] do |l| %> 
+         <%= render(:partial => 'location', :locals => {:l => l})%>
+     <% end %>
+	 
+     <%= f.fields_for [@medium.fuzzyDate, FuzzyDate.new] do |d| %> 
+          <%= render(:partial => 'date', :locals => {:d => d})%>
+      <% end %>
+	
+	
+	<div class="form-buttons">
+		<%= submit_tag("Create medium")%>
+	</div>
+	<% end %>
+</div>
+
+<!--, :url => {:action => 'create'}-->

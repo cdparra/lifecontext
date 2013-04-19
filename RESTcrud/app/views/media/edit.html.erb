@@ -1,0 +1,24 @@
+<% @page_title = 'Edit medium id: #{@medium.media_id}' %>
+
+<%= link_to('Back to list', media_index_path, :class => 'back-link')%>
+
+<div class="user edit">
+	<h2>Edit medium</h2>
+	
+	<%= form_for(@medium) do |f| %>
+	
+	<%= render(:partial => 'media', :locals => {:f => f})%>
+	
+    <%= f.fields_for @medium.location do |l| %> 
+         <%= render(:partial => 'location', :locals => {:l => l})%>
+     <% end %>
+	 
+     <%= f.fields_for @medium.fuzzyDate do |d| %> 
+          <%= render(:partial => 'date', :locals => {:d => d})%>
+      <% end %>
+	
+	<div class="form-buttons">
+		<%= submit_tag("Update  medium")%>
+	</div>
+	<% end %>
+</div>
