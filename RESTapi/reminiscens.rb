@@ -10,8 +10,10 @@ require 'active_support/inflector'
 require 'builder'
 require 'geocoder'
 
-load 'config/settings.rb'
-load 'db/models/models.rb'
+require './config/settings'
+require './models/models'
+
+ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 Rabl.register!
 
@@ -26,9 +28,103 @@ def getGoogleCoordinates(loc)
 end
 
 get '/' do
-  @response = "Wrong request: you need to specify a method"
-  content_type :json
-  @response.to_json
+    res = { :success => false,
+                :info => "Wrong request: you need to specify a method",
+              }.to_json  
+  halt 500, {'Content-Type' => 'application/json'}, res
+end
+
+#bookletResources
+
+get '/generalBooklet/media' do
+
+  decade = params[:decade]
+  lat = params[:lat]
+  lon = params[:lon]
+  
+  if decade != nil && lat != nil && lon != nil 
+  
+    orderString = "(6378.7*sqrt(POW((0.0174 * (lat - #{lat})),2) + POW((0.0174 * (lon - #{lon}) * COS(#{lat})),2)))"
+  
+    @sortedCities = City.where("lat IS NOT NULL").order(orderString)
+  
+    i=0;
+  
+    @city = @sortedCities[i]
+    @media = Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
+  
+    while @media.size <5
+      i+=1
+      @city = @sortedCities[i]
+      @media += Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@media.size))
+    end
+
+    render :rabl, :context_media, :format => "json"
+
+  else
+    res = { :success => false,
+              :info => "Wrong request: you need to specify a decade and lat/lon",
+            }.to_json  
+    halt 500, {'Content-Type' => 'application/json'}, res
+  end
+end
+
+get '/generalBooklet/works' do
+
+  decade = params[:decade]
+  
+  if decade != nil
+  
+    orderString = "decade - #{decade}"
+  
+    @mediaMDs = MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL AND author IS NOT NULL AND resource_url IS NOT NULL").order(orderString).limit(5)
+
+    render :rabl, :context_works, :format => "json"
+  
+  else
+    
+    res = { :success => false,
+                :info => "Wrong request: you need to specify a decade",
+              }.to_json  
+    halt 500, {'Content-Type' => 'application/json'}, res
+    
+  end
+
+end
+
+
+get '/generalBooklet/events' do
+
+  decade = params[:decade]
+  lat = params[:lat]
+  lon = params[:lon]
+  
+  if decade != nil && lat != nil && lon != nil 
+  
+    orderString = "(6378.7*sqrt(POW((0.0174 * (lat - #{lat})),2) + POW((0.0174 * (lon - #{lon}) * COS(#{lat})),2)))"
+  
+    @sortedCities = City.where("lat IS NOT NULL").order(orderString)
+  
+    i=0;
+  
+    @city = @sortedCities[i]
+    @events = Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
+  
+    while @events.size <5
+      i=i+1
+      @city = @sortedCities[i]
+      @events += Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@events.size))
+    end
+  
+    render :rabl, :context_events, :format => "json"
+  
+  else
+    res = { :success => false,
+              :info => "Wrong request: you need to specify a decade and lat/lon",
+            }.to_json  
+    halt 500, {'Content-Type' => 'application/json'}, res
+  end
+
 end
 
 #Media
@@ -220,7 +316,6 @@ end
 
 #People
 get "/people" do
-  if params[:type]!=nil
       if params[:decade]!=nil && params[:decade].match(/\A(18|19|20)\d0\z/)
 
       if params[:lat]!=nil && params[:lon]!=nil
@@ -232,7 +327,7 @@ get "/people" do
         end
 
         @part=Participant.find_by_sql([
-        "SELECT pe.*
+        "SELECT pa.*
         FROM Participant pa, Person pe
         WHERE pa.person_id=pe.person_id AND
         pe.famous = 1 AND pa.life_event_id IN (SELECT life_event_id FROM Life_Event l,
@@ -344,9 +439,9 @@ get "/people" do
     else
       render :rabl, :param_errors, :format => "json"
     end
-    
-  else
-      render :rabl, :missing_type_error, :format => "json"
-  end
 
+end
+
+after do
+  ActiveRecord::Base.connection.close
 end

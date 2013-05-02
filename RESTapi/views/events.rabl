@@ -1,7 +1,5 @@
 collection @events, :root => "events", :object_root => false
 
-if 
-
 attributes :headline
 attributes :event_type => :type
 attributes :text, :source, :source_url
