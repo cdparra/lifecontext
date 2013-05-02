@@ -55,7 +55,10 @@ public class DomParser {
 		List<Media> list = new ArrayList<Media>();
 
 		for (Element pic : pics) {
-			list.add(parsePicture(pic.attr("href"), subject));
+			Media m = parsePicture(pic.attr("href"), subject);
+			if (m != null) {
+				list.add(m);
+			}
 		}
 		return list;
 	}
@@ -88,11 +91,13 @@ public class DomParser {
 
 		photo.setLocation(location);
 		location.setPhoto(photo);
-		
+
 		try {
-		String out = coord.getJsonByGoogle(location.getTextual());
-		coord.parseGeoJson(out, photo);
-		} catch (Exception e) {}
+			String out = coord.getJsonByGoogle(location.getTextual());
+			coord.parseGeoJson(out, photo);
+		} catch (Exception e) {
+			return null;
+		}
 
 		try {
 			String date = doc.getElementsByTag("dc:date").text();

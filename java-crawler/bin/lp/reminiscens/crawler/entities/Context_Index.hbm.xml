@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="lp.reminiscens.crawler.entities.Context_Index"
+		table="reminiscens2.Context_Index" lazy="true">
+		<id column="context_index_id" name="context_index_id" type="int">
+			<generator class="native" />
+		</id>
+		<property name="decade">
+			<column name="decade" />
+		</property>
+		<property name="year">
+			<column name="year" />
+		</property>
+		<property name="distance">
+			<column name="distance" />
+		</property>
+		<property name="coordinatesTrust">
+			<column name="coordinates_trust" />
+		</property>
+		<many-to-one cascade="all" column="media_metadata_id"
+			name="mediaMD" unique="true" />
+		<many-to-one cascade="all" column="media_id" name="media"
+			unique="true" />
+		<many-to-one cascade="all" column="event_id" name="event"
+			unique="true" />
+		<many-to-one cascade="all" column="city_id" name="city"
+			unique="true" />
+	</class>
+</hibernate-mapping>

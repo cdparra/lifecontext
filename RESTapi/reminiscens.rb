@@ -10,8 +10,10 @@ require 'active_support/inflector'
 require 'builder'
 require 'geocoder'
 
-load 'config/settings.rb'
-load 'db/models/models.rb'
+require './config/settings'
+require './models/models'
+
+ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 Rabl.register!
 
@@ -26,9 +28,28 @@ def getGoogleCoordinates(loc)
 end
 
 get '/' do
-  @response = "Wrong request: you need to specify a method"
-  content_type :json
-  @response.to_json
+    res = { :success => false,
+                :info => "Wrong request: you need to specify a method",
+              }.to_json  
+  halt 500, {'Content-Type' => 'application/json'}, res
+end
+
+#bookletResources
+
+get '/generalBooklet/media' do
+
+  decade = params[:decade]
+  lat = params[:lat]
+  lon = params[:lon]
+  
+  orderString = "(6378.7*sqrt(POW((0.0174 * (lat - #{lat})),2) + POW((0.0174 * (lon - #{lon}) * COS(#{lat})),2)))"
+  
+  @closestCity = City.where("lat IS NOT NULL").order(orderString).first
+  
+  @media = Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @closestCity.city_id).order("distance").limit(5)
+
+  render :rabl, :context_media, :format => "json"
+
 end
 
 #Media
@@ -349,4 +370,8 @@ get "/people" do
       render :rabl, :missing_type_error, :format => "json"
   end
 
+end
+
+after do
+  ActiveRecord::Base.connection.close
 end

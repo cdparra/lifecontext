@@ -1,4 +1,4 @@
-collection @works, :root => "works", :object_root => false
+collection @mediaMDs, :root => "works", :object_root => false
 
 attributes :title, :type, :description, :source, :source_url
 attributes :resource_url unless :resource_url.nil?

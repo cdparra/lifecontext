@@ -25,6 +25,12 @@ class MediaApiController < ApplicationController
       render "media_api/response"
     end 
   end
+  
+  def show
+    @medium = Media.find(params[:id], :include => [:location, :fuzzyDate])
+    
+    render "media_api/show"
+  end
 
   def update
     data = JSON.parse(request.body.read)

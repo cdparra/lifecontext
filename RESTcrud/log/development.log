@@ -25011,3 +25011,515 @@ WARNING: Can't verify CSRF token authenticity
   [1m[35m (111.7ms)[0m  COMMIT
   Rendered media_api/response.rabl (0.4ms)
 Completed 200 OK in 664ms (Views: 5.0ms | ActiveRecord: 641.0ms)
+
+
+Started GET "/media_api" for 127.0.0.1 at 2013-04-29 08:35:44 +0200
+Connecting to database specified by database.yml
+Processing by MediaApiController#index as HTML
+  Parameters: {"has_one"=>:fuzzyDate}
+  [1m[36mMedia Load (878.7ms)[0m  [1mSELECT `Media`.* FROM `Media` [0m
+  [1m[35mEXPLAIN (164.8ms)[0m  EXPLAIN SELECT `Media`.* FROM `Media` 
+EXPLAIN for: SELECT `Media`.* FROM `Media` 
++----+-------------+-------+------+---------------+------+---------+------+------+-------+
+| id | select_type | table | type | possible_keys | key  | key_len | ref  | rows | Extra |
++----+-------------+-------+------+---------------+------+---------+------+------+-------+
+|  1 | SIMPLE      | Media | ALL  | NULL          | NULL | NULL    | NULL |  570 |       |
++----+-------------+-------+------+---------------+------+---------+------+------+-------+
+1 row in set (0.17 sec)
+
+  Rendered media_api/index.rabl (32.9ms)
+Completed 200 OK in 1824ms (Views: 103.4ms | ActiveRecord: 1408.9ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:42:16 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (107.2ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.6ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (107.8ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  [1m[35mEXPLAIN (107.1ms)[0m  EXPLAIN SELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1
+  [1m[36mEXPLAIN (107.2ms)[0m  [1mEXPLAIN SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)[0m
+  [1m[35mEXPLAIN (107.3ms)[0m  EXPLAIN SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
+EXPLAIN for: SELECT  `Media`.* FROM `Media`  WHERE `Media`.`media_id` = 400 LIMIT 1
++----+-------------+-------+-------+---------------+---------+---------+-------+------+-------+
+| id | select_type | table | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++----+-------------+-------+-------+---------------+---------+---------+-------+------+-------+
+|  1 | SIMPLE      | Media | const | PRIMARY       | PRIMARY | 4       | const |    1 |       |
++----+-------------+-------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.11 sec)
+
+EXPLAIN for: SELECT `Location`.* FROM `Location`  WHERE `Location`.`location_id` IN (881)
++----+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+| id | select_type | table    | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++----+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+|  1 | SIMPLE      | Location | const | PRIMARY       | PRIMARY | 4       | const |    1 |       |
++----+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.11 sec)
+
+EXPLAIN for: SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date`  WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
++----+-------------+------------+-------+---------------+---------+---------+-------+------+-------+
+| id | select_type | table      | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++----+-------------+------------+-------+---------------+---------+---------+-------+------+-------+
+|  1 | SIMPLE      | Fuzzy_Date | const | PRIMARY       | PRIMARY | 4       | const |    1 |       |
++----+-------------+------------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.11 sec)
+
+Completed 500 Internal Server Error in 1846ms
+
+ActionView::MissingTemplate (Missing template media_api/show, application/show with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee, :rabl]}. Searched in:
+  * "/Users/nicola/Documents/Reminiscens/lifecontext/RESTcrud/app/views"
+):
+  actionpack (3.2.8) lib/action_view/path_set.rb:58:in `find'
+  actionpack (3.2.8) lib/action_view/lookup_context.rb:109:in `find'
+  actionpack (3.2.8) lib/action_view/renderer/abstract_renderer.rb:3:in `find_template'
+  actionpack (3.2.8) lib/action_view/renderer/template_renderer.rb:34:in `determine_template'
+  actionpack (3.2.8) lib/action_view/renderer/template_renderer.rb:10:in `render'
+  actionpack (3.2.8) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.8) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.8) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.8) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.8) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.8) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.8) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.8) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.8) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.8) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.8) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /usr/local/rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.8) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.8) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.8) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.8) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.8) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.8) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.8) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.8) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.8) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:414:in `_run__1320605637052882532__process_action__2120192852918173288__callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.8) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.8) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.8) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.8) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.8) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.8) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.8) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.8) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.8) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.8) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.8) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.8) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.8) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/cookies.rb:339:in `call'
+  activerecord (3.2.8) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:473:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `_run__1439594248916228644__call__2505978634134102517__callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.8) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.8) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.8) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.8) lib/rails/engine.rb:479:in `call'
+  railties (3.2.8) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.8) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /usr/local/rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /usr/local/rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /usr/local/rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (8.7ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:43:03 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (107.2ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.9ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (107.1ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  Rendered media_api/show.rabl (2.2ms)
+Completed 500 Internal Server Error in 331ms
+
+ActionView::Template::Error (wrong number of arguments (2 for 1)):
+    1: object @media, :root => "media", :object_root => false
+    2: 
+    3: attributes :caption => :title, :media_type => :type, :media_url => :url
+    4: attributes :source, :source_url
+  app/views/media_api/show.rabl:1:in `_app_views_media_api_show_rabl__3487414711807268507_70205990732600'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.4ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (27.8ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (44.2ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:43:15 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[35mMedia Load (107.2ms)[0m  SELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1
+  [1m[36mLocation Load (107.4ms)[0m  [1mSELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)[0m
+  [1m[35mFuzzyDate Load (108.0ms)[0m  SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
+  Rendered media_api/show.rabl (1.9ms)
+Completed 500 Internal Server Error in 332ms
+
+ActionView::Template::Error (undefined method `exact_date' for :fuzzyDate:Symbol):
+    1: object @media
+    2: 
+    3: attributes :caption => :title, :media_type => :type, :media_url => :url
+    4: attributes :source, :source_url
+  app/views/media_api/show.rabl:1:in `_app_views_media_api_show_rabl__3487414711807268507_70205973430440'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.3ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:45:41 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (107.0ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.2ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (107.3ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  Rendered media_api/show.rabl (2.1ms)
+Completed 500 Internal Server Error in 329ms
+
+ActionView::Template::Error (undefined method `name' for :location:Symbol):
+    1: object @media
+    2: 
+    3: attributes :caption => :title, :media_type => :type, :media_url => :url
+    4: attributes :source, :source_url
+  app/views/media_api/show.rabl:1:in `_app_views_media_api_show_rabl__3487414711807268507_70205989306440'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.2ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:47:00 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[35mMedia Load (107.2ms)[0m  SELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1
+  [1m[36mLocation Load (107.6ms)[0m  [1mSELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)[0m
+  [1m[35mFuzzyDate Load (107.5ms)[0m  SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
+  Rendered media_api/show.rabl (1.9ms)
+Completed 500 Internal Server Error in 331ms
+
+ActionView::Template::Error (undefined method `season' for :fuzzyDate:Symbol):
+    1: object @media
+    2: 
+    3: attributes :caption => :title, :media_type => :type, :media_url => :url
+    4: attributes :source, :source_url
+  app/views/media_api/show.rabl:1:in `_app_views_media_api_show_rabl__3487414711807268507_70205990621020'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (12.1ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:48:40 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (107.2ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.3ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (107.0ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  Rendered media_api/show.rabl (1.7ms)
+Completed 200 OK in 330ms (Views: 4.7ms | ActiveRecord: 321.5ms)
+
+
+Started GET "/media/400/edit" for 127.0.0.1 at 2013-04-29 08:49:08 +0200
+Processing by MediaController#edit as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[35mMedia Load (107.8ms)[0m  SELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1
+  [1m[36mLocation Load (107.8ms)[0m  [1mSELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)[0m
+  [1m[35mFuzzyDate Load (107.2ms)[0m  SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
+  Rendered media/_media.html.erb (48.7ms)
+  Rendered media/_location.html.erb (7.4ms)
+  Rendered media/_date.html.erb (7.5ms)
+  Rendered media/edit.html.erb within layouts/application (95.8ms)
+Completed 200 OK in 620ms (Views: 292.8ms | ActiveRecord: 322.8ms)
+
+
+Started GET "/assets/application.css.css?body=1" for 127.0.0.1 at 2013-04-29 08:49:09 +0200
+Served asset /application.css.css - 200 OK (40ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css.css?body=1" for 127.0.0.1 at 2013-04-29 08:49:09 +0200
+Served asset /bootstrap_and_overrides.css.css - 200 OK (8ms)
+
+
+Started GET "/assets/media.css?body=1" for 127.0.0.1 at 2013-04-29 08:49:09 +0200
+Served asset /media.css - 200 OK (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:09 +0200
+Served asset /jquery.js - 200 OK (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:09 +0200
+Served asset /jquery_ujs.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:10 +0200
+Served asset /bootstrap-transition.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:10 +0200
+Served asset /bootstrap-affix.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:10 +0200
+Served asset /bootstrap-alert.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:10 +0200
+Served asset /bootstrap-button.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:10 +0200
+Served asset /bootstrap-carousel.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:10 +0200
+Served asset /bootstrap-collapse.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:10 +0200
+Served asset /bootstrap-dropdown.js - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:10 +0200
+Served asset /bootstrap-modal.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:10 +0200
+Served asset /bootstrap-scrollspy.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:11 +0200
+Served asset /bootstrap-tab.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:11 +0200
+Served asset /bootstrap-tooltip.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:11 +0200
+Served asset /bootstrap-popover.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:11 +0200
+Served asset /bootstrap-typeahead.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:11 +0200
+Served asset /bootstrap.js - 200 OK (15ms)
+
+
+Started GET "/assets/media.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:11 +0200
+Served asset /media.js - 200 OK (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-29 08:49:11 +0200
+Served asset /application.js - 200 OK (21ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:51:39 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (107.3ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.7ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (107.4ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  [1m[35mEXPLAIN (107.5ms)[0m  EXPLAIN SELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1
+  [1m[36mEXPLAIN (106.7ms)[0m  [1mEXPLAIN SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)[0m
+  [1m[35mEXPLAIN (107.0ms)[0m  EXPLAIN SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
+EXPLAIN for: SELECT  `Media`.* FROM `Media`  WHERE `Media`.`media_id` = 400 LIMIT 1
++----+-------------+-------+-------+---------------+---------+---------+-------+------+-------+
+| id | select_type | table | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++----+-------------+-------+-------+---------------+---------+---------+-------+------+-------+
+|  1 | SIMPLE      | Media | const | PRIMARY       | PRIMARY | 4       | const |    1 |       |
++----+-------------+-------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.11 sec)
+
+EXPLAIN for: SELECT `Location`.* FROM `Location`  WHERE `Location`.`location_id` IN (881)
++----+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+| id | select_type | table    | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++----+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+|  1 | SIMPLE      | Location | const | PRIMARY       | PRIMARY | 4       | const |    1 |       |
++----+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.11 sec)
+
+EXPLAIN for: SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date`  WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
++----+-------------+------------+-------+---------------+---------+---------+-------+------+-------+
+| id | select_type | table      | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++----+-------------+------------+-------+---------------+---------+---------+-------+------+-------+
+|  1 | SIMPLE      | Fuzzy_Date | const | PRIMARY       | PRIMARY | 4       | const |    1 |       |
++----+-------------+------------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.11 sec)
+
+  Rendered media_api/show.rabl (1.3ms)
+Completed 200 OK in 1691ms (Views: 4.3ms | ActiveRecord: 1611.4ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:55:45 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (107.2ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.4ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (107.8ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  Rendered media_api/show.rabl (1.8ms)
+Completed 500 Internal Server Error in 331ms
+
+ActionView::Template::Error (wrong number of arguments (2 for 1)):
+    1: object @media, :root => 'media'
+    2: 
+    3: attributes :caption => :title, :media_type => :type, :media_url => :url
+    4: attributes :source, :source_url
+  app/views/media_api/show.rabl:1:in `_app_views_media_api_show_rabl__3487414711807268507_70205994754300'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.8ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:55:56 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[35mMedia Load (107.1ms)[0m  SELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1
+  [1m[36mLocation Load (107.2ms)[0m  [1mSELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)[0m
+  [1m[35mFuzzyDate Load (107.3ms)[0m  SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
+  Rendered media_api/show.rabl (1.3ms)
+Completed 200 OK in 329ms (Views: 3.6ms | ActiveRecord: 321.6ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:56:49 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (107.4ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.3ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (107.1ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  Rendered media_api/show.rabl (1.0ms)
+Completed 200 OK in 329ms (Views: 3.7ms | ActiveRecord: 321.9ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:58:27 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[35mMedia Load (107.3ms)[0m  SELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1
+  [1m[36mLocation Load (107.4ms)[0m  [1mSELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)[0m
+  [1m[35mFuzzyDate Load (107.1ms)[0m  SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
+  Rendered media_api/show.rabl (1.3ms)
+Completed 200 OK in 330ms (Views: 3.5ms | ActiveRecord: 321.8ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:58:32 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (107.0ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.4ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (107.1ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  Rendered media_api/show.rabl (1.3ms)
+Completed 200 OK in 328ms (Views: 3.3ms | ActiveRecord: 321.5ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 08:59:31 +0200
+Connecting to database specified by database.yml
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (106.9ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.8ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (106.5ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  [1m[35mEXPLAIN (106.7ms)[0m  EXPLAIN SELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1
+  [1m[36mEXPLAIN (106.5ms)[0m  [1mEXPLAIN SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)[0m
+  [1m[35mEXPLAIN (106.8ms)[0m  EXPLAIN SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
+EXPLAIN for: SELECT  `Media`.* FROM `Media`  WHERE `Media`.`media_id` = 400 LIMIT 1
++----+-------------+-------+-------+---------------+---------+---------+-------+------+-------+
+| id | select_type | table | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++----+-------------+-------+-------+---------------+---------+---------+-------+------+-------+
+|  1 | SIMPLE      | Media | const | PRIMARY       | PRIMARY | 4       | const |    1 |       |
++----+-------------+-------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.11 sec)
+
+EXPLAIN for: SELECT `Location`.* FROM `Location`  WHERE `Location`.`location_id` IN (881)
++----+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+| id | select_type | table    | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++----+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+|  1 | SIMPLE      | Location | const | PRIMARY       | PRIMARY | 4       | const |    1 |       |
++----+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.11 sec)
+
+EXPLAIN for: SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date`  WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
++----+-------------+------------+-------+---------------+---------+---------+-------+------+-------+
+| id | select_type | table      | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++----+-------------+------------+-------+---------------+---------+---------+-------+------+-------+
+|  1 | SIMPLE      | Fuzzy_Date | const | PRIMARY       | PRIMARY | 4       | const |    1 |       |
++----+-------------+------------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.11 sec)
+
+  Rendered media_api/show.rabl (1.2ms)
+Completed 200 OK in 1744ms (Views: 12.7ms | ActiveRecord: 1606.3ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 09:00:24 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (106.8ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.2ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (106.4ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  Rendered media_api/show.rabl (1.3ms)
+Completed 200 OK in 329ms (Views: 4.0ms | ActiveRecord: 320.3ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 09:00:43 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[35mMedia Load (106.6ms)[0m  SELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1
+  [1m[36mLocation Load (106.5ms)[0m  [1mSELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)[0m
+  [1m[35mFuzzyDate Load (106.7ms)[0m  SELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)
+  Rendered media_api/show.rabl (4.8ms)
+Completed 200 OK in 331ms (Views: 7.5ms | ActiveRecord: 319.8ms)
+
+
+Started GET "/media_api/400" for 127.0.0.1 at 2013-04-29 09:01:17 +0200
+Processing by MediaApiController#show as HTML
+  Parameters: {"has_one"=>:fuzzyDate, "id"=>"400"}
+  [1m[36mMedia Load (106.6ms)[0m  [1mSELECT `Media`.* FROM `Media` WHERE `Media`.`media_id` = 400 LIMIT 1[0m
+  [1m[35mLocation Load (107.2ms)[0m  SELECT `Location`.* FROM `Location` WHERE `Location`.`location_id` IN (881)
+  [1m[36mFuzzyDate Load (106.7ms)[0m  [1mSELECT `Fuzzy_Date`.* FROM `Fuzzy_Date` WHERE `Fuzzy_Date`.`fuzzy_date_id` IN (11002)[0m
+  Rendered media_api/show.rabl (1.9ms)
+Completed 200 OK in 329ms (Views: 4.6ms | ActiveRecord: 320.5ms)

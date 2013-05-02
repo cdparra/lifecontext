@@ -14,8 +14,8 @@ public class City {
     private String city_name;
     private String region;
     private String country;
-    private String lat;
-    private String lon;
+    private Double lat;
+    private Double lon;
 
     public Integer getCity_id() {
         return city_id;
@@ -41,19 +41,19 @@ public class City {
         this.country = country;
     }
 
-    public String getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public String getLon() {
+    public Double getLon() {
         return lon;
     }
 
-    public void setLon(String lon) {
+    public void setLon(Double lon) {
         this.lon = lon;
     }
 
