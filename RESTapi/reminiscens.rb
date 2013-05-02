@@ -42,34 +42,53 @@ get '/generalBooklet/media' do
   lat = params[:lat]
   lon = params[:lon]
   
-  orderString = "(6378.7*sqrt(POW((0.0174 * (lat - #{lat})),2) + POW((0.0174 * (lon - #{lon}) * COS(#{lat})),2)))"
+  if decade != nil && lat != nil && lon != nil 
   
-  @sortedCities = City.where("lat IS NOT NULL").order(orderString)
+    orderString = "(6378.7*sqrt(POW((0.0174 * (lat - #{lat})),2) + POW((0.0174 * (lon - #{lon}) * COS(#{lat})),2)))"
   
-  i=0;
+    @sortedCities = City.where("lat IS NOT NULL").order(orderString)
   
-  @city = @sortedCities[i]
-  @media = Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
+    i=0;
   
-  while @media.size <5
-    i+=1
     @city = @sortedCities[i]
-    @media += Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@media.size))
+    @media = Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
+  
+    while @media.size <5
+      i+=1
+      @city = @sortedCities[i]
+      @media += Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@media.size))
+    end
+
+    render :rabl, :context_media, :format => "json"
+
+  else
+    res = { :success => false,
+              :info => "Wrong request: you need to specify a decade and lat/lon",
+            }.to_json  
+    halt 500, {'Content-Type' => 'application/json'}, res
   end
-
-  render :rabl, :context_media, :format => "json"
-
 end
 
 get '/generalBooklet/works' do
 
   decade = params[:decade]
   
-  orderString = "decade - #{decade}"
+  if decade != nil
   
-  @mediaMDs = MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL AND author IS NOT NULL AND resource_url IS NOT NULL").order(orderString).limit(5)
+    orderString = "decade - #{decade}"
+  
+    @mediaMDs = MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL AND author IS NOT NULL AND resource_url IS NOT NULL").order(orderString).limit(5)
 
-  render :rabl, :context_works, :format => "json"
+    render :rabl, :context_works, :format => "json"
+  
+  else
+    
+    res = { :success => false,
+                :info => "Wrong request: you need to specify a decade",
+              }.to_json  
+    halt 500, {'Content-Type' => 'application/json'}, res
+    
+  end
 
 end
 
@@ -80,22 +99,31 @@ get '/generalBooklet/events' do
   lat = params[:lat]
   lon = params[:lon]
   
-  orderString = "(6378.7*sqrt(POW((0.0174 * (lat - #{lat})),2) + POW((0.0174 * (lon - #{lon}) * COS(#{lat})),2)))"
+  if decade != nil && lat != nil && lon != nil 
   
-  @sortedCities = City.where("lat IS NOT NULL").order(orderString)
+    orderString = "(6378.7*sqrt(POW((0.0174 * (lat - #{lat})),2) + POW((0.0174 * (lon - #{lon}) * COS(#{lat})),2)))"
   
-  i=0;
+    @sortedCities = City.where("lat IS NOT NULL").order(orderString)
   
-  @city = @sortedCities[i]
-  @events = Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
+    i=0;
   
-  while @events.size <5
-    i=i+1
     @city = @sortedCities[i]
-    @events += Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@events.size))
-  end
+    @events = Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
   
-  render :rabl, :context_events, :format => "json"
+    while @events.size <5
+      i=i+1
+      @city = @sortedCities[i]
+      @events += Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@events.size))
+    end
+  
+    render :rabl, :context_events, :format => "json"
+  
+  else
+    res = { :success => false,
+              :info => "Wrong request: you need to specify a decade and lat/lon",
+            }.to_json  
+    halt 500, {'Content-Type' => 'application/json'}, res
+  end
 
 end
 
