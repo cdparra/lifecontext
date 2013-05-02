@@ -61,6 +61,19 @@ get '/generalBooklet/media' do
 
 end
 
+get '/generalBooklet/works' do
+
+  decade = params[:decade]
+  
+  orderString = "decade - #{decade}"
+  
+  @mediaMDs = MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL AND author IS NOT NULL AND resource_url IS NOT NULL").order(orderString).limit(5)
+
+  render :rabl, :context_works, :format => "json"
+
+end
+
+
 get '/generalBooklet/events' do
 
   decade = params[:decade]
@@ -275,7 +288,6 @@ end
 
 #People
 get "/people" do
-  if params[:type]!=nil
       if params[:decade]!=nil && params[:decade].match(/\A(18|19|20)\d0\z/)
 
       if params[:lat]!=nil && params[:lon]!=nil
@@ -287,7 +299,7 @@ get "/people" do
         end
 
         @part=Participant.find_by_sql([
-        "SELECT pe.*
+        "SELECT pa.*
         FROM Participant pa, Person pe
         WHERE pa.person_id=pe.person_id AND
         pe.famous = 1 AND pa.life_event_id IN (SELECT life_event_id FROM Life_Event l,
@@ -399,10 +411,6 @@ get "/people" do
     else
       render :rabl, :param_errors, :format => "json"
     end
-    
-  else
-      render :rabl, :missing_type_error, :format => "json"
-  end
 
 end
 

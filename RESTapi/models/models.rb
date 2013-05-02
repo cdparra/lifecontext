@@ -48,6 +48,7 @@ class MediaMetadata < ActiveRecord::Base
   self.table_name = "Media_Metadata"
   self.inheritance_column = :ruby_type
   belongs_to :fuzzyDate, :foreign_key => 'fuzzy_releasedate', :primary_key => 'fuzzy_date_id'
+  has_one :contextIndex
 end
 
 class FuzzyDate < ActiveRecord::Base
