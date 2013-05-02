@@ -44,11 +44,45 @@ get '/generalBooklet/media' do
   
   orderString = "(6378.7*sqrt(POW((0.0174 * (lat - #{lat})),2) + POW((0.0174 * (lon - #{lon}) * COS(#{lat})),2)))"
   
-  @closestCity = City.where("lat IS NOT NULL").order(orderString).first
+  @sortedCities = City.where("lat IS NOT NULL").order(orderString)
   
-  @media = Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @closestCity.city_id).order("distance").limit(5)
+  i=0;
+  
+  @city = @sortedCities[i]
+  @media = Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
+  
+  while @media.size <5
+    i+=1
+    @city = @sortedCities[i]
+    @media += Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@media.size))
+  end
 
   render :rabl, :context_media, :format => "json"
+
+end
+
+get '/generalBooklet/events' do
+
+  decade = params[:decade]
+  lat = params[:lat]
+  lon = params[:lon]
+  
+  orderString = "(6378.7*sqrt(POW((0.0174 * (lat - #{lat})),2) + POW((0.0174 * (lon - #{lon}) * COS(#{lat})),2)))"
+  
+  @sortedCities = City.where("lat IS NOT NULL").order(orderString)
+  
+  i=0;
+  
+  @city = @sortedCities[i]
+  @events = Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
+  
+  while @events.size <5
+    i=i+1
+    @city = @sortedCities[i]
+    @events += Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@events.size))
+  end
+  
+  render :rabl, :context_events, :format => "json"
 
 end
 

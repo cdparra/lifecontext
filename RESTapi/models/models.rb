@@ -41,6 +41,7 @@ class Event < ActiveRecord::Base
   self.inheritance_column = :ruby_type
   belongs_to :location, :foreign_key => 'location_id', :primary_key => 'location_id'
   belongs_to :fuzzyDate, :foreign_key => 'fuzzy_startdate', :primary_key => 'fuzzy_date_id'
+  has_one :contextIndex
 end
 
 class MediaMetadata < ActiveRecord::Base
