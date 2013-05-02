@@ -75,7 +75,7 @@ get '/generalBooklet/works' do
   
   if decade != nil
   
-    orderString = "decade - #{decade}"
+    orderString = "abs(decade - #{decade})"
   
     @mediaMDs = MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL AND author IS NOT NULL AND resource_url IS NOT NULL").order(orderString).limit(5)
 
