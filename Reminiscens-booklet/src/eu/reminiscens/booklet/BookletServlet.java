@@ -64,10 +64,30 @@ public class BookletServlet extends HttpServlet {
 
 			String mediaUrl = "http://localhost:4567/generalBooklet/media?decade="
 					+ decade + "&lat=" + lat + "&lon=" + lon;
+			String eventsUrl = "http://localhost:4567/generalBooklet/events?decade="
+					+ decade + "&lat=" + lat + "&lon=" + lon;
+			String worksUrl = "http://localhost:4567/generalBooklet/works?decade="
+					+ decade;
+			
+			System.out.println("Loading Media");
+			
 			String outMediaJson = getJson(mediaUrl);
-			String outMediaJson2 = getJson(mediaUrl);
+			
+			System.out.println("Media loaded");
+			
+			System.out.println("Loading Events");
+			
+			String outEventsJson = getJson(eventsUrl);
+			
+			System.out.println("Events loaded");
+			
+			System.out.println("Loading Works");
+			
+			String outWorksJson = getJson(worksUrl);
+			
+			System.out.println("Works loaded");
 
-			out.print("[" + outMediaJson + "," + outMediaJson2 + "]");
+			out.print("[" + outMediaJson + "," + outEventsJson + "," + outWorksJson + "]");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

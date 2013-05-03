@@ -56,7 +56,7 @@
         <script type="text/javascript">
 			var maps = new Array();
 
-			var mapInit = function(index,lat,lon,name) {
+			var mapInit = function(index, lat, lon, name) {
 
 				var position = new google.maps.LatLng(lat, lon);
 
@@ -108,6 +108,15 @@
 			}
         </script>
 
+        <script>
+			function cut(n, text) {
+				var short = text.substr(0, n);
+				if (/^\S/.test(text.substr(n)))
+					return short.replace(/\s+\S*$/, "");
+				return short;
+			}
+        </script>
+
         <script type="text/javascript" src="shadowbox/shadowbox.js"></script>
 
         <link rel="stylesheet" type="text/css" media="all" href="files/hideOnLoad.css">
@@ -129,7 +138,7 @@
                     </li>
                     <li class="divider2"></li>
                     <li class="credits">
-                        <a href="http://www.20thingsilearned.com/credits">CIAO MAMMA</a>
+                        <a href="http://www.20thingsilearned.com/credits">CREDITS</a>
                     </li>
                 </ul>
             </nav>
@@ -205,43 +214,44 @@
 
         <div id="credits" style="left: 320px; top: 85px; margin: 0px;">
             <div class="header">
-                <h2><span>CIAO</span></h2>
+                <h2><span>RISORSE</span></h2>
+                <br>
+                <h3><span>I dati qui proposti provengono da:</span></h3>
                 <hr>
             </div>
             <div class="people">
                 <ul>
                     <li>
-                        <h3>Illustrazione</h3><a href="http://www.christophniemann.com/" target="_blank">Christoph Niemann</a>
+                        <div style="margin-top: -10px;">
+                            <a href="http:www.flickr.com"><img src="./img/flickr.png" /></a><h4>Immagini</h4>
                     </li>
                     <li>
-                        <h3>Autori/editor</h3>Min Li Chan, Fritz Holznagel, Michael Krantz
+                        <div style="margin-top: -10px;">
+                            <a href="http://dbpedia.org"><img src="./img/dbpedia.png" /></a><h4>Dati su persone, eventi, musica e altro</h4>
                     </li>
                     <li>
-                        <h3>Curatore del progetto</h3>Min Li Chan &amp;
-                        <br>
-                        The Google Chrome Team
+                        <div style="margin-top: -10px;">
+                            <a href="http://www.google.com"><img src="./img/google.png" /></a><h4>Mappe, Geocoding e Youtube</h4>
                     </li>
                     <li>
-                        <h3>Design</h3><a href="http://f-i.com/" target="_blank">Fi</a>
-                        <br>
-                        <a href="http://monocubed.com/" target="_blank">Paul Truong</a>
+                        <div style="margin-top: -10px;">
+                            <a href="http://dati.trentino.it"><img src="./img/opendata.png" /></a><h4>Dati su persone e altro</h4>
                     </li>
                     <li>
-                        <h3>Sviluppo</h3><a href="http://f-i.com/" target="_blank">Fi</a>
+                        <div style="margin-top: -10px;">
+                            <a href="http://www.catinabib.it"><img src="./img/catina.png" /></a><h4>Cartoline del Trentino</h4>
                     </li>
                 </ul>
-                <h4>Ringraziamenti speciali a</h4>
+                <h4>Disclaimer</h4>
                 <p class="special-thanks">
-                    Brian Rakowski, Ian Fette, Chris DiBona, Alex Russell, Erik Kay, Jim Roskind, Mike Belshe, Dimitri Glazkov, Henry Bridge, Gregor Hochmuth, Jeffrey Chang, Mark Larson, Aaron Boodman, Wieland Holfelder, Jochen Eisinger, Bernhard Bauer, Adam Barth, Cory Ferreria, Erik Arvidsson, John Abd-Malek, Carlos Pizano, Justin Schuh, Wan-Teh Chang, Vangelis Kokkevis, Mike Jazayeri, Brad Chen, Darin Fisher, Johanna Wittig,  Maxim Lobanov, Marion Fabing Nicolas, Jana Vorechovska, Daniele De Santis, Laura van Nigtevegt, Wojtek Cyprys, Dudley Carr, Richard Rabbat, Ji Lee, Glen Murphy, Valdean Klump, Aaron Koblin, Paul Irish, John Fu, Chris Wright, Sarah Nahm, Christos Apartoglou, Meredith Papp, Eric Antonow, Eitan Bencuya, Jay Nancarrow, Ben Lee, Gina Weakley, Linus Upson, Sundar Pichai &amp; The Google Chrome Team
-                </p>
-                <p class="html5-logo">
-                    Realizzato in HTML5<img src="./files/HTML5_Badge_32.png" title="Built in HTML5">
+                    Il libro è basato su <a href="http://www.20thingsilearned.com">"20 things I learned about browsers and the web"</a>, pubblicato dal team di <a href="http://www.google.com/chrome?brand=CHJN">Google Chrome</a>, ©2010 Google Inc. Tutti i diritti riservati.
+                    La pagina in questione e il progetto <a href="http://www.reminiscens.me">Reminiscens</a> non hanno scopo di lucro, e quindi non sono da considerarsi a fini commerciali.
                 </p>
             </div>
             <hr>
             <div class="share">
                 <p>
-                    Condividi questo libro e quello che hai imparato con amici e parenti. www.20thingsilearned.com
+                    Mostra a amici e parenti questo libro!
                 </p>
                 <ul>
                     <li class="facebook">
@@ -264,20 +274,10 @@
             </div></a>
         </div>
 
-        <div id="table-of-contents" style="width: 1280px; opacity: 0; display: none;">
-            <div class="center" style="left: 640px; top: 340px; margin: 0px;">
-                <div class="header" style="opacity: 0;">
-                    <a class="go-back" href="http://www.20thingsilearned.com/">Indietro</a>
-                    <h2><span>Sommario</span></h2>
-                    <hr>
-                </div>
-            </div>
-        </div>
-
         <footer style="width: 1280px; top: 655px; margin: 0px;"></footer>
 
         <div id="myModal" class="reveal-modal" style="z-index: 1900">
-            <div id="form">
+            <div id="form" style='text-align: left'>
                     Decade:
                 <input type="number" id="decade" min="1900" max="2010"
                 step="10" />
@@ -319,13 +319,14 @@
 		                    success: function(data) {
 		var mediaData = data[0];
 		var eventsData = data[1];
+		var worksData = data[2];
 		var initialZindex = 501;
 		var id = 1;
 		var actualZindex = "";
 
-		jQuery.each(eventsData.media, function(i,el) {
+		jQuery.each(mediaData.media, function(i,el) {
 		id+=1;;
-		actualZindex = initialZindex - i;
+		actualZindex = initialZindex - id + 2 ;
 
 		$("<section class='page-image template-start-6 title-foreword page-"+(i+2)+" globalPage-"+ id +"' style='z-index: "+ actualZindex +"; display: block; width: 800px;' id='"+ id +"'></section>").insertBefore('#end');
 		$('section#'+ id).append("<div class='page'></div>");
@@ -361,12 +362,73 @@
 
 		desc.append("<div class='map-canvas' style='border: solid; height: 200px; width: 250px;'></div>");
 
-		
-        if (el.location.textual) {
-        mapInit(id-2,parseFloat(el.location.lat),parseFloat(el.location.lon),el.location.textual);
-        } else {
-        mapInit(id-2,parseFloat(el.location.lat),parseFloat(el.location.lon),el.location.name);
-        }
+		if (el.location.textual) {
+		mapInit(id-2,parseFloat(el.location.lat),parseFloat(el.location.lon),el.location.textual);
+		} else {
+		mapInit(id-2,parseFloat(el.location.lat),parseFloat(el.location.lon),el.location.name);
+		}
+
+		page.append("<span class='pageNumber'>"+ id +"</span>");
+
+		$("<div class='paper s"+id+"' style='opacity: 1;'></div>").insertBefore('.s900');
+
+		});
+
+		jQuery.each(eventsData.events, function(i,el) {
+		id+=1;;
+		actualZindex = initialZindex - id + 2 ;
+
+		$("<section class=' template-start-5 title-cloud-computing page-"+ (i+2) + " globalPage-" + id + "' style='z-index: " + actualZindex + "; display: block; width: 800px;' id='" + id + "'></section>").insertBefore('#end');
+		$('section#'+ id).append("<div class='page'></div>");
+		var page = $('#'+ id).find(".page");
+		page.append("<div class='page-title'><h2>Eventi</h2>");
+		page.append("<div class='left'></div>");
+		page.append("<div class='right'></div>");
+
+		var left = page.find('.left');
+		var right = page.find('.right');
+
+		left.append('<h3>' + el.headline + '</h3>');
+
+		var text = el.text;
+		var leftText = "";
+		var rightText = "";
+		var length = text.length;
+
+		if (length > 685) {
+		leftText = cut(685,text);
+		rightText = text.substring(leftText.length);
+		} else {
+		rightText = text;
+		}
+
+		left.append("<p class='drop-cap'>"+ leftText +"</p>");
+		right.append("<p class='continuation'>"+ rightText +"</p>");
+
+		page.append("<span class='pageNumber'>"+ id +"</span>");
+
+		$("<div class='paper s"+id+"' style='opacity: 1;'></div>").insertBefore('.s900');
+
+		});
+
+		jQuery.each(worksData.works, function(i,el) {
+		id+=1;;
+		actualZindex = initialZindex - id + 2 ;
+
+		$("<section class='template-inner-3 title-old-vs-new-browsers page-"+ (i+2) + " globalPage-" + id + "' style='z-index: " + actualZindex + "; display: block; width: 800px;' id='" + id + "'></section>").insertBefore('#end');
+		$('section#'+ id).append("<div class='page'></div>");
+		var page = $('#'+ id).find(".page");
+		page.append("<div class='page-title'><h2>Canzoni</h2><h3>Suoni del passato e del presente</h3>");
+
+		page.append("<div class='song-body'></div>");
+
+		var song = page.find('.song-body');
+
+		song.append("<p class='drop-cap'><h3>"+ el.title +"</h3></p>");
+		song.append("<p class='drop-cap'><h3>"+ el.author +"</h3></p>");
+		song.append("<p class='drop-cap'>"+ el.description +"</h3>");
+
+		page.append("<div class='youtube-frame' style='padding-top: 20px;'><a rel='shadowbox' width=680; height=356; href='" + el.resource_url + "'>Apri il video</a></div>");
 
 		page.append("<span class='pageNumber'>"+ id +"</span>");
 
