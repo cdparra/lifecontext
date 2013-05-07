@@ -62,7 +62,8 @@ public class BookletServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 
-			String mediaUrl = "http://localhost:4567/generalBooklet/media?decade="
+//			String mediaUrl = "http://localhost:4567/generalBooklet/media?decade="
+			String mediaUrl = "http://test.reminiscens.me/lifecontext/api/generalBooklet/media?decade="
 					+ decade + "&lat=" + lat + "&lon=" + lon;
 			String outMediaJson = getJson(mediaUrl);
 			String outMediaJson2 = getJson(mediaUrl);
