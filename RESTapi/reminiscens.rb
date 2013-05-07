@@ -53,10 +53,18 @@ get '/generalBooklet/media' do
     @city = @sortedCities[i]
     @media = Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
   
-    while @media.size <5
-      i+=1
-      @city = @sortedCities[i]
-      @media += Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@media.size))
+    while @media.size < 5
+      i = i + 1
+      if i > 20
+        j = 0
+        while @media.size < 5
+          @media += Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ?", (decade.to_i)-j).order("coordinates_trust DESC").limit(5-(@media.size))
+          j = j + 10
+        end
+      else
+        @city = @sortedCities[i]
+        @media += Media.joins(:contextIndex).where("Context_Index.media_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@media.size))
+      end
     end
 
     render :rabl, :context_media, :format => "json"
@@ -110,10 +118,18 @@ get '/generalBooklet/events' do
     @city = @sortedCities[i]
     @events = Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5)
   
-    while @events.size <5
+    while @events.size < 5
       i=i+1
-      @city = @sortedCities[i]
-      @events += Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@events.size))
+      if i> 20
+        j = 0
+        while @events.size < 5
+          @events += Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ?", (decade.to_i)-j).order("coordinates_trust DESC").limit(5-(@events.size))
+          j = j + 10
+        end
+      else
+        @city = @sortedCities[i]
+        @events += Event.joins(:contextIndex).where("Context_Index.event_id IS NOT NULL AND decade = ? AND city_id = ? ", decade, @city.city_id).order("distance").limit(5-(@events.size))
+      end      
     end
   
     render :rabl, :context_events, :format => "json"
