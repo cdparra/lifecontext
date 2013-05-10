@@ -1,6 +1,0 @@
-dependencies {
-    compile project( ':hibernate-core' )
-    compile( libraries.ehcache )
-
-    testCompile project( ':hibernate-testing' )
-}
