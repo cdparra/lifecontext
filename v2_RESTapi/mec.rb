@@ -298,72 +298,6 @@ def generate_samples(n)
   (1..n).map { Point.random }
 end
 
-# Creates an image using rmagick showing the points and the MEC and
-# saves it as filename
-def draw(points, circle, filename) 
-  require 'rubygems'
-  require 'RMagick'
-
-  # Change these to control the output
-  dim_x = 500                 # width of the box to draw the circle in
-  dim_y = 500                 # height of the box to draw the circle in
-  o_x = dim_x / 2             # x-origin on the graph
-  o_y = dim_y / 2             # y-origin on the graph
-
-  # Create a canvas and drawing context using rmagick
-  canvas = Magick::Image.new(dim_x, dim_y, Magick::HatchFill.new('white', 'lightcyan2', dim_y / 20))
-  gc = Magick::Draw.new
-  gc.stroke_width(1)
-
-  # Draw axes
-  gc.stroke('black')
-  gc.line(0, o_x, dim_y, o_x) 
-  gc.line(o_y, 0, o_y, dim_x) 
-
-  # Draw the MEC
-  gc.stroke('red')
-  gc.fill_opacity(0)
-  cx = o_x + circle.center.x * dim_x / 2
-  cy = o_y - circle.center.y * dim_y / 2
-  cy_edge = cy - circle.radius * dim_y / 2
-  gc.circle(cx, cy, cx, cy_edge)
-  gc.fill_opacity(1)
-  gc.fill('red')
-  gc.circle(cx, cy, cx, cy+3)
-  gc.fill_opacity(0)
-
-  # Draw the MEC radius
-  gc.stroke('green')
-  cx_edge = cx - circle.radius * dim_x / 2 * (1 / (2 ** 0.5))
-  cy_edge = cy + circle.radius * dim_y / 2 * (1 / (2 ** 0.5))
-  gc.line(cx, cy, cx_edge, cy_edge)
-
-  # Annotate the radius
-  gc.stroke('darkgreen').fill('darkgreen')
-  gc.text(cx_edge - 5, cy_edge + 5, "R:%5.4f" % circle.radius)
-
-  # Annotate the center
-  gc.stroke('darkgreen').fill('darkgreen')
-  gc.text(cx + 5, cy, "(%3.2f, %3.2f)" % [circle.center.x, circle.center.y])
-
-  # Draw the points
-  points.each do |point|
-    gc.stroke('blue')
-    gc.fill('blue')
-    gc.fill_opacity(1)
-    px = o_x + point.x * dim_x / 2
-    py = o_y - point.y * dim_y / 2
-    gc.circle(px, py, px, py+3)
-    # Annotate the point
-    gc.stroke('black').fill('black')
-    gc.text(px + 5, py, "(%2.2f, %2.2f)" % [point.x, point.y])
-  end
-
-  # draw the graphics context on the canvas and dump it to a file
-  gc.draw(canvas)
-  canvas.write(filename)
-end
-
 # For debugging, checks the solution and if it doesn't work, creates the image
 # and reruns encircle in debug mode for the failed solution
 def check_solution(points, circle)
@@ -381,13 +315,7 @@ end
 if __FILE__ == $0
   srand
 
-  if ARGV[0] && ARGV[0] == 'draw'
-    n = ARGV[1] ? ARGV[1].to_i : 15
-    points = generate_samples(n)
-    circle = encircle(points)
-    draw(points, circle, 'circle.png')
-    puts "SOLUTION: #{circle}"
-  elsif ARGV[0] && ARGV[0] == 'benchmark'
+  if ARGV[0] && ARGV[0] == 'benchmark'
     require 'benchmark'
 
     Benchmark.bm(15) do |x|
@@ -410,8 +338,5 @@ if __FILE__ == $0
     puts "Usage: ruby mec.rb [draw [num_points]] | [benchmark] | [once [num_points]]"
     puts "     once: Runs the solution once and puts the circle"
     puts "        num_points defaults to 15 if not specified."
-    puts "     draw: draws num_points points and the minimum enclosing circle to the file circle.png"
-    puts "        num_points defaults to 15 if not specified."
-    puts "benchmark: benchmarks the algorithm"
   end
 end
