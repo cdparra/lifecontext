@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path=""/>
-	<classpathentry kind="lib" path="/Users/cristhian/bin/play-2.1.0/repository/local/javax.servlet/javax.servlet-api/3.0.1/jars/javax.servlet-api.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/cristhian/bin/play-2.1.0/repository/local/org.apache.httpcomponents/httpclient/4.0.1/jars/httpclient.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-codec-1.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fluent-hc-4.2.3.jar"/>
@@ -17,5 +10,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient-cache-4.2.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpcore-4.2.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpmime-4.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.servlet-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

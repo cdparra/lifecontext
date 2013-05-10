@@ -58,17 +58,21 @@ public class BookletServlet extends HttpServlet {
 		String decade = request.getParameter("decade");
 		String lat = request.getParameter("lat");
 		String lon = request.getParameter("lon");
-
+		
 		PrintWriter out = response.getWriter();
 		try {
-
-//			String mediaUrl = "http://localhost:4567/generalBooklet/media?decade="
-			String mediaUrl = "http://test.reminiscens.me/lifecontext/api/generalBooklet/media?decade="
-					+ decade + "&lat=" + lat + "&lon=" + lon;
-			String eventsUrl = "http://localhost:4567/generalBooklet/events?decade="
-					+ decade + "&lat=" + lat + "&lon=" + lon;
-			String worksUrl = "http://localhost:4567/generalBooklet/works?decade="
-					+ decade;
+			
+			if (decade == "null") { 
+				throw new Exception("wrong decade");
+			}
+			
+			// Query Parameters String
+			String qParams = "?decade=" + decade + "&lat=" + lat + "&lon=" + lon;
+			String qParamsDecade = "?decade=" + decade;
+			
+			String mediaUrl  = Constants.MEDIA_SERVICE + qParams;
+			String eventsUrl = Constants.EVENTS_SERVICE + qParams;
+			String worksUrl = Constants.WORKS_SERVICE + qParamsDecade;
 			
 			System.out.println("Loading Media");
 			
