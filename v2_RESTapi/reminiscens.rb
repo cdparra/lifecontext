@@ -12,12 +12,12 @@ require 'geocoder'
 
 require './config/settings'
 require './models/models'
+require './method_utils'
+require './mec'
 
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 Rabl.register!
-
-#Geocoder.configure(:timeout => 10000000) # da cambiare!!! (la vm fa schifo come velocita')
 
 def getGoogleCoordinates(loc)
   @place=City.new
@@ -25,6 +25,23 @@ def getGoogleCoordinates(loc)
   @place.lat=s[0].latitude
   @place.lon=s[0].longitude
   return @place
+end
+
+def areInRadius(lats,lons)
+  
+  l = lats.length
+  points = Array.new(l)
+  i = 0
+  
+  lats.zip(lons).each do |lat,lon|
+    p = toUTM(lat.to_f, lon.to_f)
+    points[i] = p
+    i += 1
+  end
+    
+  radius = pointArrayDistance(points)
+  
+  return radius < 50000
 end
 
 get '/' do
@@ -36,14 +53,18 @@ end
 
 get '/generalBooklet/media' do
   
-  if params[:decade].length == params[:place].length
+  lats = params[:lat]
+  lons = params[:lon]
+  
+  if lats.length == lons.length
+      
+    if areInRadius(lats,lons)
     
+    else
     
+    end
   else
-    res = { :success => false,
-                :info => "Wrong number of arguments: decade list and place list must have the same length!",
-              }.to_json  
-    halt 500, {'Content-Type' => 'application/json'}, res
+    res = { :success => false, :info => "lat and lon lists must have the same length" }.to_json
   end
 end
 
