@@ -303,6 +303,6 @@ def pointArrayDistance(points)
   
   mec = encircle(points)
   
-  return mec.radius
+  return mec
 
 end
