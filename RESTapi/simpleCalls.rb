@@ -101,7 +101,7 @@ class ReminiscensAPI < Sinatra::Application
           @radius=0
         end
 
-        @events=Event.joins(:fuzzyDate, :location).where("AND decade = ?
+        @events=Event.joins(:fuzzyDate, :location).where("decade = ?
           AND (6378.7*sqrt(POW((0.0174 * (lat - ?)),2) +
           POW((0.0174 * (lon - ?) * COS(?)),2))) <= ?",
           params[:decade], params[:lat], params[:lon], params[:lat], @radius)
