@@ -216,7 +216,6 @@ a, a:hover, a:active {
 	top: 50%;
 	margin-left: -150px;
 	margin-top: -100px;
-	opacity: 0;
 }
 #preloader .contents .animation {
 	width: 91px;
@@ -231,10 +230,7 @@ a, a:hover, a:active {
 	background-color: #fefefe;
 	border-radius: 2px;
 	margin-top: 10px;
-	box-shadow: 0 1px 3px #ccc;
-	-o-box-shadow: 0 1px 3px #ccc;
-	-moz-box-shadow: 0 1px 3px #ccc;
-	-webkit-box-shadow: 0 1px 3px #ccc;
+
 }
 #preloader .contents .progress .fill {
 	background-color: #d7464b;
@@ -381,12 +377,12 @@ body.credits #back-cover {
 	top: 10px;
 	width: 800px;
 	height: 500px;
-	opacity: 0;
+
 	background-color: #000;
 }
 
 body.overlay #front-cover-bookmark {
-	opacity: 0;
+
 	transition: opacity .2s linear;
 	-o-transition: opacity .2s linear;
 	-moz-transition: opacity .2s linear;
@@ -695,10 +691,7 @@ body.tot #table-of-contents {
 	font-size: 26px;
 	width: 100%;
 	text-align: center;
-	text-shadow: 0 1px 1px #fff;
-	-o-text-shadow: 0 1px 1px #fff;
-	-moz-text-shadow: 0 1px 1px #fff;
-	-webkit-text-shadow: 0 1px 1px #fff;
+
 }
 #table-of-contents h2 span {
 	padding: 0 8px;
@@ -741,10 +734,7 @@ body.tot #table-of-contents {
 	-o-transition: background-color .11s linear;
 	-moz-transition: background-color .11s linear;
 	-webkit-transition: background-color .11s linear;
-	box-shadow: 0 2px 4px #cdcdcd;
-	-o-box-shadow: 0 2px 4px #cdcdcd;
-	-moz-box-shadow: 0 2px 4px #cdcdcd;
-	-webkit-box-shadow: 0 2px 4px #cdcdcd;
+
 }
 #table-of-contents ul li.disabled a {
 	cursor: default;
@@ -826,10 +816,7 @@ body.credits #credits {
 #credits div.header h2 {
 	font-size: 26px;
 	font-weight: bold;
-	text-shadow: 0 1px 1px #fff;
-	-o-text-shadow: 0 1px 1px #fff;
-	-moz-text-shadow: 0 1px 1px #fff;
-	-webkit-text-shadow: 0 1px 1px #fff;
+
 }
 #credits div.header h2 span {
 	padding: 0 8px;
@@ -1229,10 +1216,7 @@ body.tot #pagination-prev, body.tot #pagination-next {
 	width: 1613px;
 	height: 498px;
 	opacity: 1;
-	box-shadow: 0 0 45px #5f5f5f;
-	-o-box-shadow: 0 0 45px #5f5f5f;
-	-moz-box-shadow: 0 0 45px #5f5f5f;
-	-webkit-box-shadow: 0 0 45px #5f5f5f;
+
 }
 .home #book-shadow {
 	width: 803px;
