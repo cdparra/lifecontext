@@ -35,5 +35,6 @@ class ReminiscensAPI < Sinatra::Application
   end
 end
 
-require_relative 'generalBooklet'
+require_relative 'v1'
+require_relative 'v2'
 require_relative 'simpleCalls'

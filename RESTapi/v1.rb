@@ -1,8 +1,8 @@
 class ReminiscensAPI < Sinatra::Application
   
-  #bookletResources
+  #v1 api
 
-  get '/generalBooklet/media' do
+  get '/v1/generalBooklet/media' do
 
     decade = params[:decade]
     lat = params[:lat]
@@ -30,7 +30,7 @@ class ReminiscensAPI < Sinatra::Application
     end
   end
 
-  get '/generalBooklet/works' do
+  get '/v1/generalBooklet/works' do
 
     decade = params[:decade]
   
@@ -54,7 +54,7 @@ class ReminiscensAPI < Sinatra::Application
   end
 
 
-  get '/generalBooklet/events' do
+  get '/v1/generalBooklet/events' do
 
     decade = params[:decade]
     lat = params[:lat]
