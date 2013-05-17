@@ -97,8 +97,8 @@ class ReminiscensAPI < Sinatra::Application
           end
         else
           orderString_1 = "abs(decade - #{decades[0]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[0]})),2) + POW((0.0174 * (lon - #{lons[0]}) * COS(#{lats[0]})),2))), distance, coordinates_trust DESC"
-          orderString_2 = "abs(decade - #{decades[l/2]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[0]})),2) + POW((0.0174 * (lon - #{lons[0]}) * COS(#{lats[0]})),2))), distance, coordinates_trust DESC"       
-          orderString_3 = "abs(decade - #{decades[l-1]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[0]})),2) + POW((0.0174 * (lon - #{lons[0]}) * COS(#{lats[0]})),2))), distance, coordinates_trust DESC"             
+          orderString_2 = "abs(decade - #{decades[l/2]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[l/2]})),2) + POW((0.0174 * (lon - #{lons[l/2]}) * COS(#{lats[l/2]})),2))), distance, coordinates_trust DESC"       
+          orderString_3 = "abs(decade - #{decades[l-1]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[l-1]})),2) + POW((0.0174 * (lon - #{lons[l-1]}) * COS(#{lats[l-1]})),2))), distance, coordinates_trust DESC"             
           @media = Media.joins(:contextIndex => :city).where("Context_Index.media_id IS NOT NULL").order(orderString_1).limit(2)
                   + Media.joins(:contextIndex => :city).where("Context_Index.media_id IS NOT NULL").order(orderString_1).limit(1)
                   + Media.joins(:contextIndex => :city).where("Context_Index.media_id IS NOT NULL").order(orderString_1).limit(2)
@@ -154,8 +154,8 @@ class ReminiscensAPI < Sinatra::Application
           end
         else
           orderString_1 = "abs(decade - #{decades[0]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[0]})),2) + POW((0.0174 * (lon - #{lons[0]}) * COS(#{lats[0]})),2))), distance, coordinates_trust DESC"
-          orderString_2 = "abs(decade - #{decades[l/2]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[0]})),2) + POW((0.0174 * (lon - #{lons[0]}) * COS(#{lats[0]})),2))), distance, coordinates_trust DESC"       
-          orderString_3 = "abs(decade - #{decades[l-1]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[0]})),2) + POW((0.0174 * (lon - #{lons[0]}) * COS(#{lats[0]})),2))), distance, coordinates_trust DESC"             
+          orderString_2 = "abs(decade - #{decades[l/2]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[l/2]})),2) + POW((0.0174 * (lon - #{lons[l/2]}) * COS(#{lats[l/2]})),2))), distance, coordinates_trust DESC"       
+          orderString_3 = "abs(decade - #{decades[l-1]}), (6378.7*sqrt(POW((0.0174 * (lat - #{lats[l-1]})),2) + POW((0.0174 * (lon - #{lons[l-1]}) * COS(#{lats[l-1]})),2))), distance, coordinates_trust DESC"             
           @events = Event.joins(:contextIndex => :city).where("Context_Index.event_id IS NOT NULL").order(orderString_1).limit(2)
                   + Event.joins(:contextIndex => :city).where("Context_Index.event_id IS NOT NULL").order(orderString_1).limit(1)
                   + Event.joins(:contextIndex => :city).where("Context_Index.event_id IS NOT NULL").order(orderString_1).limit(2)
