@@ -1,0 +1,22 @@
+HOST: http://test.reminiscens.me/lifeincontext/api/v0/
+
+--- Lifeincontext ---
+---
+Lifeincontext API is the gateway to resources used by Reminiscence applications for bulding context around life stories
+---
+--
+Picture Resources
+The following is a section of resources related to pictures
+--
+Get one particular Picture
+GET /picture/{id}
+< 200
+< Content-Type: application/json
+{ "picture":
+  { "url": "/picture/1", 
+    "headline":"Picture of..", 
+    "picture_url": "http://www.flickr.com/photos/92367122@N03/8394605494/", 
+    "name": "New socks", 
+    "price": 1.25 
+  }
+}
