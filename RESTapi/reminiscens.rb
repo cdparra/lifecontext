@@ -31,7 +31,7 @@ class ReminiscensAPI < Sinatra::Application
       res = { :success => false,
                   :info => "Wrong request: you need to specify a method",
                 }.to_json  
-    halt 500, {'Content-Type' => 'application/json'}, res
+    halt 400, {'Content-Type' => 'application/json'}, res
   end
 end
 

@@ -75,7 +75,10 @@ class ReminiscensAPI < Sinatra::Application
       end
       render :rabl, :context_media, :format => "json"
     else
-      res = { :success => false, :info => "decade, lat and lon lists must have the same length, that is more than 0" }.to_json
+      res = { :success => false,
+                :info => "decade, lat and lon lists must have the same length, that is more than 0",
+              }.to_json  
+      halt 400, {'Content-Type' => 'application/json'}, res
     end
   end
 
@@ -132,7 +135,10 @@ class ReminiscensAPI < Sinatra::Application
       end
       render :rabl, :context_events, :format => "json"
     else
-      res = { :success => false, :info => "decade, lat and lon lists must have the same length, that is more than 0" }.to_json
+      res = { :success => false,
+                :info => "decade, lat and lon lists must have the same length, that is more than 0",
+              }.to_json  
+      halt 400, {'Content-Type' => 'application/json'}, res
     end
   end
 
@@ -141,6 +147,7 @@ class ReminiscensAPI < Sinatra::Application
     decades = params[:decade]
     l = decades.length
 
+      if l != 0
         if l <= 3
           size = 5
           @mediaMDs = Array.new
@@ -159,9 +166,15 @@ class ReminiscensAPI < Sinatra::Application
                   + MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL").order(orderString_1).limit(2)
         end
         render :rabl, :context_works, :format => "json"
+      else
+        res = { :success => false,
+                  :info => "decade list must be longer than 0",
+                }.to_json  
+        halt 400, {'Content-Type' => 'application/json'}, res
+      end
   end
 
-      after do
-        ActiveRecord::Base.connection.close
-      end
+  after do
+    ActiveRecord::Base.connection.close
+  end
 end

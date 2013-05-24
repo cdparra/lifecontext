@@ -76,13 +76,12 @@ class ReminiscensAPI < Sinatra::Application
     end
 
     if defined?(@media)
-      if params[:dev]!=nil
-        Rabl.render(@media, 'media.rabl', view_paths => 'views/dev/', :format => :json, :scope => self)
-      else
-        render :rabl, :media, :format => "json"
-      end
+      render :rabl, :media, :format => "json"
     else
-      render :rabl, :param_errors, :format => "json"
+      res = { :success => false,
+                  :info => "Parameter 'decade' must follow the pattern 'yyyy'; Warning: you need to specify at least one parameter!",
+                }.to_json  
+      halt 400, {'Content-Type' => 'application/json'}, res
     end
 
   end
@@ -165,7 +164,10 @@ class ReminiscensAPI < Sinatra::Application
     if defined?(@events)
       render :rabl, :events, :format => "json"
     else
-      render :rabl, :param_errors, :format => "json"
+      res = { :success => false,
+                  :info => "Parameter 'decade' must follow the pattern 'yyyy'; Warning: you need to specify at least one parameter!",
+                }.to_json  
+      halt 400, {'Content-Type' => 'application/json'}, res
     end
 
   end
@@ -181,7 +183,10 @@ class ReminiscensAPI < Sinatra::Application
     if defined?(@mediaMDs)
       render :rabl, :works, :format => "json"
     else
-      render :rabl, :param_errors, :format => "json"
+      res = { :success => false,
+                  :info => "Parameter 'decade' must follow the pattern 'yyyy'; Warning: you need to specify at least one parameter!",
+                }.to_json  
+      halt 400, {'Content-Type' => 'application/json'}, res
     end
 
 
@@ -310,7 +315,10 @@ class ReminiscensAPI < Sinatra::Application
       if defined?(@part)
         render :rabl, :people, :format => "json"
       else
-        render :rabl, :param_errors, :format => "json"
+        res = { :success => false,
+                    :info => "Parameter 'decade' must follow the pattern 'yyyy'; Warning: you need to specify at least one parameter!",
+                  }.to_json  
+        halt 400, {'Content-Type' => 'application/json'}, res
       end
 
   end

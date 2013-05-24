@@ -26,7 +26,7 @@ class ReminiscensAPI < Sinatra::Application
       res = { :success => false,
                 :info => "Wrong request: you need to specify a decade",
               }.to_json  
-      halt 500, {'Content-Type' => 'application/json'}, res
+      halt 400, {'Content-Type' => 'application/json'}, res
     end
   end
 
@@ -47,7 +47,7 @@ class ReminiscensAPI < Sinatra::Application
       res = { :success => false,
                   :info => "Wrong request: you need to specify a decade",
                 }.to_json  
-      halt 500, {'Content-Type' => 'application/json'}, res
+      halt 400, {'Content-Type' => 'application/json'}, res
     
     end
 
@@ -78,7 +78,7 @@ class ReminiscensAPI < Sinatra::Application
       res = { :success => false,
                 :info => "Wrong request: you need to specify a decade",
               }.to_json  
-      halt 500, {'Content-Type' => 'application/json'}, res
+      halt 400, {'Content-Type' => 'application/json'}, res
     end
 
   end
