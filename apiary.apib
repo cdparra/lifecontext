@@ -21,7 +21,7 @@ This resource will return all the media that satisfy the request parameters:
  + **radius** : represents the the distance from **place** / **lat** & **lon** in which the API has to look for pictures; Its value by default is **0**.
 
 GET /media{?decade,place,lat,lon,radius}
-{ "decade": "2000", "place": "Trento" }
+{ "url": "/media?decade=2000&place=Trento" }
 < 200
 < Content-Type: application/json
 {
