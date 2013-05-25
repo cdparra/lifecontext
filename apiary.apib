@@ -267,7 +267,7 @@ This resource returns a context of five pictures, computed from these parameters
  + **lat**, **lon**: the geographical coordinates of the center of the context that will be created.
 
 GET /v1/generalBooklet/media{?decade,lat,lon}
-{ "decade" : "1980", "lat" : "46.0696924", "lon" : "11.121088600000007" }
+{ "url":"decade=1980&lat=46.0696924&lon=11.121088600000007" }
 < 200
 < Content-Type: application/json
 {
@@ -299,7 +299,7 @@ This resource returns a context of five events, computed from these parameters:
  + **lat**, **lon**: the geographical coordinates of the center of the context that will be created.
 
 GET /v1/generalBooklet/events{?decade,lat,lon}
-{ "decade" : "1980", "lat" : "46.0696924", "lon" : "11.121088600000007" }
+{ "url":"decade=1980&lat=46.0696924&lon=11.121088600000007" }
 < 200
 < Content-Type: application/json
 {
@@ -331,7 +331,7 @@ This resource returns a context of five songs, computed from these parameters:
  + **decade**: a decade in the form 'dddd'.
 
 GET /v1/generalBooklet/works{?decade}
-{ "decade" : "1970" }
+{ "url":"decade=1970" }
 < 200
 < Content-Type: application/json
 {
@@ -362,7 +362,7 @@ This resource returns a context of five pictures, computed from these parameters
  + **lat[]**, **lon[]**: two arrays of geographical coordinates, combined to create the context. Every latitude and longitude must be written as 'lat[]' & 'lon[]' - instead of 'lat[]' & 'lon[]' - to make the API know that those are arrays
 
 GET /v2/generalBooklet/media{?decade[],lat[],lon[]}
-{ "lat[]" : "46.069692", "lat[]" : "-25.262085", "lon[]" : "11.121089", "lon[]" : "-57.489109", "decade[]" : "1990", "decade[]" : "2000" }
+{ "url":"lat[]=46.069692&lat[]=-25.262085&lon[]=11.121089&lon[]=-57.489109&decade[]=1990&decade[]=2000" }
 < 200
 < Content-Type: application/json
 {
@@ -395,8 +395,8 @@ This resource returns a context of five events, computed from these parameters:
  + **decade[]**: an array of decades in the form 'dddd'. Every decade must be written as 'decade[]' - instead of 'decade' - to make the API know that it's an array.
  + **lat[]**, **lon[]**: two arrays of geographical coordinates, combined to create the context. Every latitude and longitude must be written as 'lat[]' & 'lon[]' - instead of 'lat[]' & 'lon[]' - to make the API know that those are arrays
 
-GET /v2/generalBooklet/media{?decade[],lat[],lon[]}
-{ "lat[]" : "46.069692", "lat[]" : "-25.262085", "lon[]" : "11.121089", "lon[]" : "-57.489109", "decade[]" : "1990", "decade[]" : "2000" }
+GET /v2/generalBooklet/events{?decade[],lat[],lon[]}
+{ "url":"lat[]=46.069692&lat[]=-25.262085&lon[]=11.121089&lon[]=-57.489109&decade[]=1990&decade[]=2000" }
 < 200
 < Content-Type: application/json
 {
@@ -428,8 +428,8 @@ This resource returns a context of five songs, computed from these parameters:
 
  + **decade[]**: an array of decades in the form 'dddd'. Every decade must be written as 'decade[]' - instead of 'decade' - to make the API know that it's an array.
  
-GET /v2/generalBooklet/media{?decade[],lat[],lon[]}
-{ "decade[]" : "1990", "decade[]" : "2000" }
+GET /v2/generalBooklet/works{?decade[],lat[],lon[]}
+{ "url":"lat[]=46.069692&lat[]=-25.262085&lon[]=11.121089&lon[]=-57.489109&decade[]=1990&decade[]=2000" }
 < 200
 < Content-Type: application/json
 {
