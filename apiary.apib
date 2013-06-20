@@ -1,0 +1,349 @@
+HOST: http://test.reminiscens.me/lifecontext/api/
+
+--- Lifeincontext ---
+---
+Lifeincontext API is the gateway to resources used by Reminiscence applications for bulding context around life stories
+---
+
+-- General Resources --
+
+This call wil result into a BAD REQUEST error: it is necessary to specify a section in [media;events;works;people]
+GET /
+< 400
+< Content-Type: application/json
+{ "success": "false", "info" : "Wrong request: you need to specify a method"}
+
+This resource will return all the media that satisfy the request parameters:  
+
+ + **decade** : represents the decade in which the API has to look for media.
+ + **place** : is a literal form of the location; when used, it's queried into the DB, or Geocoded if absent; Can be used with **radius**; If used with **lat** and **lon**, it's ignored.
+ + **lat**, **lon** : clearly latitude and longitude; They always have to appear together; Can be used with **raidus**; If used with **place**, the latter is ignored.
+ + **radius** : represents the the distance from **place** / **lat** & **lon** in which the API has to look for pictures; Its value by default is **0**.
+
+GET /media{?decade,place,lat,lon,radius}
+{ "url": "/media?decade=2000&place=Trento" }
+< 200
+< Content-Type: application/json
+{
+    "media":[
+        {
+            "title":"Lago di Garda",
+            "type":"photo",
+            "url":"http://farm9.static.flickr.com/8121/8621726006_50b119601c_z.jpg",
+            "source":"flickr",
+            "source_url":"http://www.flickr.com/photos/78267675@N08/8621726006/",
+            "locale":"ita",
+            "time":{
+                "datetime":"2009-09-15",
+                "dayname":"giovedì",
+                "accuracy":"11"                
+            },
+            "location":{
+                "city":"Trent",
+                "region":"Trentino-Alto Adige/S?ºdtirol",
+                "country":"Italy",
+                "lat":"46.069692",
+                "lon":"11.121089",
+                "trustness":false            
+            }
+        }
+        ]       
+}
+
+This resource will return all the events that satisfy the request parameters:  
+
+ + **decade** : represents the decade in which the API has to look for events.
+ + **place** : is a literal form of the location; when used, it's queried into the DB, or Geocoded if absent; Can be used with **radius**; If used with **lat** and **lon**, it's ignored.
+ + **lat**, **lon** : clearly latitude and longitude; They always have to appear together; Can be used with **raidus**; If used with **place**, the latter is ignored.
+ + **radius** : represents the the distance from **place** / **lat** & **lon** in which the API has to look for events; Its value by default is **0**.
+
+GET /events{?decade,place,lat,lon,radius}
+{ "place" : "Roma", "radius": "500" }
+< 200
+< Content-Type: application/json
+{
+    "events":[
+        {
+            "headline":"64ª Mostra internazionale d'arte cinematografica di Venezia",
+            "text":"La 64ª edizione della Mostra internazionale d'arte cinematografica di Venezia si è svolta a Venezia, Italia, dal 29 agosto al 8 settembre 2007. La madrina della rassegna è la soubrette italiana Ambra Angiolini. Il Leone d'Oro alla carriera è stato consegnato al regista statunitense Tim Burton. Per la seconda volta nella storia della Mostra dal dopoguerra tutti i film del concorso erano in prima mondiale.",
+            "source":"dbpedia",
+            "source_url":"http://dbpedia.org/resource/64th_Venice_International_Film_Festival",
+            "locale":"it",
+            "time":{
+                "datetime":"2007-09-08",
+                "season":"inverno",
+                "dayname":"lunedì",
+                "accuracy":"9"
+            },
+            "location":{
+                "country":"Italy",
+                "lat":"41.87194",
+                "lon":"12.56738",
+                "trustness":false   
+            }       
+        }
+    ]
+}
+
+This resource will return all the works that satisfy the request parameters:  
+
+ + **decade** : represents the decade in which the API has to look for works.
+
+GET /work{?decade}
+{ "decade" : "1980" }
+< 200
+< Content-Type: application/json
+{
+    "works":[
+        {
+            "title":"No Surrender",
+            "type":"SONG",
+            "description":"No Surrender è un singolo di Bruce Springsteen, pubblicato nel 1984 sull'album Born in the U.S.A.. Il singolo raggiunse la 40# posizione nella Mainstream Rock Charts",
+            "author":"Bruce Springsteen",
+            "source":"dbpedia",
+            "source_url":"http://dbpedia.org/resource/No_Surrender_(song)",
+            "resource_url":"https://www.youtube.com/v/MD3DdskaPhs?version=3&f=videos&d=AYcmKYILM6rpFUn86Vnl8m4O88HsQjpE1a8d1GxQnGDm&app=youtube_gdata",
+            "locale":"it",
+            "time":{
+                "datetime":"1984-06-04",
+                "accuracy":"9",
+                "decade":1980,
+                "year":1984   
+            }   
+        }
+        ]
+}
+
+This resource will return all the works that satisfy the request parameters:  
+
+ + **decade** : represents the decade in which the API has to look for life events belonging to people.
+ + **place** : is a literal form of the location; when used, it's queried into the DB, or Geocoded if absent; Can be used with **radius**; If used with **lat** and **lon**, it's ignored.
+ + **lat**, **lon** : clearly latitude and longitude; They always have to appear together; Can be used with **raidus**; If used with **place**, the latter is ignored.
+ + **radius** : represents the the distance from **place** / **lat** & **lon** in which the API has to look for people; Its value by default is **0**.
+
+GET /people{?decade,place,lat,lon,radius}
+{ "decade" : "1950", "place": "Trento" }
+< 200
+< Content-Type: application/json
+{
+    "people" : [
+        {
+            "firstname": "Martino",
+            "lastname" : "Martini",
+            "famous_for" : "Ha operato principalmente nella Cina imperiale. Fu il primo compilatore di una grammatica cinese [...]",
+            "source" : "dbpedia",
+            "source_url" : "http://dbpedia.org/resource/Martino_Martini",
+            "event_type" : "birth",
+            "time" : {
+                "datetime" : "1614-09-20",
+                "season" : "fall",
+                "dayname" : "Saturday",
+                "accuracy" : "9",
+                },
+            "location" : {
+                "name" : "Trento",
+                "city" : "Trento",
+                "region" : "Trentino Alto-Adige",
+                "country" : "Italy",
+                "latitude" : "46.069692",
+                "longitude" : "11.121089",
+                "trustness" : "0"
+                },
+            "locale" : "IT-it"
+            }
+        ]
+    }
+}
+
+-- V1 Lifeincontext API --
+This resource returns a context of five pictures, computed from these parameters:
+
+ + **decade**: a decade in the form 'dddd'.
+ + **lat**, **lon**: the geographical coordinates of the center of the context that will be created.
+
+GET /v1/generalBooklet/media{?decade,lat,lon}
+{ "decade" : "1980", "lat" : "46.0696924", "lon" : "11.121088600000007" }
+< 200
+< Content-Type: application/json
+{
+    "media":[
+        {
+            "title":"Trento - Via delle Laste",
+            "type":"postcard",
+            "url":"http://www.catinabib.it/files/TIC511-2288.jpg",
+            "source":"catinabib",
+            "source_url":"http://www.catinabib.it/?q=node/6407",
+            "time":{
+                "year":1987                
+            },
+            "location":{
+                "textual":"Valle dell'Adige - Trento",
+                "city":"Trent",
+                "region":"Trentino-Alto Adige/S?ºdtirol",
+                "country":"Italy",
+                "lat":"46.069692",
+                "lon":"11.121089"                
+            }
+        }
+        ]
+}
+
+This resource returns a context of five events, computed from these parameters:
+
+ + **decade**: a decade in the form 'dddd'.
+ + **lat**, **lon**: the geographical coordinates of the center of the context that will be created.
+
+GET /v1/generalBooklet/events{?decade,lat,lon}
+{ "decade" : "1980", "lat" : "46.0696924", "lon" : "11.121088600000007" }
+< 200
+< Content-Type: application/json
+{
+    "events":[
+        {"headline":"FA Charity Shield 1986",
+        "text":"Lo FA Charity Shield 1986, noto in italiano anche come Supercoppa d'Inghilterra 1986, è stata la 64ª edizione della Supercoppa d'Inghilterra. Si è svolto il 16 agosto 1986 al Wembley Stadium di Londra tra il Liverpool, vincitore della First Division 1985-1986 e della FA Cup 1985-1986, e l'Everton, secondo classificato nella First Division 1985-1986 e finalista della FA Cup 1985-1986. Il titolo, per la nona volta nella sua storia, è stato condiviso tra le due squadre, che hanno pareggiato la gara per 1-1 con reti di Adrian Heath per i Toffees e Ian Rush per i Reds.",
+        "source":"dbpedia",
+        "source_url":"http://dbpedia.org/resource/1986_FA_Charity_Shield",
+        "locale":"it",
+        "time":{
+            "datetime":"1986-08-16",
+            "season":"estate",
+            "dayname":"martedì",
+            "accuracy":"9"
+        },
+        "location":{
+            "textual":"London",
+            "country":"United Kingdom",
+            "lat":"51.511214",
+            "lon":"-0.119824",
+            "trustness":false
+        }
+        }
+        ]   
+}
+
+This resource returns a context of five songs, computed from these parameters:
+
+ + **decade**: a decade in the form 'dddd'.
+
+GET /v1/generalBooklet/works{?decade}
+{ "decade" : "1970" }
+< 200
+< Content-Type: application/json
+{
+    "works":[
+        {"title":"Lost in the Supermarket",
+        "type":"SONG",
+        "description":"Lost in the Supermarket è un brano del gruppo musicale inglese The Clash, pubblicato nell'album London Calling, il 14 dicembre del 1979. Il brano all'interno dell'album è posizionato come ottava traccia.",
+        "author":"The Clash",
+        "source":"dbpedia",
+        "source_url":"http://dbpedia.org/resource/Lost_in_the_Supermarket",
+        "resource_url":"https://www.youtube.com/v/qsrEAWcAvRg?version=3&f=videos&d=AYcmKYILM6rpFUn86Vnl8m4O88HsQjpE1a8d1GxQnGDm&app=youtube_gdata",
+        "locale":"it",
+        "time":{
+            "datetime":"1979-12-14",
+            "accuracy":"9",
+            "decade":1970,
+            "year":1979            
+        }
+        }
+        ]
+}
+
+-- V2 Lifeincontext API --
+
+This resource returns a context of five pictures, computed from these parameters:
+
+ + **decade[]**: an array of decades in the form 'dddd'. Every decade must be written as 'decade[]' - instead of 'decade' - to make the API know that it's an array.
+ + **lat[]**, **lon[]**: two arrays of geographical coordinates, combined to create the context. Every latitude and longitude must be written as 'lat[]' & 'lon[]' - instead of 'lat[]' & 'lon[]' - to make the API know that those are arrays
+
+GET /v2/generalBooklet/media{?decade[],lat[],lon[]}
+{ "lat[]" : "46.069692", "lat[]" : "-25.262085", "lon[]" : "11.121089", "lon[]" : "-57.489109", "decade[]" : "1990", "decade[]" : "2000" }
+< 200
+< Content-Type: application/json
+{
+    "media":[
+        {
+            "title":"Trentin",
+            "type":"photo",
+            "url":"http://farm4.static.flickr.com/3096/5863196639_aab47ea095_z.jpg",
+            "source":"flickr",
+            "source_url":"http://www.flickr.com/photos/43045536@N08/5863196639/",
+            "time":{
+                "datetime":"1997-05-01",
+                "year":1997,
+                "dayname":"domenica"
+            },
+            "location":{
+                "textual":"Trento",
+                "city":"Trent",
+                "region":"Trentino-Alto Adige/S?ºdtirol",
+                "country":"Italy",
+                "lat":"46.069692",
+                "lon":"11.121089"
+            }   
+        }
+        ]
+}
+
+This resource returns a context of five events, computed from these parameters:
+
+ + **decade[]**: an array of decades in the form 'dddd'. Every decade must be written as 'decade[]' - instead of 'decade' - to make the API know that it's an array.
+ + **lat[]**, **lon[]**: two arrays of geographical coordinates, combined to create the context. Every latitude and longitude must be written as 'lat[]' & 'lon[]' - instead of 'lat[]' & 'lon[]' - to make the API know that those are arrays
+
+GET /v2/generalBooklet/media{?decade[],lat[],lon[]}
+{ "lat[]" : "46.069692", "lat[]" : "-25.262085", "lon[]" : "11.121089", "lon[]" : "-57.489109", "decade[]" : "1990", "decade[]" : "2000" }
+< 200
+< Content-Type: application/json
+{
+    "events":[
+        {
+            "headline":"FA Charity Shield 1996",
+            "text":"Lo FA Charity Shield 1996, noto in italiano anche come Supercoppa d'Inghilterra 1996, è stata la 74ª edizione della Supercoppa d'Inghilterra. Si è svolto l'11 agosto 1996 al Wembley Stadium di Londra tra il Manchester United, vincitore della FA Premier League 1995-1996 e della FA Cup 1995-1996, e il Newcastle, secondo classificato nella FA Premier League 1995-1996. A conquistare il titolo è stato il Manchester United che ha vinto per 4-0 con reti di Éric Cantona, Nicky Butt, David Beckham e Roy Keane.",
+            "source":"dbpedia",
+            "source_url":"http://dbpedia.org/resource/1996_FA_Charity_Shield",
+            "locale":"it",
+            "time":{
+                "datetime":"1996-08-11",
+                "season":"inverno",
+                "dayname":"mercoledì",
+                "accuracy":"9"
+            },
+            "location":{
+                "textual":"London",
+                "country":"United Kingdom",
+                "lat":"51.511214",
+                "lon":"-0.119824",
+                "trustness":false
+            }   
+        }
+        ]
+}
+
+This resource returns a context of five songs, computed from these parameters:
+
+ + **decade[]**: an array of decades in the form 'dddd'. Every decade must be written as 'decade[]' - instead of 'decade' - to make the API know that it's an array.
+ 
+GET /v2/generalBooklet/media{?decade[],lat[],lon[]}
+{ "decade[]" : "1990", "decade[]" : "2000" }
+< 200
+< Content-Type: application/json
+{
+    "works":[
+        {
+            "title":"Half the World Away",
+            "type":"SONG",
+            "description":"Half the World Away è un brano della band inglese Oasis, pubblicato per la prima volta come b-side del singolo Whatever nel 1994. Il testo è opera di Noel Gallagher che nel brano, oltre che a suonare il suo strumento abituale che sarebbe la chitarra, suona anche la batteria che è sempre stata una sua grande passione. Per rivederlo in veste di batterista bisognerà aspettare il 2008, nell'album Dig Out Your Soul infatti addirittura tre brani lo vedono in questo ruolo. Paul Weller, grande amico di Noel, ha affermato che questa è la sua canzone degli Oasis preferita. In Inghilterra la canzone è molto popolare, questo perché è anche la sigla di una famosa sitcom britannica della BBC, The Royle Family con l'attrice Liz Smith. Il buon successo del brano ha spinto la band ad inserire la canzone nella raccolta di b-sides The Masterplan del 1998 e nel Greatest Hits del 2006 Stop the Clocks.",
+            "author":"Oasis",
+            "source":"dbpedia",
+            "source_url":"http://dbpedia.org/resource/Half_the_World_Away",
+            "resource_url":"https://www.youtube.com/v/C1YqF3pYAeg?version=3&f=videos&d=AYcmKYILM6rpFUn86Vnl8m4O88HsQjpE1a8d1GxQnGDm&app=youtube_gdata",
+            "locale":"it",
+            "time":{
+                "datetime":"1994-12-18",
+                "accuracy":"9",
+                "decade":1990,
+                "year":1994                
+            }
+        }
+        ]
+}
