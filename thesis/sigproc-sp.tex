@@ -2,6 +2,9 @@
 \usepackage{listings}
 \usepackage{subfiles}
 
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+
 \begin{document}
 
 \title{Reminiscens, una knowledge base di risorse storiche per supportare la reminiscenza}
@@ -54,9 +57,7 @@ email: {\texttt{jsmith@affiliation.org}}) and Julius P.~Kumquat
 % number that will appear in the \additionalauthors section.
 
 \maketitle
-\begin{abstract}
-Nella vita collezioniamo moltissimi ricordi, innumerevoli esperienze che plasmano le persone che siamo e che saremo. Con il passare degli anni aumenta per ognuno l'importanza della rievocazione di queste memorie, che possono avere una doppia valenza, in quanto terapeutiche per combattere la senilità e utili nella trasmissione ai posteri di quel che era. Proprio l'utilità di questo fenomeno spontaneo, chiamato reminiscenza, fa sorgere una domanda: come è possibile far sorgere la reminiscenza in un individuo? Questo documento contiene le scelte di implementazione che hanno portato alla costruzione di Reminiscens, una piattaforma sociale (ancora in fase di sviluppo) per favorire l'afflusso di ricordi provenienti dalla vita di una persona.
-\end{abstract}
+\subfile{abstract}
 
 % A category with the (minimum) three required fields
 \category{H.4}{Information Systems Applications}{Miscellaneous}
@@ -69,11 +70,58 @@ Nella vita collezioniamo moltissimi ricordi, innumerevoli esperienze che plasman
 
 \subfile{intro}
 
+\begin{figure*}[t]
+\centering
+\includegraphics[width=1.0\textwidth]{microformats.pdf}
+\caption{Un contatto senza e con il microformato hCard}
+\end{figure*}
+
 \subfile{sota}
 
 \subfile{problem}
 
+\begin{figure*}[t]
+\centering
+\includegraphics[width=1.0\textwidth]{architecture.pdf}
+\caption{Architettura di Reminiscens}
+\end{figure*}
+
 \subfile{solution}
+
+\begin{table}
+\parbox{.45\linewidth}{
+\centering
+\begin{tabular}{|r|l|}
+\hline
+Tipo & Numero \\
+\hline
+Immagini & 548 \\
+Canzoni & 1587 \\
+Eventi & 630 \\
+Persone famose & 479 \\
+\hline
+\end{tabular}
+\caption{Tipi raccolti}
+}
+\hfill
+\parbox{.45\linewidth}{
+\centering
+\begin{tabular}{|r|l|}
+\hline
+Sorgente & Numero \\
+\hline
+Flickr & 340 \\
+DBpedia & 1168 \\
+Catinabib & 208 \\
+OpenData Trentino & 463 \\
+Crowd e altro & 1065 \\
+\hline
+\end{tabular}
+\caption{Distribuzione delle sorgenti}
+}
+\end{table}
+
+\subfile{related}
 
 \subfile{conclusions}
 %\end{document}  % This is where a 'short' article might terminate
@@ -104,18 +152,8 @@ and the \textbf{.cls} and \textbf{.tex} files that it describes.
 %\balancecolumns
 \appendix
 %Appendix A
-\section{Headings in Appendices}
-The rules about hierarchical headings discussed above for
-the body of the article are different in the appendices.
-In the \textbf{appendix} environment, the command
-\textbf{section} is used to
-indicate the start of each Appendix, with alphabetic order
-designation (i.e. the first is A, the second B, etc.) and
-a title (if you include one).  So, if you need
-hierarchical structure
-\textit{within} an Appendix, start with \textbf{subsection} as the
-highest level. Here is an outline of the body of this
-document in Appendix-appropriate form:
+\section{Il Booklet come applicazione per il testing}
+Nella sezione dedicata all’implementazione è stato presentato brevemente il Booklet, un’interfaccia pensata per svolgere una delle funzioni di base di Reminiscens, cioè quella di mostrare contenuti che possano risultare familiari all’utente in modo da stimolare l’afflusso di ricordi e far partire la narrazione di episodi correlati al contenuto presentato. Tale applicazione è stata intesa per permettere, come sviluppo futuro, alle famiglie degli anziani la personalizzazione del booklet, aggiungendo ad esempio immagini e musica di propria scelta; il tutto per riuscire a creare un “aggregatore di ricordi” che sia il più efficace possibile. Come anticipato a [SEZIONE IMPLEMENTAZIONE], la scelta da noi compiuta è quella di offrire un’interfaccia che riprende un libro antico, con una grossa copertina in pelle e il titolo dorato, il tutto con uno sfondo che rappresenta la superficie in legno massiccio di un vecchio tavolo, in modo da mostrare un ambiente familiare che possa essere il primo passo per andare oltre il gap che indubbiamente esiste tra gli anziani e le nuove tecnologie; proprio per come è stata pensata, la UI si presta perfettamente ad un’attività preliminare di testing. Per verificare la bontà delle scelte di design, così come l’adeguatezza di alcuni dati raccolti dai moduli ETL, si potrebbe pensare a un workshop avvalendosi della collaborazione di un centro ricreativo per anziani, strutturato in questo modo: dopo aver diviso i collaboratori in (4?) gruppi, a ogni gruppo verrebbe assegnato un iPad, con a bordo una versione del booklet con contenuti diversi; l’idea è quella di comporre ogni piattaforma di test con contenuti riguardanti un diverso periodo della vita, tenendo conto delle diverse età dei partecipanti e ottenendo quindi infanzia, giovinezza, età adulta e presente. Ultimo parametro da considerare nella divisione dei gruppi e nella composizione dei booklet è quello del luogo in cui centrare il calcolo del contesto da presentare ai volontari: perchè il workshop possa restituire dei risultati utili, c’è bisogno che ognuno possa vedere immagini, ascoltare musica e ricordare eventi che almeno in teoria possano essere significative (e.g. una persona cresciuta a Roma difficilmente potrà rievocare memorie passate guardando delle fotografie del Monte Bondone). Il feedback ricevuto da questa e altre prove è indispensabile per capire se la strada che stiamo percorrendo con Reminiscens è quella giusta e, in caso di difetti del nostro approccio, fornirebbe importanti linee guida per correggerlo.
 \subsection{Introduction}
 \subsection{The Body of the Paper}
 \subsubsection{Type Changes and  Special Characters}
