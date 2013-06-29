@@ -1,9 +1,9 @@
 \documentclass{acm_proc_article-sp}
-\usepackage{listings}
 \usepackage{subfiles}
 
 \usepackage[italian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{url}
 
 \begin{document}
 
@@ -22,11 +22,11 @@
 \author{
 % 1st. author
 \alignauthor
-Nicola Parrello\titlenote{Dr.~Trovato insisted his name be first.}\\
-       \affaddr{Institute for Clarity in Documentation}\\
+Nicola Parrello\\
+       \affaddr{Università degli studi di Trento}\\
        \affaddr{1932 Wallamaloo Lane}\\
        \affaddr{Wallamaloo, New Zealand}\\
-       \email{trovato@corporation.com}
+       \email{parrello.nicola@gmail.com}
 % 2nd. author
 \alignauthor
 Wally Will\titlenote{The secretary disavows
@@ -74,6 +74,7 @@ email: {\texttt{jsmith@affiliation.org}}) and Julius P.~Kumquat
 \centering
 \includegraphics[width=1.0\textwidth]{microformats.pdf}
 \caption{Un contatto senza e con il microformato hCard}
+\label{fig:microformats}
 \end{figure*}
 
 \subfile{sota}
@@ -102,6 +103,7 @@ Persone famose & 479 \\
 \hline
 \end{tabular}
 \caption{Tipi raccolti}
+\label{tab:entitykind}
 }
 \hfill
 \parbox{.45\linewidth}{
@@ -118,6 +120,7 @@ Crowd e altro & 1065 \\
 \hline
 \end{tabular}
 \caption{Distribuzione delle sorgenti}
+\label{tab:entitysource}
 }
 \end{table}
 
@@ -153,7 +156,7 @@ and the \textbf{.cls} and \textbf{.tex} files that it describes.
 \appendix
 %Appendix A
 \section{Il Booklet come applicazione per il testing}
-Nella sezione dedicata all’implementazione è stato presentato brevemente il Booklet, un’interfaccia pensata per svolgere una delle funzioni di base di Reminiscens, cioè quella di mostrare contenuti che possano risultare familiari all’utente in modo da stimolare l’afflusso di ricordi e far partire la narrazione di episodi correlati al contenuto presentato. Tale applicazione è stata intesa per permettere, come sviluppo futuro, alle famiglie degli anziani la personalizzazione del booklet, aggiungendo ad esempio immagini e musica di propria scelta; il tutto per riuscire a creare un “aggregatore di ricordi” che sia il più efficace possibile. Come anticipato a [SEZIONE IMPLEMENTAZIONE], la scelta da noi compiuta è quella di offrire un’interfaccia che riprende un libro antico, con una grossa copertina in pelle e il titolo dorato, il tutto con uno sfondo che rappresenta la superficie in legno massiccio di un vecchio tavolo, in modo da mostrare un ambiente familiare che possa essere il primo passo per andare oltre il gap che indubbiamente esiste tra gli anziani e le nuove tecnologie; proprio per come è stata pensata, la UI si presta perfettamente ad un’attività preliminare di testing. Per verificare la bontà delle scelte di design, così come l’adeguatezza di alcuni dati raccolti dai moduli ETL, si potrebbe pensare a un workshop avvalendosi della collaborazione di un centro ricreativo per anziani, strutturato in questo modo: dopo aver diviso i collaboratori in (4?) gruppi, a ogni gruppo verrebbe assegnato un iPad, con a bordo una versione del booklet con contenuti diversi; l’idea è quella di comporre ogni piattaforma di test con contenuti riguardanti un diverso periodo della vita, tenendo conto delle diverse età dei partecipanti e ottenendo quindi infanzia, giovinezza, età adulta e presente. Ultimo parametro da considerare nella divisione dei gruppi e nella composizione dei booklet è quello del luogo in cui centrare il calcolo del contesto da presentare ai volontari: perchè il workshop possa restituire dei risultati utili, c’è bisogno che ognuno possa vedere immagini, ascoltare musica e ricordare eventi che almeno in teoria possano essere significative (e.g. una persona cresciuta a Roma difficilmente potrà rievocare memorie passate guardando delle fotografie del Monte Bondone). Il feedback ricevuto da questa e altre prove è indispensabile per capire se la strada che stiamo percorrendo con Reminiscens è quella giusta e, in caso di difetti del nostro approccio, fornirebbe importanti linee guida per correggerlo.
+Nella sezione dedicata alla soluzione è stato presentato brevemente il Booklet, un’interfaccia pensata per svolgere una delle funzioni di base di Reminiscens, cioè quella di mostrare contenuti che possano risultare familiari all’utente in modo da stimolare l’afflusso di ricordi e far partire la narrazione di episodi correlati al contenuto presentato. Tale applicazione è stata intesa per permettere, come sviluppo futuro, alle famiglie degli anziani la personalizzazione del booklet, aggiungendo ad esempio immagini e musica di propria scelta; il tutto per riuscire a creare un “aggregatore di ricordi” che sia il più efficace possibile. Come anticipato a [\ref{subsubsec:booklet}], la scelta da noi compiuta è quella di offrire un’interfaccia che riprende un libro antico, con una grossa copertina in pelle e il titolo dorato, il tutto con uno sfondo che rappresenta la superficie in legno massiccio di un vecchio tavolo, in modo da mostrare un ambiente familiare che possa essere il primo passo per andare oltre il gap che indubbiamente esiste tra gli anziani e le nuove tecnologie; proprio per come è stata pensata, la UI si presta perfettamente ad un’attività preliminare di testing. Per verificare la bontà delle scelte di design, così come l’adeguatezza di alcuni dati raccolti dai moduli ETL, si potrebbe pensare a un workshop avvalendosi della collaborazione di un centro ricreativo per anziani, strutturato in questo modo: dopo aver diviso i collaboratori in (4?) gruppi, a ogni gruppo verrebbe assegnato un iPad, con a bordo una versione del booklet con contenuti diversi; l’idea è quella di comporre ogni piattaforma di test con contenuti riguardanti un diverso periodo della vita, tenendo conto delle diverse età dei partecipanti e ottenendo quindi infanzia, giovinezza, età adulta e presente. Ultimo parametro da considerare nella divisione dei gruppi e nella composizione dei booklet è quello del luogo in cui centrare il calcolo del contesto da presentare ai volontari: perchè il workshop possa restituire dei risultati utili, c’è bisogno che ognuno possa vedere immagini, ascoltare musica e ricordare eventi che almeno in teoria possano essere significative (e.g. una persona cresciuta a Roma difficilmente potrà rievocare memorie passate guardando delle fotografie del Monte Bondone). Il feedback ricevuto da questa e altre prove è indispensabile per capire se la strada che stiamo percorrendo con Reminiscens è quella giusta e, in caso di difetti del nostro approccio, fornirebbe importanti linee guida per correggerlo.
 \subsection{Introduction}
 \subsection{The Body of the Paper}
 \subsubsection{Type Changes and  Special Characters}
