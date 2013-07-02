@@ -1,0 +1,35 @@
+\documentclass{book}
+
+\usepackage{listings}
+\begin{document}
+\section{Introduzione}
+
+\begin{lstlisting}
+SELECT DISTINCT *
+	WHERE {
+		?event a <http://dbpedia.org/ontology/SportsEvent> .
+		?event <http://www.w3.org/2000/01/rdf-schema#label> ?title .
+		?event <http://dbpedia.org/ontology/abstract> ?descr .
+		?event <http://dbpedia.org/ontology/date> ?date .
+		?event <http://dbpedia.org/ontology/city> ?city.
+		FILTER (lang(?title)='it' && lang(?descr)='it')
+	}
+\end{lstlisting}
+
+\begin{lstlisting}
+SELECT *
+	WHERE {
+		?work a <http://dbpedia.org/ontology/Song> .
+		?work <http://www.w3.org/2000/01/rdf-schema#label> ?title .
+		?work <http://dbpedia.org/ontology/abstract> ?descr .
+		?work <http://dbpedia.org/ontology/artist> ?author .
+		?work <http://dbpedia.org/ontology/genre> ?genre .
+		{
+			?work <http://dbpedia.org/ontology/releaseDate> ?relDate .
+		} UNION {
+			?work <http://dbpedia.org/property/released> ?relDate_1
+		} FILTER (lang(?title)='it' && lang(?descr)='it')
+	}
+\end{lstlisting}
+
+\end{document}

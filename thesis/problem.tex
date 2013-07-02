@@ -4,34 +4,47 @@
 Nelle ultime righe dell’introduzione è stato presentato il problema che il lavoro presentato ha tentato di risolvere, cioè come sfruttare l’enorme quantità di informazione reperibile sul web per innescare automaticamente la reminiscenza in un individuo. La questione si fa spinosa, in quanto è necessario raggiungere un compromesso tra qualità dell’informazione, facilità nel reperimento della stessa, e velocità di elaborazione, quest’ultima indispensabile se l’obiettivo è la costruzione di un sistema accessibile al pubblico e capace di servire un buon numero di utenti contemporaneamente. Inoltre, tralasciando tutto ciò che non è visibile all’utilizzatore finale, è indispensabile formalizzare il fulcro del problema in termini di input e di output, e partire da questa formalizzazione per un’analisi più approfondita.
 
 Introduciamo quindi il concetto di contesto, definendolo come un set di elementi (immagini, eventi, personaggi famosi, musica, libri, etc..) selezionati in maniera tale da stimolare l’afflusso di ricordi nel soggetto a cui vengono presentati. L’oggetto della trattazione diventa perciò, a partire da informazioni geografiche e cronologiche rappresentanti degli eventi nella vita dell’utente, quello di restituire il contesto più vicino possibile alla vita di questa persona.
-Utilizzando un formalismo matematico, il problema, a partire dalle entità 
+Formalizzando il problema, esso può essere definito nel seguente modo:
+ 
+In primo luogo consideriamo l'insieme $M$, contenente le risorse con le quali costruire il contesto, definito come segue:
 
-\[
-\\ M = \left\{\left<caption, URL, category \in MCAT, type in MTYPE , D, L\right>\right\} 
-\\ MTYPE = \left[ photo,song,event,person \right]
-\\ MCAT = \left[sports event,political event, postcard, ... \right]
-\\ D =  \left<decade, year, month, day\right>
-\\ L =  \left<textual location, city, country, lat, lon \right>
-\]
+\begin{equation}
+\begin{split}
+&M = \{\langle nome, URL, categoria \in MCAT, tipo \in MTYPE , D, L\rangle\}\\
+&MTYPE = [ foto,canzone,evento,personaggio ]\\
+&MCAT = [evento \ sportivo,evento \ politico, cartolina, ...]\\
+&D =  \langle decade, anno, mese, giorno\rangle\\
+&L =  \langle luogo \ testuale, citt\grave{a}, stato, lat, lon\rangle\\
+\notag
+\end{split}
+\end{equation}
 
-è rappresentabile con
+Prendendo in input una timeline $T$, cioè una lista di coppie data-luogo
 
-\[
- \\ Context \quad C =  \left\{ \left< m,r\right> : m \in M \wedge 
- \\ x = dist \left( m.date,t.date \in T \right) < \delta \wedge  
- \\ y = dist \left( m.location,t.date \in T \right) < \rho \wedge  
- \\ m.category \in K \wedge
- \\  r = ranking \left( m,x,y \right) 
- \\ right\}
-\]
+\begin{equation}
+Timeline \ T = \{\langle D,L\rangle\}
+\notag
+\end{equation}
 
-dove
+il contesto $C$  può essere rappresentato come
 
-\[
-\\  K = \left\{x : x\in category \right\}
-\\  \delta \quad (km) = \left[10, 20, 50 ... \right]
-\\  \rho \quad (years) = \left[1,2,...,10\right]
-\]
+\begin{equation}
+\begin{split}
+Contesto \ C =  \{&\langle m,r\rangle : m \in M\\
+\wedge \ &x = dist ( m.data,t.data \in T ) < \delta\\
+\wedge \ &y = dist ( m.luogo,t.data \in T ) < \rho\\
+\wedge \ &m.categoria \in MCAT\\
+\wedge \ &r = ranking ( m,x,y ) \}
+\end{split}
+\notag
+\end{equation}
+
+dove:
+\begin{itemize}
+\item $\delta$ e $\rho$ sono rispettivamente il limite della distanza spaziale e temporale tra gli oggetti della in $T$ e quelli in $M$, una sorta di barriera tra gli oggetti da considerare e quelli che sicuramente non possono essere evocativi di memorie per l'utente;
+\item $dist$ è una funzione della distanza tra due oggetti, calcolata spazio e tempo;
+\item ogni risorsa possiede anche un ranking $r$, cioè un peso che viene attribuito all'oggetto tenendo in considerazione anche la precisione associata ai luoghi e alle date associate agli elementi in $M$.
+\end{itemize}
 
 Dopo questa premessa, possiamo passare oltre ed andare ad analizzare le scelte fatte per riuscire a concretizzare la soluzione di cui sopra.
 \end{document}

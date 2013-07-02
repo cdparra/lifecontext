@@ -1,0 +1,35 @@
+\documentclass[sigproc-sp.tex]{subfiles} 
+\begin{document}
+\section{Documentazione API}
+\label{app:apidocs}
+A seguito del lavoro compiuto, viene qui rilasciata la documentazione delle API REST che si occupano di costruire un contesto a partire dalle entità contenute nella Knowledge Base. Oltre a questo, sono state scritte delle route che permettono anche la semplice lettura dei dati dalla KB, utilizzando delle query più complesse; l'obiettivo è quello di renderle disponibili al pubblico, sperando che possano essere utili. Ogni route è raggiungibile a partire dall'host \url{http://test.reminiscens.me/lifecontext/api}; la documentazione completa è anche disponibile sulla pagina apiary.io dedicata\footnote{\url{http://docs.lifecontext.apiary.io/}}.
+
+\subsection{LifeContext API}
+\begin{itemize}
+\item \textbf{GET} /v2/generalBooklet/media
+\item \textbf{GET} /v2/generalBooklet/events
+\item \textbf{GET} /v2/generalBooklet/works
+\end{itemize}
+Le prime due route accettano i seguenti parametri:
+\begin{itemize}
+\item \textbf{decade[]} : un array di decadi nella forma \textit{dddd}. Ogni decade deve avere nome \textit{decade[]} - invece di \textit{decade} - per far sapere all'API che si tratta di un array.
+\item \textbf{lat[]}, \textbf{lon[]} : due array di coordinate geografiche, Latitudini e longitudini devono avere nome rispettivamente \textit{lat[]} e \textit{lon[]} - invece di \textit{lat} e \textit{lon} - per far sapere all'API che si tratta di due array.
+\end{itemize}
+mentre la terza accetta solo il primo, cioè \textit{decade[]}.
+
+\subsection{Lettura dei dati}
+\begin{itemize}
+\item \textbf{GET} /media
+\item \textbf{GET} /events
+\item \textbf{GET} /people
+\item \textbf{GET} /works
+\end{itemize}
+Le prime tre route accettano i seguenti parametri:
+\begin{itemize}
+\item \textbf{decade}: una decade nella forma \textit{dddd}.
+\item \textbf{place} : è la forma letterale rappresentante il luogo; quando usato, è cercato nel db; se assente, viene effettuato il Geocoding per ottenere le coordinate corrispondenti; può essere associato a \textit{radius}; se usato insieme a \textit{lat} e \textit{lon}, viene ignorato.
+\item \textbf{lat} e \textbf{lon} : ovviamente latitudine e longitudine; devono sempre apparire in coppia; possono essere associate a \textit{radius}; se utilizzate insieme a \textit{place}, quest'ultimo viene ignorato.
+\item \textbf{radius} : rappresenta la distanza nella da \textit{place} / \textit{lat} e \textit{lon} che l'API deve utilizzare per considerare validi o no i possibili risultati; di default ha valore 0.
+\end{itemize}
+mentre l'ultima accetta solo il primo, cioè \textit{decade}.
+\end{document}

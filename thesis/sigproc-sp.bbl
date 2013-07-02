@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+
+\bibitem{bizer2009dbpedia}
+C.~Bizer, J.~Lehmann, G.~Kobilarov, S.~Auer, C.~Becker, R.~Cyganiak, and
+  S.~Hellmann.
+\newblock Dbpedia-a crystallization point for the web of data.
+\newblock {\em Web Semantics: Science, Services and Agents on the World Wide
+  Web}, 7(3):154--165, 2009.
+
+\bibitem{brin1998anatomy}
+S.~Brin and L.~Page.
+\newblock The anatomy of a large-scale hypertextual web search engine.
+\newblock {\em Computer networks and ISDN systems}, 30(1):107--117, 1998.
+
+\bibitem{coleman1974measuring}
+P.~G. Coleman.
+\newblock Measuring reminiscence characteristics from conversation as adaptive
+  features of old age.
+\newblock {\em The International Journal of Aging and Human Development},
+  5(3):281--294, 1974.
+
+\bibitem{cosley2012experiences}
+D.~Cosley, V.~S. Sosik, J.~Schultz, S.~T. Peesapati, and S.~Lee.
+\newblock Experiences with designing tools for everyday reminiscing.
+\newblock {\em Human--Computer Interaction}, 27(1-2):175--198, 2012.
+
+\bibitem{peesapati2010pensieve}
+S.~T. Peesapati, V.~Schwanda, J.~Schultz, M.~Lepage, S.-y. Jeong, and
+  D.~Cosley.
+\newblock Pensieve: supporting everyday reminiscence.
+\newblock In {\em Proceedings of the SIGCHI Conference on Human Factors in
+  Computing Systems}, pages 2027--2036. ACM, 2010.
+
+\bibitem{strotgen2010timetrails}
+J.~Str{\"o}tgen and M.~Gertz.
+\newblock Timetrails: a system for exploring spatio-temporal information in
+  documents.
+\newblock {\em Proceedings of the VLDB Endowment}, 3(1-2):1569--1572, 2010.
+
+\end{thebibliography}
