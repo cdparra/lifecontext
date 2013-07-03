@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  29 JUN 2013 12:41
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  3 JUL 2013 15:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -204,33 +204,6 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))
-(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count109
-\lst@gtempboxa=\box30
-\lst@token=\toks38
-\lst@length=\count110
-\lst@currlwidth=\dimen123
-\lst@column=\count111
-\lst@pos=\count112
-\lst@lostspace=\dimen124
-\lst@width=\dimen125
-\lst@newlines=\count113
-\lst@lineno=\count114
-\abovecaptionskip=\skip44
-\belowcaptionskip=\skip45
-\lst@maxwidth=\dimen126
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count115
-\lst@skipnumbers=\count116
-\lst@framebox=\box31
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2007/02/22 1.4 listings configuration
-))
-Package: listings 2007/02/22 1.4 (Carsten Heinz)
-
 (/usr/local/texlive/2012/texmf-dist/tex/latex/subfiles/subfiles.sty
 Package: subfiles 2012/05/23 Federico Garcia
 )
@@ -242,15 +215,15 @@ Language: italian 2008/03/14 v1.2t Italian support from the babel system
 
 (/usr/local/texlive/2012/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2008/07/08 v3.8m Babel common definitions
-\babel@savecnt=\count117
-\U@D=\dimen127
+\babel@savecnt=\count109
+\U@D=\dimen123
 )
 Package babel Info: Making " an active character on input line 94.
 ))
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks39
-\inpenc@posthook=\toks40
+\inpenc@prehook=\toks38
+\inpenc@posthook=\toks39
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
@@ -816,8 +789,12 @@ File: lgrenc.dfu 2010/06/15 0.1 UTF-8 support for Greek
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
+(/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
 
-LaTeX Warning: Characters dropped after `\end{document}' on input line 127.
+LaTeX Warning: Characters dropped after `\end{document}' on input line 112.
 
 
 ! LaTeX Error: Missing \begin{document}.
@@ -826,8 +803,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.130 \section
-              {Acknowledgments}
+l.115 \section
+              {Riconoscimenti}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -838,73 +815,58 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.130 \section{Acknowledgments}
-                               
+l.115 \section{Riconoscimenti}
+                              
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-\bibdata{sigproc}
-No file intro.bbl.
-LaTeX Font Info:    Try loading font information for U+msa on input line 171.
+LaTeX Font Info:    Try loading font information for U+msa on input line 116.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 171.
+LaTeX Font Info:    Try loading font information for U+msb on input line 116.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 171.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 116.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for T1+aett on input line 173.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 116.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [1
+)
+\bibdata{sigproc}
+No file intro.bbl.
+(./appendix_booklet.tex
+
+LaTeX Warning: Reference `subsubsec:booklet' on page \thepage  undefined on inp
+ut line 5.
+
+) (./appendix_apidocs.tex) [1
 
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Acknowledgments}{\thepa
-ge }}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Riconoscimenti}{\thepag
+e }}
 \@writefile{toc}{\contentsline {section}{\numberline {A}Il Booklet come applica
 zione per il testing}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Introduction}{\the
-page }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}The Body of the Pa
-per}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.1}Type Changes 
-and Special Characters}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.2}Math Equation
-s}{\thepage }}
-\@writefile{toc}{\contentsline {paragraph}{Inline (In-text) Equations}{\thepage
- }}
-\@writefile{toc}{\contentsline {paragraph}{Display Equations}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.3}Citations}{\t
-hepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.4}Tables}{\thep
-age }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.5}Figures}{\the
-page }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.6}Theorem-like 
-Constructs}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Conclusions}{\thep
-age }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Acknowledgments}{\
+\newlabel{app:booklet}{{A}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Documentazione API}{\th
+epage }}
+\newlabel{app:apidocs}{{B}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}LifeContext API}{\
 thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Additional Authors
-}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}References}{\thepa
-ge }}
-\@writefile{toc}{\contentsline {section}{\numberline {B}More Help for the Hardy
-}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}Lettura dei dati}{
+\thepage }}
 ]
 ! Extra \endgroup.
 <recently read> \endgroup 
                           
-l.190 \end{document}
+l.143 \end{document}
                     
 Things are pretty mixed up, but I think the worst is over.
 
@@ -933,17 +895,17 @@ LaTeX Font Info:    ... okay on input line 2.
 
 (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count118
-\scratchdimen=\dimen128
-\scratchbox=\box32
-\nofMPsegments=\count119
-\nofMParguments=\count120
-\everyMPshowfont=\toks41
-\MPscratchCnt=\count121
-\MPscratchDim=\dimen129
-\MPnumerator=\count122
-\makeMPintoPDFobject=\count123
-\everyMPtoPDFconversion=\toks42
+\scratchcounter=\count110
+\scratchdimen=\dimen124
+\scratchbox=\box30
+\nofMPsegments=\count111
+\nofMParguments=\count112
+\everyMPshowfont=\toks40
+\MPscratchCnt=\count113
+\MPscratchDim=\dimen125
+\MPnumerator=\count114
+\makeMPintoPDFobject=\count115
+\everyMPtoPDFconversion=\toks41
 ) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -992,28 +954,30 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count124
+
+LaTeX Warning: Citation `coleman1974measuring' on page \thepage  undefined on i
+nput line 5.
 
 [2
 
 ] (./intro.aux) ) 
 Here is how much of TeX's memory you used:
- 5208 strings out of 493488
- 66422 string characters out of 3141326
- 129569 words of memory out of 3000000
- 8389 multiletter control sequences out of 15000+200000
- 47687 words of font info for 67 fonts, out of 3000000 for 9000
+ 3942 strings out of 493488
+ 48357 string characters out of 3141326
+ 112640 words of memory out of 3000000
+ 7126 multiletter control sequences out of 15000+200000
+ 46551 words of font info for 66 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 49i,4n,34p,2645b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 49i,7n,28p,2680b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.en
 c}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb>
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></u
 sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/
-local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/lo
-cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/loca
-l/texlive/2012/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/
-2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on intro.pdf (2 pages, 91922 bytes).
+local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/lo
+cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/loca
+l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/
+texlive/2012/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
+Output written on intro.pdf (2 pages, 85636 bytes).
 PDF statistics:
  40 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

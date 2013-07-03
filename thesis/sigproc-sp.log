@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  2 JUL 2013 15:05
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  3 JUL 2013 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -789,42 +789,51 @@ File: lgrenc.dfu 2010/06/15 0.1 UTF-8 support for Greek
 (/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
-) (./sigproc-sp.aux)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip44
+\enit@outerparindent=\dimen124
+\enit@toks=\toks40
+\enit@inbox=\box30
+\enitdp@description=\count110
+)
+(./sigproc-sp.aux)
 \openout1 = `sigproc-sp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 9.
-LaTeX Font Info:    Try loading font information for LGR+cmr on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 10.
+LaTeX Font Info:    Try loading font information for LGR+cmr on input line 10.
 
 (/usr/local/texlive/2012/texmf-dist/tex/generic/babel/lgrcmr.fd
 File: lgrcmr.fd 2008/06/17 v2.3 Greek Computer Modern
 )
-LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    ... okay on input line 10.
 
 (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count110
-\scratchdimen=\dimen124
-\scratchbox=\box30
-\nofMPsegments=\count111
-\nofMParguments=\count112
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count113
-\MPscratchDim=\dimen125
-\MPnumerator=\count114
-\makeMPintoPDFobject=\count115
-\everyMPtoPDFconversion=\toks41
+\scratchcounter=\count111
+\scratchdimen=\dimen125
+\scratchbox=\box31
+\nofMPsegments=\count112
+\nofMParguments=\count113
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen126
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
+\everyMPtoPDFconversion=\toks42
 ) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -873,22 +882,22 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 28.
+LaTeX Font Info:    Try loading font information for U+msa on input line 29.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 28.
+LaTeX Font Info:    Try loading font information for U+msb on input line 29.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 28.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 29.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) (./abstract.tex)
-Overfull \hbox (4.7394pt too wide) in paragraph at lines 2--30
+Overfull \hbox (4.7394pt too wide) in paragraph at lines 2--31
 \T1/aer/m/n/9 Nella vi-ta col-le-zio-nia-mo mol-tis-si-mi ri-cor-di, in-nu-me-r
 e-vo-li espe-
  []
@@ -897,7 +906,7 @@ e-vo-li espe-
 File: microformats.pdf Graphic file (type pdf)
 
 <use microformats.pdf>
-Package pdftex.def Info: microformats.pdf used on input line 35.
+Package pdftex.def Info: microformats.pdf used on input line 36.
 (pdftex.def)             Requested size: 504.0pt x 58.28038pt.
  (./sota.tex
 LaTeX Font Info:    Try loading font information for T1+aett on input line 7.
@@ -921,7 +930,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 34--34
 ) <architecture.pdf, id=21, 779.91376pt x 538.01pt>
 File: architecture.pdf Graphic file (type pdf)
  <use architecture.pdf>
-Package pdftex.def Info: architecture.pdf used on input line 44.
+Package pdftex.def Info: architecture.pdf used on input line 45.
 (pdftex.def)             Requested size: 504.0pt x 347.67464pt.
 
 (./problem.tex
@@ -932,75 +941,79 @@ Overfull \hbox (21.81541pt too wide) in paragraph at lines 20--20
 [3]) <model.pdf, id=27, 216.8903pt x 114.1866pt>
 File: model.pdf Graphic file (type pdf)
  <use model.pdf>
-Package pdftex.def Info: model.pdf used on input line 53.
+Package pdftex.def Info: model.pdf used on input line 54.
 (pdftex.def)             Requested size: 504.0pt x 265.3591pt.
 
 <sparql.pdf, id=28, 163.1696pt x 91.0602pt>
 File: sparql.pdf Graphic file (type pdf)
  <use sparql.pdf>
-Package pdftex.def Info: sparql.pdf used on input line 60.
+Package pdftex.def Info: sparql.pdf used on input line 61.
 (pdftex.def)             Requested size: 504.0pt x 281.2888pt.
 
 <booklet.pdf, id=29, 101.5795pt x 54.8449pt>
 File: booklet.pdf Graphic file (type pdf)
  <use booklet.pdf>
-Package pdftex.def Info: booklet.pdf used on input line 67.
+Package pdftex.def Info: booklet.pdf used on input line 68.
 (pdftex.def)             Requested size: 504.0pt x 272.16426pt.
  (./solution.tex
 Underfull \vbox (badness 2744) has occurred while \output is active []
 
  [4 <./architecture.pdf>] [5 <./model.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 40--40
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
 [][]$\T1/aett/m/n/9 http : / / test . reminiscens . me / lifecontext / booklet 
 /
  []
 
 [6 <./sparql.pdf>]
-Overfull \hbox (9.84366pt too wide) in paragraph at lines 57--59
+Overfull \hbox (9.84366pt too wide) in paragraph at lines 64--66
 []\T1/aer/m/n/9 Oltre al cal-co-lo a par-ti-re dal-le so-le in-di-ca-zio-ni spa
 zio-temporali,
  []
 
 [7 <./booklet.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 69--69
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
 [][]$\T1/aett/m/n/9 http : / / home . hiwaay . net / ~taylorc / toolbox /
  []
 
 )
-Overfull \hbox (7.58606pt too wide) in paragraph at lines 89--89
+Overfull \hbox (7.58606pt too wide) in paragraph at lines 90--90
  [][] 
  []
 
 
-Overfull \hbox (24.91978pt too wide) in paragraph at lines 106--106
+Overfull \hbox (24.91978pt too wide) in paragraph at lines 107--107
  [][] 
  []
 
 (./related.tex [8]) (./conclusions.tex) [9] (./sigproc-sp.bbl)
 (./appendix_booklet.tex) (./appendix_apidocs.tex [10]) [11
 
-] (./sigproc-sp.aux) ) 
+] (./sigproc-sp.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4005 strings out of 493488
- 49146 string characters out of 3141326
- 118244 words of memory out of 3000000
- 7162 multiletter control sequences out of 15000+200000
+ 4288 strings out of 493488
+ 53948 string characters out of 3141326
+ 124362 words of memory out of 3000000
+ 7441 multiletter control sequences out of 15000+200000
  52246 words of font info for 71 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,16n,26p,2645b,398s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/
-8r.enc}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9
-.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.p
-fb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr
-/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/l
-ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/loc
-al/texlive/2012/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/201
-2/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-di
-st/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sigproc-sp.pdf (11 pages, 2328751 bytes).
+ 41i,16n,26p,2644b,436s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/
+2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/201
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2012/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2012/texm
+f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2012/texmf-dist/
+fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/t
+ype1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/t
+imes/utmri8a.pfb>
+Output written on sigproc-sp.pdf (11 pages, 2329133 bytes).
 PDF statistics:
  168 PDF objects out of 1000 (max. 8388607)
  105 compressed objects within 2 object streams
