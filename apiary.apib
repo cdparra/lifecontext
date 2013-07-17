@@ -58,7 +58,7 @@ This resource will return all the events that satisfy the request parameters:
  + **radius** : represents the the distance from **place** / **lat** & **lon** in which the API has to look for events; Its value by default is **0**.
 
 GET /events{?decade,place,lat,lon,radius}
-{ "place" : "Roma", "radius": "500" }
+{ "url":"place=Roma&radius=500" }
 < 200
 < Content-Type: application/json
 {
@@ -81,7 +81,112 @@ GET /events{?decade,place,lat,lon,radius}
                 "lon":"12.56738",
                 "trustness":false   
             }       
+        },
+        {
+    "events": [
+        {
+            "headline": "FA Charity Shield 1985",
+            "text": "Lo FA Charity Shield 1985, noto in italiano anche come Supercoppa d'Inghilterra 1985, è stata la 63ª edizione della Supercoppa d'Inghilterra. Si è svolto il 10 agosto 1985 al Wembley Stadium di Londra tra l'Everton, vincitore della First Division 1984-1985, e il Manchester United, vincitore della FA Cup 1984-1985. A conquistare il titolo è stato l'Everton che ha vinto per 2-0 con reti di Trevor Steven e Adrian Heath.",
+            "source": "dbpedia",
+            "source_url": "http://dbpedia.org/resource/1985_FA_Charity_Shield",
+            "locale": "it",
+            "time": {
+                "datetime": "1985-08-10",
+                "season": "inverno",
+                "dayname": "martedì",
+                "accuracy": "9"
+            },
+            "location": {
+                "textual": "London",
+                "country": "United Kingdom",
+                "lat": "51.511214",
+                "lon": "-0.119824",
+                "trustness": false
+            }
+        },
+        {
+            "headline": "Coppa Intercontinentale 1988",
+            "text": "La Coppa Intercontinentale 1988 (denominata anche Toyota Cup 1988 per ragioni di sponsorizzazione) è stata la ventisettesima edizione del trofeo riservato alle squadre vincitrici della Coppa dei Campioni e della Coppa Libertadores.",
+            "source": "dbpedia",
+            "source_url": "http://dbpedia.org/resource/1988_Intercontinental_Cup",
+            "locale": "it",
+            "time": {
+                "datetime": "1988-12-11",
+                "season": "inverno",
+                "dayname": "mercoledì",
+                "accuracy": "9"
+            },
+            "location": {
+                "textual": "Tokyo",
+                "region": "Tokyo",
+                "country": "Japan",
+                "lat": "35.689488",
+                "lon": "139.691706",
+                "trustness": false
+            }
+        },
+        {
+            "headline": "Notte di Siviglia",
+            "text": "Notte di Siviglia è il soprannome dato all'incontro di calcio tra Germania Ovest e Francia giocato l'8 luglio 1982 allo stadio Pizjuan di Siviglia, gara valida come semifinale del Campionato mondiale di calcio 1982.",
+            "source": "dbpedia",
+            "source_url": "http://dbpedia.org/resource/West_Germany_vs_France_(1982)",
+            "locale": "it",
+            "time": {
+                "datetime": "1982-07-08",
+                "season": "inverno",
+                "dayname": "domenica",
+                "accuracy": "9"
+            },
+            "location": {
+                "textual": "Seville",
+                "region": "Andalusia",
+                "country": "Spain",
+                "lat": "37.388096",
+                "lon": "-5.98233",
+                "trustness": false
+            }
+        },
+        {
+            "headline": "STS-1",
+            "text": "La STS-1 è stata la prima missione spaziale del Programma Space Shuttle. L'equipaggio era formato dal pilota Robert Crippen e dal veterano John W. Young che aveva già partecipato alle missioni Gemini e Apollo. Il lancio avvenne dalla rampa 39-A del John F. Kennedy Space Center il 12 aprile 1981 e dopo due giorni l'Orbiter atterrò sul lago Rogers (un bacino asciutto) alla base aerea Edwards in California. Gli obiettivi principali riguardavano il test sulla sicurezza in fase di lancio, in fase di atterraggio. Inoltre sono stati registrati ed elaborati i valori di temperatura, pressione e accelerazione nelle varie parti della navicella.",
+            "source": "dbpedia",
+            "source_url": "http://dbpedia.org/resource/STS-1",
+            "locale": "it",
+            "time": {
+                "datetime": "1981-04-12",
+                "dayname": "martedì",
+                "accuracy": "9"
+            },
+            "location": {
+                "lat": "21.8667",
+                "lon": "-162.75",
+                "trustness": true
+            }
+        },
+        {
+            "headline": "Supercoppa italiana 1989",
+            "text": "La Supercoppa italiana 1989 fu una partita giocata tra i campioni d'Italia 1988-1989 dell'Inter e i dententori della Coppa Italia 1988-1989 della Sampdoria. Venne giocata il 29 settembre 1989 allo Stadio Giuseppe Meazza di Milano, e fu la seconda edizione del trofeo. L'Inter vinse la partita per 2-0.",
+            "source": "dbpedia",
+            "source_url": "http://dbpedia.org/resource/1989_Supercoppa_Italiana",
+            "locale": "it",
+            "time": {
+                "datetime": "1989-09-29",
+                "season": "inverno",
+                "dayname": "domenica",
+                "accuracy": "9"
+            },
+            "location": {
+                "textual": "Milan",
+                "city": "Milan",
+                "region": "Lombardy",
+                "country": "Italy",
+                "lat": "45.465454",
+                "lon": "9.186516",
+                "trustness": false
+            }
         }
+    ]
+}
     ]
 }
 
@@ -90,7 +195,7 @@ This resource will return all the works that satisfy the request parameters:
  + **decade** : represents the decade in which the API has to look for works.
 
 GET /work{?decade}
-{ "decade" : "1980" }
+{ "url":"decade=1980" }
 < 200
 < Content-Type: application/json
 {
@@ -122,7 +227,7 @@ This resource will return all the works that satisfy the request parameters:
  + **radius** : represents the the distance from **place** / **lat** & **lon** in which the API has to look for people; Its value by default is **0**.
 
 GET /people{?decade,place,lat,lon,radius}
-{ "decade" : "1950", "place": "Trento" }
+{ "url":"decade=1950&place=Trento" }
 < 200
 < Content-Type: application/json
 {
@@ -162,7 +267,7 @@ This resource returns a context of five pictures, computed from these parameters
  + **lat**, **lon**: the geographical coordinates of the center of the context that will be created.
 
 GET /v1/generalBooklet/media{?decade,lat,lon}
-{ "decade" : "1980", "lat" : "46.0696924", "lon" : "11.121088600000007" }
+{ "url":"decade=1980&lat=46.0696924&lon=11.121088600000007" }
 < 200
 < Content-Type: application/json
 {
@@ -194,7 +299,7 @@ This resource returns a context of five events, computed from these parameters:
  + **lat**, **lon**: the geographical coordinates of the center of the context that will be created.
 
 GET /v1/generalBooklet/events{?decade,lat,lon}
-{ "decade" : "1980", "lat" : "46.0696924", "lon" : "11.121088600000007" }
+{ "url":"decade=1980&lat=46.0696924&lon=11.121088600000007" }
 < 200
 < Content-Type: application/json
 {
@@ -226,7 +331,7 @@ This resource returns a context of five songs, computed from these parameters:
  + **decade**: a decade in the form 'dddd'.
 
 GET /v1/generalBooklet/works{?decade}
-{ "decade" : "1970" }
+{ "url":"decade=1970" }
 < 200
 < Content-Type: application/json
 {
@@ -257,7 +362,7 @@ This resource returns a context of five pictures, computed from these parameters
  + **lat[]**, **lon[]**: two arrays of geographical coordinates, combined to create the context. Every latitude and longitude must be written as 'lat[]' & 'lon[]' - instead of 'lat[]' & 'lon[]' - to make the API know that those are arrays
 
 GET /v2/generalBooklet/media{?decade[],lat[],lon[]}
-{ "lat[]" : "46.069692", "lat[]" : "-25.262085", "lon[]" : "11.121089", "lon[]" : "-57.489109", "decade[]" : "1990", "decade[]" : "2000" }
+{ "url":"lat[]=46.069692&lat[]=-25.262085&lon[]=11.121089&lon[]=-57.489109&decade[]=1990&decade[]=2000" }
 < 200
 < Content-Type: application/json
 {
@@ -290,8 +395,8 @@ This resource returns a context of five events, computed from these parameters:
  + **decade[]**: an array of decades in the form 'dddd'. Every decade must be written as 'decade[]' - instead of 'decade' - to make the API know that it's an array.
  + **lat[]**, **lon[]**: two arrays of geographical coordinates, combined to create the context. Every latitude and longitude must be written as 'lat[]' & 'lon[]' - instead of 'lat[]' & 'lon[]' - to make the API know that those are arrays
 
-GET /v2/generalBooklet/media{?decade[],lat[],lon[]}
-{ "lat[]" : "46.069692", "lat[]" : "-25.262085", "lon[]" : "11.121089", "lon[]" : "-57.489109", "decade[]" : "1990", "decade[]" : "2000" }
+GET /v2/generalBooklet/events{?decade[],lat[],lon[]}
+{ "url":"lat[]=46.069692&lat[]=-25.262085&lon[]=11.121089&lon[]=-57.489109&decade[]=1990&decade[]=2000" }
 < 200
 < Content-Type: application/json
 {
@@ -323,8 +428,8 @@ This resource returns a context of five songs, computed from these parameters:
 
  + **decade[]**: an array of decades in the form 'dddd'. Every decade must be written as 'decade[]' - instead of 'decade' - to make the API know that it's an array.
  
-GET /v2/generalBooklet/media{?decade[],lat[],lon[]}
-{ "decade[]" : "1990", "decade[]" : "2000" }
+GET /v2/generalBooklet/works{?decade[],lat[],lon[]}
+{ "url":"lat[]=46.069692&lat[]=-25.262085&lon[]=11.121089&lon[]=-57.489109&decade[]=1990&decade[]=2000" }
 < 200
 < Content-Type: application/json
 {
