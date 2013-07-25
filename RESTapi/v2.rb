@@ -154,16 +154,16 @@ class ReminiscensAPI < Sinatra::Application
           decades.each_with_index do |dec,k|
             i = (size/(l-k)).floor
             orderString = "abs(decade - #{(dec)})"
-            @mediaMDs += MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL").order(orderString).limit(i)
+            @mediaMDs += CreativeWork.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString).limit(i)
             size = size - i
           end
         else
           orderString_1 = "abs(decade - #{decades[0]})"
           orderString_2 = "abs(decade - #{decades[l/2]})"
           orderString_3 = "abs(decade - #{decades[l-1]})"
-          @mediaMDs = MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL").order(orderString_1).limit(2)
-                  + MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL").order(orderString_1).limit(1)
-                  + MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL").order(orderString_1).limit(2)
+          @mediaMDs = CreativeWork.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString_1).limit(2)
+                  + CreativeWork.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString_1).limit(1)
+                  + CreativeWork.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString_1).limit(2)
         end
         render :rabl, :context_works, :format => "json"
       else
@@ -173,6 +173,39 @@ class ReminiscensAPI < Sinatra::Application
         halt 400, {'Content-Type' => 'application/json'}, res
       end
   end
+  
+get '/v2/generalBooklet/people' do
+
+  decades = params[:decade]
+  l = decades.length
+
+    if l != 0
+      if l <= 3
+        size = 5
+        @mediaMDs = Array.new
+        decades.each_with_index do |dec,k|
+          i = (size/(l-k)).floor
+          orderString = "abs(decade - #{(dec)})"
+          @mediaMDs += FamousPeople.joins(:contextIndex).where("Context_Index.famous_id IS NOT NULL").order(orderString).limit(i)
+          size = size - i
+        end
+      else
+        orderString_1 = "abs(decade - #{decades[0]})"
+        orderString_2 = "abs(decade - #{decades[l/2]})"
+        orderString_3 = "abs(decade - #{decades[l-1]})"
+        @mediaMDs = FamousPeople.joins(:contextIndex).where("Context_Index.famous_id IS NOT NULL").order(orderString_1).limit(2)
+                + FamousPeople.joins(:contextIndex).where("Context_Index.famous_id IS NOT NULL").order(orderString_1).limit(1)
+                + FamousPeople.joins(:contextIndex).where("Context_Index.famous_id IS NOT NULL").order(orderString_1).limit(2)
+      end
+      render :rabl, :context_works, :format => "json"
+    else
+      res = { :success => false,
+                :info => "decade list must be longer than 0",
+              }.to_json  
+      halt 400, {'Content-Type' => 'application/json'}, res
+    end
+end
+  
 
   after do
     ActiveRecord::Base.connection.close

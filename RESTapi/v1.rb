@@ -38,7 +38,7 @@ class ReminiscensAPI < Sinatra::Application
   
       orderString = "abs(decade - #{decade})"
   
-      @mediaMDs = MediaMetadata.joins(:contextIndex).where("Context_Index.media_metadata_id IS NOT NULL AND author IS NOT NULL AND resource_url IS NOT NULL").order(orderString).limit(5)
+      @mediaMDs = CreativeWork.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL AND author IS NOT NULL AND resource_url IS NOT NULL").order(orderString).limit(5)
 
       render :rabl, :context_works, :format => "json"
   

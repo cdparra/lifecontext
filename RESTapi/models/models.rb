@@ -1,9 +1,10 @@
 class ContextIndex < ActiveRecord::Base
   self.table_name = "Context_Index"
   belongs_to :media, :foreign_key => 'media_id', :primary_key => 'media_id'
-  belongs_to :mediaMetadata, :foreign_key => 'media_metadata_id', :primary_key => 'media_metadata_id'
+  belongs_to :creativeWork, :foreign_key => 'work_id', :primary_key => 'work_id'
   belongs_to :event, :foreign_key => 'event_id', :primary_key => 'event_id'
   belongs_to :city, :foreign_key => 'city_id', :primary_key => 'city_id'
+  belongs_to :famousPerson, :foreign_key => 'famous_id', :primary_key => 'famous_id'
 end
 
 class Participant < ActiveRecord::Base
@@ -44,10 +45,17 @@ class Event < ActiveRecord::Base
   has_one :contextIndex
 end
 
-class MediaMetadata < ActiveRecord::Base
-  self.table_name = "Media_Metadata"
+class CreativeWork < ActiveRecord::Base
+  self.table_name = "Works"
   self.inheritance_column = :ruby_type
   belongs_to :fuzzyDate, :foreign_key => 'fuzzy_releasedate', :primary_key => 'fuzzy_date_id'
+  has_one :contextIndex
+end
+
+class FamousPerson < ActiveRecord::Base
+  self.table_name = "Famous_Person"
+  self.inheritance_column = :ruby_type
+  belongs_to :fuzzyDate, :foreign_key => 'birthdate_fuzzy_id', :primary_key => 'fuzzy_date_id'
   has_one :contextIndex
 end
 
@@ -63,6 +71,7 @@ class Location < ActiveRecord::Base
   has_one :media
   has_one :event
   has_one :lifeEvent
+  has_one :creativeWork
 
 end
 
