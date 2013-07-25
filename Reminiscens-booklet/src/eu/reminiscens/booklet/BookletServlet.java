@@ -62,11 +62,11 @@ public class BookletServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 
-			String mediaUrl = "http://localhost:4567/generalBooklet/media?decade="
+			String mediaUrl = "http://test.reminiscens.me/lifecontext/api/v1/generalBooklet/media?decade="
 					+ decade + "&lat=" + lat + "&lon=" + lon;
-			String eventsUrl = "http://localhost:4567/generalBooklet/events?decade="
+			String eventsUrl = "http://test.reminiscens.me/lifecontext/api/v1/generalBooklet/events?decade="
 					+ decade + "&lat=" + lat + "&lon=" + lon;
-			String worksUrl = "http://localhost:4567/generalBooklet/works?decade="
+			String worksUrl = "http://test.reminiscens.me/lifecontext/api/v1/generalBooklet/works?decade="
 					+ decade;
 			
 			System.out.println("Loading Media");

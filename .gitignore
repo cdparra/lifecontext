@@ -11,3 +11,7 @@ web/META-INF/context.xml
 Reminiscens-booklet/bin/
 Reminiscens-booklet/build/
 java-crawler/build/
+config/settings.rb.local
+config/settings.rb
+Reminiscens-booklet/dist/
+thesis/sigproc-sp-comments.pdf
