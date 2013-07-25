@@ -1,0 +1,10 @@
+# Settings
+set :server, %w{mongrel webrick}
+
+ActiveRecord::Base.establish_connection(
+  :adapter  => '', # name the database adapter (e.g., mysql2)
+  :database => '', # database name
+  :username => '', # database username
+  :password => '', # database password
+  :host     => ''  # database host
+)
