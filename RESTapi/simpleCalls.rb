@@ -176,7 +176,7 @@ class ReminiscensAPI < Sinatra::Application
   get '/works' do
     if params[:decade]!=nil && params[:decade].match(/\A(18|19|20)\d0\z/)
 
-      @mediaMDs=CreativeWork.joins(:fuzzyDate).where("decade = ? ", params[:decade])
+      @mediaMDs=Work.joins(:fuzzyDate).where("decade = ? ", params[:decade])
     end
 
     if defined?(@mediaMDs)

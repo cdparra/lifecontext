@@ -154,16 +154,14 @@ class ReminiscensAPI < Sinatra::Application
           decades.each_with_index do |dec,k|
             i = (size/(l-k)).floor
             orderString = "abs(decade - #{(dec)})"
-            @mediaMDs += CreativeWork.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString).limit(i)
+            @mediaMDs += Work.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString).limit(i)
             size = size - i
           end
         else
           orderString_1 = "abs(decade - #{decades[0]})"
           orderString_2 = "abs(decade - #{decades[l/2]})"
           orderString_3 = "abs(decade - #{decades[l-1]})"
-          @mediaMDs = CreativeWork.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString_1).limit(2)
-                  + CreativeWork.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString_1).limit(1)
-                  + CreativeWork.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString_1).limit(2)
+          @mediaMDs = Work.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString_1).limit(2) + Work.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString_1).limit(1) + Work.joins(:contextIndex).where("Context_Index.work_id IS NOT NULL").order(orderString_1).limit(2)
         end
         render :rabl, :context_works, :format => "json"
       else
