@@ -4,94 +4,124 @@
  */
 package lp.reminiscens.crawler.entities;
 
+import java.math.BigInteger;
+
 /**
- *
+ * 
  * @author Nicola
  */
 public class Media_Metadata {
 
-    private Integer media_metadata_id;
-    private String title;
-    private String description;
-    private String type;
-    private String source;
-    private String source_url;
-    private String locale;
-    private String resource_url;
-    private Fuzzy_Date releaseDate;
+	private BigInteger media_metadata_id;
+	private String title;
+	private String description;
+	private String type;
+	private String source;
+	private String source_url;
+	private String locale;
+	private String resource_url;
+	private Fuzzy_Date releaseDate;
+	private String tags;
+	private String author;
 
-    public Media_Metadata() {
-    }
+	public String formatAttribute(String source) {
+		source = source.substring(28);
 
-    public Integer getMedia_metadata_id() {
-        return media_metadata_id;
-    }
+		source = source.replaceAll("_", " ");
 
-    public void setMedia_metadata_id(Integer media_metadata_id) {
-        this.media_metadata_id = media_metadata_id;
-    }
+		return source;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public Media_Metadata() {
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTags() {
+		return tags;
+	}
 
-    public String getResource_url() {
-        return resource_url;
-    }
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 
-    public void setResource_url(String resource_url) {
-        this.resource_url = resource_url;
-    }
+	public BigInteger getMedia_metadata_id() {
+		return media_metadata_id;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setMedia_metadata_id(BigInteger media_metadata_id) {
+		System.out.println(media_metadata_id);
+		this.media_metadata_id = media_metadata_id;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public String getResource_url() {
+		return resource_url;
+	}
 
-    public String getSource() {
-        return source;
-    }
+	public void setResource_url(String resource_url) {
+		this.resource_url = resource_url;
+	}
 
-    public void setSource(String source) {
-        this.source = source;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getSource_url() {
-        return source_url;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setSource_url(String source_url) {
-        this.source_url = source_url;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public String getLocale() {
-        return locale;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public void setLocale(String locale) {
-        this.locale = locale;
-    }
+	public String getSource() {
+		return source;
+	}
 
-    public Fuzzy_Date getReleaseDate() {
-        return releaseDate;
-    }
+	public void setSource(String source) {
+		this.source = source;
+	}
 
-    public void setReleaseDate(Fuzzy_Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
+	public String getSource_url() {
+		return source_url;
+	}
+
+	public void setSource_url(String source_url) {
+		this.source_url = source_url;
+	}
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
+	public Fuzzy_Date getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(Fuzzy_Date releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
 }

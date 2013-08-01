@@ -4,7 +4,7 @@
  */
 package lp.reminiscens.crawler.entities;
 
-import java.sql.Date;
+import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -15,7 +15,7 @@ import java.util.Locale;
  */
 public class Fuzzy_Date {
 
-    private Integer fuzzy_date_id;
+    private BigInteger fuzzy_date_id;
     private String exact_date;
     private String textual_date;
     private Integer accuracy;
@@ -36,6 +36,7 @@ public class Fuzzy_Date {
     private Life_Event life_event;
     private Media photo;
     private Media_Metadata mediaMD;
+    private Person person;
     
     Calendar springStart;
     Calendar summerStart;
@@ -147,7 +148,16 @@ public class Fuzzy_Date {
     	
     }
 
-    public Event getEvent() {
+    
+    public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public Event getEvent() {
         return event;
     }
 
@@ -179,11 +189,11 @@ public class Fuzzy_Date {
         this.mediaMD = mediaMD;
     }
     
-    public Integer getFuzzy_date_id() {
+    public BigInteger getFuzzy_date_id() {
         return fuzzy_date_id;
     }
 
-    public void setFuzzy_date_id(Integer fuzzy_date_id) {
+    public void setFuzzy_date_id(BigInteger fuzzy_date_id) {
         this.fuzzy_date_id = fuzzy_date_id;
     }
 

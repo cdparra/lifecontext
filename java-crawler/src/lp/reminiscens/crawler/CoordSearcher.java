@@ -21,6 +21,7 @@ import java.util.List;
 
 import lp.reminiscens.crawler.entities.City;
 import lp.reminiscens.crawler.entities.Event;
+import lp.reminiscens.crawler.entities.Location;
 import lp.reminiscens.crawler.entities.Media;
 
 import org.apache.commons.io.IOUtils;
@@ -63,27 +64,19 @@ public class CoordSearcher {
 		boolean mode = false;
 
 		if (mode) {
-			String path = "/Users/nicola/Documents/workspace/Reminiscens/src/cities.csv";
-			File filReadMe = new File(path);
-
-			BufferedReader brReadMe = new BufferedReader(new InputStreamReader(
-					new FileInputStream(filReadMe), "UTF-8"));
-
-			City city = null;
-
-			String strLine = brReadMe.readLine();
-
-			while (strLine != null) {
-				coord.province.add(strLine);
-				strLine = brReadMe.readLine();
+			List<Location> locations = coord.db.getLocations();
+			
+			for (Location l : locations) {
+				
+				try {			
+					out = coord.getJsonByGoogle(l.getTextual());					
+					coord.parseGeoJson(out, l);
+					
+					coord.db.addCoords(l);
+				} catch (Exception e) {
+					System.out.println("Problema con: " + l.getTextual());
+				}
 			}
-
-			for (String address : coord.province) {
-				System.out.println(address + ": ");
-				city = coord.getCityFromLine(address);
-				coord.db.addCity(city);
-			}
-			brReadMe.close();
 		} else {
 			List<City> cities = coord.db.getCities();
 
@@ -312,6 +305,60 @@ public class CoordSearcher {
 				country = "Italy";
 				event.getLocation().setCountry(country);
 				event.getLocation().setGoogled(true);
+			}
+		} catch (JsonParseException ex) {
+		} catch (IndexOutOfBoundsException ex2) {
+		}
+	}
+	
+	public void parseGeoJson(String json, Location l)
+			throws JsonParseException {
+		try {
+			JsonElement jelement = new JsonParser().parse(json);
+			JsonObject Jsonresults = jelement.getAsJsonObject();
+			JsonArray results = Jsonresults.getAsJsonArray("results");
+			JsonObject geometry = results.get(0).getAsJsonObject()
+					.getAsJsonObject("geometry");
+			JsonObject location = geometry.getAsJsonObject("location");
+			String lat = location.get("lat").getAsString();
+			String lon = location.get("lng").getAsString();
+			JsonArray components = results.get(0).getAsJsonObject()
+					.getAsJsonArray("address_components");
+			JsonArray types = null;
+			String region = null;
+			String country = null;
+			String city = null;
+			try {
+				for (int i = 0; i < components.size(); i++) {
+					types = components.get(i).getAsJsonObject()
+							.getAsJsonArray("types");
+
+					if (types.get(0).getAsString()
+							.equals("administrative_area_level_3")) {
+						city = components.get(i).getAsJsonObject()
+								.get("long_name").getAsString();
+					}
+
+					if (types.get(0).getAsString()
+							.equals("administrative_area_level_1")) {
+						region = components.get(i).getAsJsonObject()
+								.get("long_name").getAsString();
+					}
+
+					if (types.get(0).getAsString().equals("country")) {
+						country = components.get(i).getAsJsonObject()
+								.get("long_name").getAsString();
+					}
+				}
+				l.setCity(city);
+				l.setRegion(region);
+				l.setCountry(country);
+				l.setLat(lat);
+				l.setLon(lon);
+				l.setGoogled(true);
+
+			} catch (JsonParseException ex) {
+				l.setGoogled(true);
 			}
 		} catch (JsonParseException ex) {
 		} catch (IndexOutOfBoundsException ex2) {

@@ -4,13 +4,15 @@
  */
 package lp.reminiscens.crawler.entities;
 
+import java.math.BigInteger;
+
 /**
  *
  * @author Nicola.Parrello
  */
 public class Location {
 
-    private Integer location_id;
+    private BigInteger location_id;
     private Integer accuracy;
     private Integer coordinates_trust;
     private Boolean googled;
@@ -25,8 +27,17 @@ public class Location {
     private String locale;
     private Media photo;
     private Event event;
+    private Person person;
 
-    public Location() {
+    public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public Location() {
     	googled = false;
     }
 
@@ -35,12 +46,12 @@ public class Location {
         accuracy = 3;
     }
 
-    public Integer getLocation_id() {
+    public BigInteger getLocation_id() {
         return location_id;
     }
 
     
-    public void setLocation_id(Integer location_id) {
+    public void setLocation_id(BigInteger location_id) {
         this.location_id = location_id;
     }
 

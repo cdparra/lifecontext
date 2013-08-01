@@ -6,15 +6,16 @@ package lp.reminiscens.crawler;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import lp.reminiscens.crawler.entities.Event;
 import lp.reminiscens.crawler.entities.Media;
 import lp.reminiscens.crawler.entities.Media_Metadata;
 import lp.reminiscens.crawler.entities.Participant;
-import lp.reminiscens.crawler.entities.Person;
 
 /**
  *
@@ -38,7 +39,7 @@ public class Manager {
         Manager man = new Manager();
         man.coord = new CoordSearcher();
         man.db = new Database();
-        man.search(man.MEDIAMDS, "1930-01-01", "2010-12-31", "Rovereto", Dbpedia.ITALIAN);
+        man.search(man.MEDIAMDS, "1930-01-01", "2010-12-31", "Trento", Dbpedia.ITALIAN);
     }
 
     public void search(int target, String fromDate, String toDate, String location, String language) {
@@ -80,7 +81,7 @@ public class Manager {
         Participant part = null;
         while (iter.hasNext()) {
             part = (Participant) (iter.next());
-            int res = db.addParticipant_test(part);
+            BigInteger res = db.addParticipant_test(part);
             System.out.println(part.getPerson().getSource_url());
         }
         System.out.println("Sono state aggiunti " + db.newLives + " nuovi eventi personali.");
@@ -88,15 +89,15 @@ public class Manager {
 
     public void queryEvents(String fromStartDate, String toStartDate, String location, String language) {
         dbpedia = new Dbpedia();
-        //dbpedia.lookUpEvents(fromStartDate, toStartDate, location, language);
+        dbpedia.lookUpEvents(fromStartDate, toStartDate, location, language);
         dbpedia.lookUpSpaceMissions(null, null, null, language);
-        //dbpedia.lookUpSportEvents(null, null, null, language);
+        dbpedia.lookUpSportEvents(null, null, null, language);
         iter = dbpedia.events.iterator();
         Event event = null;
         double latitude;
         while (iter.hasNext()) {
             event = (Event) (iter.next());
-            if (event.getLocation() != null && event.getLocation().getTextual() != null) {
+            if (event.getLocation() != null && event.getLocation().getTextual() != null && !event.getLocation().isGoogled()) {
                 try {
                     String out = coord.getJsonByGoogle(event.getLocation().getTextual()); // chiamata alle api di google maps
                     coord.parseGeoJson(out, event); // parsing del json proveniente dalle api di google maps
@@ -119,7 +120,7 @@ public class Manager {
                 } catch (NullPointerException ex) {
                 }
             }
-            int res = db.addEvent(event);
+            BigInteger res = db.addEvent(event);
             System.out.println(event.getSource_url());
         }
         System.out.println("Sono stati aggiunti " + db.newEvents + " nuovi eventi.");
@@ -133,14 +134,7 @@ public class Manager {
         Media_Metadata mediaMD = null;
         while (iter.hasNext()) {
             mediaMD = (Media_Metadata) (iter.next());
-            if (mediaMD.getType().equals("SONG")) {
-                try {
-                    mediaMD.setResource_url(youtube.getVideoUrl(mediaMD.getTitle()));
-                } catch (IOException ioex) {
-                    
-                }
-            }
-            int res = db.addWork(mediaMD);
+            BigInteger res = db.addWork(mediaMD);
             System.out.println(mediaMD.getSource_url());
         }
         System.out.println("Sono stati aggiunti " + db.newWorks + " nuovi lavori (libri, musica, film).");
@@ -184,7 +178,7 @@ public class Manager {
                 photo.getLocation().setAccuracy(20);
                 photo.getLocation().setCoordinates_trust(1);
             }
-            int res = db.addMedia(photo);
+            BigInteger res = db.addMedia(photo);
             System.out.println(photo.getMedia_url());
         }
         System.out.println("Sono state aggiunte " + db.newMedia + " nuove foto.");

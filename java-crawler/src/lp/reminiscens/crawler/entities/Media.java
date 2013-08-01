@@ -8,11 +8,12 @@ package lp.reminiscens.crawler.entities;
  *
  * @author Nicola.Parrello
  */
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 public class Media {
 
-    private Integer media_id;
+    private BigInteger media_id;
     private String media_url;
     private String media_type;
     private String caption;
@@ -27,6 +28,7 @@ public class Media {
     private String owner;
     private String flickr_photo_id;
     private String secret;
+    private String tags;
 
     
     public Media () {}
@@ -77,15 +79,19 @@ public class Media {
         this.secret = secret;
     }
 
-    
-    
+    public String getTags() {
+		return tags;
+	}
 
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 
-    public Integer getMedia_id() {
+	public BigInteger getMedia_id() {
         return media_id;
     }
 
-    public void setMedia_id(Integer media_id) {
+    public void setMedia_id(BigInteger media_id) {
         this.media_id = media_id;
     }
 

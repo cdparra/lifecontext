@@ -187,6 +187,7 @@ public class FlickrToURL {
 				photo = new Media(id, owner, title, secret);
 				photo.setMedia_url(farm, server, id, secret);
 				photo.setLocale("ita");
+				photo.setTags(tags);
 
 				Fuzzy_Date startdate = new Fuzzy_Date();
 				startdate.setSeasonLimits();

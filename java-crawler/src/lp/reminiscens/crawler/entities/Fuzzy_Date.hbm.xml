@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="lp.reminiscens.crawler.entities.Fuzzy_Date" table="reminiscens2.Fuzzy_Date"
+	<class name="lp.reminiscens.crawler.entities.Fuzzy_Date" table="reminiscensdb.Fuzzy_Date"
 		lazy="true">
-		<id column="fuzzy_date_id" name="fuzzy_date_id" type="int">
+		<id column="fuzzy_date_id" name="fuzzy_date_id" type="big_integer">
 			<generator class="native" />
 		</id>
 		<property name="exact_date">

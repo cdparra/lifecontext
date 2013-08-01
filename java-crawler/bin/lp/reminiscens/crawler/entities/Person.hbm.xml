@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="lp.reminiscens.crawler.entities.Person" table="reminiscens2.Person"
+	<class name="lp.reminiscens.crawler.entities.Person" table="reminiscensdb.Famous_Person"
 		lazy="true">
-		<id column="person_id" name="person_id" type="int">
+		<id column="famous_id" name="person_id" type="big_integer">
 			<generator class="native" />
 		</id>
 		<property name="firstName">
@@ -14,9 +14,6 @@
 		</property>
 		<property name="lastName">
 			<column name="lastname" />
-		</property>
-		<property name="famous">
-			<column name="famous" />
 		</property>
 		<property name="famous_for">
 			<column name="famous_for" />
@@ -36,5 +33,14 @@
 		<property name="creator_type">
 			<column name="creator_type" />
 		</property>
+
+		<many-to-one cascade="all" column="birthplace_id" name="birthPlace"
+			unique="true" lazy="proxy" />
+		<many-to-one cascade="all" column="birthdate_fuzzy_id"
+			name="birthDate" unique="true" lazy="proxy" />
+		<many-to-one cascade="all" column="deathplace_id" name="deathPlace"
+			unique="true" lazy="proxy" />
+		<many-to-one cascade="all" column="deathdate_fuzzy_id"
+			name="deathDate" unique="true" lazy="proxy" />
 	</class>
 </hibernate-mapping>

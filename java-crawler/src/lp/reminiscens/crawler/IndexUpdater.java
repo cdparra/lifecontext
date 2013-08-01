@@ -1,10 +1,12 @@
 package lp.reminiscens.crawler;
 
+import java.math.BigInteger;
 import java.util.List;
 
-import lp.reminiscens.crawler.entities.City;
-import lp.reminiscens.crawler.entities.Context_Index;
+import lp.reminiscens.crawler.entities.Event;
 import lp.reminiscens.crawler.entities.Media;
+import lp.reminiscens.crawler.entities.Media_Metadata;
+import lp.reminiscens.crawler.entities.Person;
 
 public class IndexUpdater {
 
@@ -22,7 +24,10 @@ public class IndexUpdater {
 
 		IndexUpdater updater = new IndexUpdater();
 
-		updater.indexMedia();
+		// updater.indexMedia();
+		// updater.indexEvents();
+		// updater.indexWorks();
+		updater.indexFamousPeople();
 
 	}
 
@@ -32,35 +37,19 @@ public class IndexUpdater {
 
 		for (Media m : mediaList) {
 
-			// Context_Index cRow = new Context_Index();
-
 			try {
 
-				System.out.println("Valuto media con title = " +
-				 m.getCaption());
-
-				// cRow.setMedia(m);
-
-				// cRow.setDecade(Integer.parseInt(m.getTakenDate().getDecade()));
-				// cRow.setYear(Integer.parseInt(m.getTakenDate().getYear()));
+				System.out
+						.println("Valuto media con title = " + m.getCaption());
 
 				double lat = Double.parseDouble(m.getLocation().getLat());
 				double lon = Double.parseDouble(m.getLocation().getLon());
 
 				Object[] city = db.getClosestCity(lat, lon);
 				System.out.println("City: " + city[0]);
-				System.out.println("Distance: "+ city[1]);
+				System.out.println("Distance: " + city[1]);
 
-				// cRow.setDistance((Double) city[1]);
-
-				// System.out.println("La città più vicina è " +
-				// c.getCity_name() + "con id = " + c.getCity_id());
-
-				// cRow.setCity(db.getCityById((Integer) city[0]));
-
-				// cRow.setCoordinatesTrust(m.getLocation().getCoordinates_trust());
-
-				boolean result = db.addMediaToIndex_with_ids(Integer.parseInt(m
+				boolean result = db.addMediaToIndex(Integer.parseInt(m
 						.getTakenDate().getDecade()), Integer.parseInt(m
 						.getTakenDate().getYear()), (Double) city[1], m
 						.getMedia_id(), (Integer) city[0], m.getLocation()
@@ -73,6 +62,164 @@ public class IndexUpdater {
 				}
 
 			} catch (Exception e) {
+			}
+
+		}
+	}
+
+	public void indexEvents() {
+
+		List<Event> eventList = db.getEvents();
+
+		for (Event e : eventList) {
+
+			try {
+
+				System.out.println("Valuto evento con title = "
+						+ e.getHeadline());
+
+				double lat = Double.parseDouble(e.getLocation().getLat());
+				double lon = Double.parseDouble(e.getLocation().getLon());
+
+				Object[] city = db.getClosestCity(lat, lon);
+				System.out.println("City: " + city[0]);
+				System.out.println("Distance: " + city[1]);
+
+				boolean result = db.addEventToIndex(Integer.parseInt(e
+						.getStartDate().getDecade()), Integer.parseInt(e
+						.getStartDate().getYear()), (Double) city[1], e
+						.getEvent_id(), (Integer) city[0], e.getLocation()
+						.getCoordinates_trust());
+
+				if (result) {
+					System.out.println("A posto");
+				} else {
+					System.out.println("No no!");
+				}
+
+			} catch (Exception ex) {
+				System.out
+						.println("Errore: indice non aggiornato per la voce attuale");
+				ex.printStackTrace();
+			}
+
+		}
+	}
+
+	public void indexFamousPeople() {
+
+		List<Person> peopleList = db.getFamousPeople();
+
+		boolean result = false;
+
+		for (Person p : peopleList) {
+
+			try {
+
+				System.out.println("Valuto person con nome = "
+						+ p.getFullName());
+
+				if (p.getBirthPlace() != null) {
+					if (p.getBirthPlace().getLat() != null
+							&& p.getBirthPlace().getLon() != null) {
+						if (p.getBirthDate().getDecade() != null
+								&& p.getBirthDate().getYear() != null) {
+
+							System.out.println("Nato");
+
+							double lat = Double.parseDouble(p.getBirthPlace()
+									.getLat());
+							double lon = Double.parseDouble(p.getBirthPlace()
+									.getLon());
+
+							Object[] city = db.getClosestCity(lat, lon);
+							System.out.println("City: " + city[0]);
+							System.out.println("Distance: " + city[1]);
+
+							result = db
+									.addFamousPersonToIndex(Integer.parseInt(p
+											.getBirthDate().getDecade()),
+											Integer.parseInt(p.getBirthDate()
+													.getYear()),
+											(Double) city[1], p.getPerson_id(),
+											(Integer) city[0], p
+													.getBirthPlace()
+													.getCoordinates_trust());
+						}
+					}
+
+				}
+
+				if (p.getDeathPlace() != null) {
+					if (p.getDeathPlace().getLat() != null
+							&& p.getDeathPlace().getLon() != null) {
+						if (p.getDeathDate().getDecade() != null
+								&& p.getDeathDate().getYear() != null) {
+
+							System.out.println("Morto");
+
+							double lat = Double.parseDouble(p.getDeathPlace()
+									.getLat());
+							double lon = Double.parseDouble(p.getDeathPlace()
+									.getLon());
+
+							Object[] city = db.getClosestCity(lat, lon);
+							System.out.println("City: " + city[0]);
+							System.out.println("Distance: " + city[1]);
+
+							result = db
+									.addFamousPersonToIndex(Integer.parseInt(p
+											.getDeathDate().getDecade()),
+											Integer.parseInt(p.getDeathDate()
+													.getYear()),
+											(Double) city[1], p.getPerson_id(),
+											(Integer) city[0], p
+													.getDeathPlace()
+													.getCoordinates_trust());
+						}
+					}
+				}
+
+				if (result) {
+					System.out.println("A posto");
+				} else {
+					System.out.println("No no!");
+				}
+
+			} catch (Exception ex) {
+				System.out
+						.println("Errore: indice non aggiornato per la voce attuale");
+				ex.printStackTrace();
+			}
+
+		}
+	}
+
+	public void indexWorks() {
+
+		List<Media_Metadata> workList = db.getMDs();
+
+		for (Media_Metadata w : workList) {
+
+			try {
+
+				System.out.println("Valuto work con title = " + w.getTitle());
+
+				boolean result = db.addWorkToIndex(
+						Integer.parseInt(w.getReleaseDate().getDecade()),
+						Integer.parseInt(w.getReleaseDate().getYear()),
+						w.getMedia_metadata_id());
+
+				if (result) {
+					System.out.println("A posto");
+				} else {
+					System.out.println("No no!");
+				}
+
+			} catch (Exception ex) {
+				System.out
+						.println("Errore: indice non aggiornato per la voce attuale");
+				ex.printStackTrace();
 			}
 
 		}

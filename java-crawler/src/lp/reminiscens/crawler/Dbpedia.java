@@ -103,6 +103,8 @@ public class Dbpedia {
 					+ "?work a <http://dbpedia.org/ontology/Song> ."
 					+ "?work <http://www.w3.org/2000/01/rdf-schema#label> ?title ."
 					+ "?work <http://dbpedia.org/ontology/abstract> ?descr ."
+					+ "?work <http://dbpedia.org/ontology/artist> ?author ."
+					+ "?work <http://dbpedia.org/ontology/genre> ?genre ."
 					+ "{"
 					+ "?work <http://dbpedia.org/ontology/releaseDate> ?relDate ."
 					+ "}" + "UNION {"
@@ -140,7 +142,11 @@ public class Dbpedia {
 		String releaseDateAttribute_1 = "relDate_1";
 		String titleAttribute = "title";
 		String descrAttribute = "descr";
+		String genreAttribute = "genre";
+		String authorAttribute ="author";
 		String description = null;
+		String genre = null;
+		String author = null;
 
 		String work_url = null;
 		String releaseDate = null;
@@ -202,8 +208,24 @@ public class Dbpedia {
 
 					if (type.equals("SONG")) {
 						try {
-							mediaMD.setResource_url(youtube.getVideoUrl(mediaMD
-									.getTitle()));
+
+							author = qs.get(authorAttribute).toString();
+							author = mediaMD.formatAttribute(author);
+							mediaMD.setAuthor(author);
+							
+							genre = qs.get(genreAttribute).toString();
+							genre = mediaMD.formatAttribute(genre);
+							mediaMD.setTags(genre);
+							
+							if (author == null) {
+								mediaMD.setResource_url(youtube.getVideoUrl(mediaMD
+										.getTitle(),""));
+							} else {
+								mediaMD.setResource_url(youtube.getVideoUrl(mediaMD
+										.getTitle(),author));
+							}
+
+							
 						} catch (MalformedURLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -442,22 +464,19 @@ public class Dbpedia {
 
 				location.setLat(lat);
 				location.setLon(lon);
+				location.setCoordinates_trust(1);
+				location.setGoogled(true);
 
-				String out;
-
+				String json;
 				try {
-
-					out = coord.getReverseJsonByGoogle(lat, lon);
-					coord.parseReverseGeoJson(out, event);
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					json = coord.getReverseJsonByGoogle(lat, lon);
+					coord.parseReverseGeoJson(json, event);
+				} catch (MalformedURLException ex) {
+					ex.printStackTrace();
+				} catch (UnsupportedEncodingException ex) {
+					ex.printStackTrace();
+				} catch (IOException ex) {
+					ex.printStackTrace();
 				}
 
 			}
@@ -513,41 +532,42 @@ public class Dbpedia {
 			title = qs.get(titleAttribute).toString();
 			description = qs.get(descrAttribute).toString();
 			city = qs.get(cityAttribute).toString();
+
+			event = new Event();
+			event.setSource("dbpedia");
+			description = formatStringLocale(description);
+			if (description.length() > 65535) {
+				event.setText(description.substring(0, 65534));
+			} else {
+				event.setText(description);
+			}
+
+			title = formatStringLocale(title);
+			System.out.println(title);
+			if (title.length() > 99) {
+				event.setHeadline(title.substring(0, 99));
+			} else {
+				event.setHeadline(title);
+			}
+			event.setType("SPORT_EVENT");
+			event.setSource_url(event_url);
+
+			start = new Fuzzy_Date();
+			start.setSeasonLimits();
+			start.splitDate(date);
+			start.setEvent(event);
+			event.setStartDate(start);
+
+			location = new Location();
+			location.setTextual(Event.formatLocation(city));
+			location.setEvent(event);
+			location.setAccuracy(3);
+			event.setLocation(location);
+
+			event.setLocale(language);
+
+			events.add(event);
 		}
-
-		event = new Event();
-		event.setSource("dbpedia");
-		description = formatStringLocale(description);
-		if (description.length() > 65535) {
-			event.setText(description.substring(0, 65534));
-		} else {
-			event.setText(description);
-		}
-
-		title = formatStringLocale(title);
-		if (title.length() > 99) {
-			event.setHeadline(title.substring(0, 99));
-		} else {
-			event.setHeadline(title);
-		}
-		event.setType("SPORT_EVENT");
-		event.setSource_url(event_url);
-
-		start = new Fuzzy_Date();
-		start.setSeasonLimits();
-		start.splitDate(date);
-		start.setEvent(event);
-		event.setStartDate(start);
-
-		location = new Location();
-		location.setTextual(Event.formatLocation(city));
-		location.setEvent(event);
-		location.setAccuracy(3);
-		event.setLocation(location);
-
-		event.setLocale(language);
-
-		events.add(event);
 
 		qexec.close();
 	}
@@ -644,7 +664,7 @@ public class Dbpedia {
 			birth.setType("birth");
 			wasBorn.setLife_event(birth);
 			wasBorn.setPerson(person);
-			person.setBirth(wasBorn);
+			//person.setBirth(wasBorn);
 
 			if (qs.get(deathDateAttribute) != null) {
 				died = new Participant();
@@ -663,7 +683,7 @@ public class Dbpedia {
 				death.setType("death");
 				died.setLife_event(death);
 				died.setPerson(person);
-				person.setDeath(died);
+				//person.setDeath(died);
 			}
 
 			birthPlace = new Location();
@@ -684,7 +704,6 @@ public class Dbpedia {
 
 			person.setFirstName(firstname);
 			person.setLastName(lastname);
-			person.setFamous(true);
 			person.setFamous_for(description);
 			person.setSource("dbpedia");
 			person.setSource_url(person_url);

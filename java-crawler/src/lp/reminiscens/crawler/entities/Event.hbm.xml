@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="lp.reminiscens.crawler.entities.Event" table="reminiscens2.Event" lazy="true">
-        <id column="event_id" name="event_id" type="int">
+    <class name="lp.reminiscens.crawler.entities.Event" table="reminiscensdb.Event" lazy="true">
+        <id column="event_id" name="event_id" type="big_integer">
             <generator class="native"/>
         </id>
         <property name="headline">

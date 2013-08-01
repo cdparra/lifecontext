@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="lp.reminiscens.crawler.entities.Context_Index"
-		table="reminiscens2.Context_Index" lazy="true">
-		<id column="context_index_id" name="context_index_id" type="int">
+		table="reminiscensdb.Context_Index" lazy="true">
+		<id column="context_index_id" name="context_index_id" type="big_integer">
 			<generator class="native" />
 		</id>
 		<property name="decade">
@@ -18,11 +18,13 @@
 		<property name="coordinatesTrust">
 			<column name="coordinates_trust" />
 		</property>
-		<many-to-one cascade="all" column="media_metadata_id"
+		<many-to-one cascade="all" column="work_id"
 			name="mediaMD" unique="true" />
 		<many-to-one cascade="all" column="media_id" name="media"
 			unique="true" />
 		<many-to-one cascade="all" column="event_id" name="event"
+			unique="true" />
+		<many-to-one cascade="all" column="famous_id" name="person"
 			unique="true" />
 		<many-to-one cascade="all" column="city_id" name="city"
 			unique="true" />

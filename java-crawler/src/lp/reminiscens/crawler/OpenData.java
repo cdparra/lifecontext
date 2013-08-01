@@ -116,7 +116,6 @@ public class OpenData {
 		p.setSource("trentinocultura");
 		p.setSource_url(obj.get("url").getAsString());
 		p.setCreator_type("SYSTEM");
-		p.setFamous(true);
 
 		if (obj.get("La vita") != null) {
 			p.setFamous_for(obj.get("La vita").getAsString());

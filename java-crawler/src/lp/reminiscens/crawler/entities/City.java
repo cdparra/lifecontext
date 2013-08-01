@@ -4,6 +4,8 @@
  */
 package lp.reminiscens.crawler.entities;
 
+import java.math.BigInteger;
+
 /**
  *
  * @author Nicola.Parrello

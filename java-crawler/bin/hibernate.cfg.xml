@@ -4,11 +4,12 @@
 	<session-factory>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://test.lifeparticipation.org:3306/reminiscens2</property>
+		<property name="hibernate.connection.url">jdbc:mysql://test.lifeparticipation.org:3306/reminiscensdb</property>
 		<property name="hibernate.connection.username">reminiscens</property>
 		<property name="hibernate.connection.password">timeline@lp2012</property>
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
+		<property name="hibernate.cache.use_structured_entries">true</property>
 		<!-- Mappings -->
 		<mapping resource="lp/reminiscens/crawler/entities/Media.hbm.xml" />
 		<mapping resource="lp/reminiscens/crawler/entities/Person.hbm.xml" />

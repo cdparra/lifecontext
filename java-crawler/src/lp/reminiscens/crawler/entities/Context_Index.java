@@ -1,9 +1,11 @@
 package lp.reminiscens.crawler.entities;
 
+import java.math.BigInteger;
+
 public class Context_Index {
 
 	
-	private int context_index_id;
+	private BigInteger context_index_id;
 	private int decade;
 	private int year;
 	private double distance;
@@ -12,6 +14,7 @@ public class Context_Index {
 	private Media_Metadata mediaMD;
 	private Media media;
 	private Event event;
+	private Person person;
 	private City city;
 	
 	/**
@@ -22,11 +25,11 @@ public class Context_Index {
 
 	}
 	
-	public int getContext_index_id() {
+	public BigInteger getContext_index_id() {
 		return context_index_id;
 	}
 
-	public void setContext_index_id(int context_index_id) {
+	public void setContext_index_id(BigInteger context_index_id) {
 		this.context_index_id = context_index_id;
 	}
 
@@ -77,6 +80,14 @@ public class Context_Index {
 	}
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 }

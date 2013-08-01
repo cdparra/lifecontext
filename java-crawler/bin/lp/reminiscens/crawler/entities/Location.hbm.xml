@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-  <class name="lp.reminiscens.crawler.entities.Location" table="reminiscens2.Location" lazy="true">
-    <id column="location_id" name="location_id" type="int">
+  <class name="lp.reminiscens.crawler.entities.Location" table="reminiscensdb.Location" lazy="true">
+    <id column="location_id" name="location_id" type="big_integer">
       <generator class="native"/>
     </id>
     <property name="name">

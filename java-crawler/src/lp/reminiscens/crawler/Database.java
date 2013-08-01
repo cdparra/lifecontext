@@ -4,13 +4,13 @@
  */
 package lp.reminiscens.crawler;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import lp.reminiscens.crawler.entities.City;
-import lp.reminiscens.crawler.entities.Context_Index;
 import lp.reminiscens.crawler.entities.Event;
 import lp.reminiscens.crawler.entities.Fuzzy_Date;
 import lp.reminiscens.crawler.entities.Life_Event;
@@ -34,7 +34,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 public class Database {
 
 	private final String DB_USER = "reminiscens";
-	private final String DB_NAME = "jdbc:mysql://test.lifeparticipation.org:3306/reminiscens2";
+	private final String DB_NAME = "jdbc:mysql://test.lifeparticipation.org:3306/reminiscensdb";
 	private final String DB_PASSWORD = "timeline@lp2012";
 	private final String DB_DRIVER = "com.mysql.jdbc.Driver";
 	private static SessionFactory factory;
@@ -83,10 +83,10 @@ public class Database {
 		return res;
 	}
 
-	public Integer addEvent(Event event) {
+	public BigInteger addEvent(Event event) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		Integer eventID = null;
+		BigInteger eventID = null;
 		try {
 			tx = session.beginTransaction();
 			Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -97,18 +97,18 @@ public class Database {
 			if (!(query.list().isEmpty())) {
 				Object[] o = (Object[]) query.uniqueResult();
 
-				event.setEvent_id((Integer) o[0]);
+				event.setEvent_id((BigInteger) o[0]);
 
 				if (o[1] != null) {
-					event.getLocation().setLocation_id((Integer) o[1]);
+					event.getLocation().setLocation_id((BigInteger) o[1]);
 				}
 				if (o[2] != null) {
-					event.getStartDate().setFuzzy_date_id((Integer) o[2]);
+					event.getStartDate().setFuzzy_date_id((BigInteger) o[2]);
 				}
 
 				if (o[3] != null) {
 					if (event.getEndDate() != null) {
-						event.getEndDate().setFuzzy_date_id((Integer) o[3]);
+						event.getEndDate().setFuzzy_date_id((BigInteger) o[3]);
 					}
 				}
 
@@ -130,40 +130,8 @@ public class Database {
 		return eventID;
 	}
 
-	public Integer addMediaToIndex(Context_Index index) {
-		Session session = factory.openSession();
-		Transaction tx = null;
-		Integer contextID = null;
-		try {
-			tx = session.beginTransaction();
-			Timestamp now = new Timestamp(System.currentTimeMillis());
-			Query query = session
-					.createSQLQuery("SELECT context_index_id FROM Context_Index WHERE media_id = :id");
-			query.setParameter("id", index.getMedia().getMedia_id());
-			if (!(query.list().isEmpty())) {
-				Integer cID = (Integer) query.uniqueResult();
-
-				index.setContext_index_id(cID);
-
-				session.update(index);
-			} else {
-				session.saveOrUpdate(index);
-			}
-			contextID = index.getContext_index_id();
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return contextID;
-	}
-
-	public boolean addMediaToIndex_with_ids(int decade, int year,
-			double distance, int media_id, int city_id, int coord_trust) {
+	public boolean addMediaToIndex(int decade, int year, double distance,
+			BigInteger media_id, Integer city_id, int coord_trust) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		boolean result = false;
@@ -174,7 +142,7 @@ public class Database {
 					.createSQLQuery("SELECT context_index_id FROM Context_Index WHERE media_id = :id ");
 			query.setParameter("id", media_id);
 			if (!(query.list().isEmpty())) {
-				Integer cID = (Integer) query.uniqueResult();
+				BigInteger cID = (BigInteger) query.uniqueResult();
 
 				query = session
 						.createSQLQuery("UPDATE Context_Index SET decade = :dec, year = :y, distance = :dist, media_id = :m_id, city_id = :c_id, "
@@ -216,10 +184,166 @@ public class Database {
 		return result;
 	}
 
-	public Integer addMedia(Media photo) {
+	public boolean addEventToIndex(int decade, int year, double distance,
+			BigInteger event_id, Integer city_id, int coord_trust) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		Integer photoID = null;
+		boolean result = false;
+		try {
+			tx = session.beginTransaction();
+			Timestamp now = new Timestamp(System.currentTimeMillis());
+			Query query = session
+					.createSQLQuery("SELECT context_index_id FROM Context_Index WHERE event_id = :id ");
+			query.setParameter("id", event_id);
+			if (!(query.list().isEmpty())) {
+				BigInteger cID = (BigInteger) query.uniqueResult();
+
+				query = session
+						.createSQLQuery("UPDATE Context_Index SET decade = :dec, year = :y, distance = :dist, event_id = :e_id, city_id = :c_id, "
+								+ "coordinates_trust = :c_tr WHERE context_index_id = :con_id ");
+				query.setParameter("dec", decade);
+				query.setParameter("y", year);
+				query.setParameter("dist", distance);
+				query.setParameter("e_id", event_id);
+				query.setParameter("c_id", city_id);
+				query.setParameter("c_tr", coord_trust);
+				query.setParameter("con_id", cID);
+
+				query.executeUpdate();
+
+			} else {
+				query = session
+						.createSQLQuery("INSERT INTO Context_Index (decade, year, distance, event_id, city_id, coordinates_trust) "
+								+ "VALUES (:dec, :y, :dist, :e_id, :c_id, :c_tr) ");
+				query.setParameter("dec", decade);
+				query.setParameter("y", year);
+				query.setParameter("dist", distance);
+				query.setParameter("e_id", event_id);
+				query.setParameter("c_id", city_id);
+				query.setParameter("c_tr", coord_trust);
+
+				query.executeUpdate();
+			}
+			tx.commit();
+			result = true;
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+			result = false;
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
+	public boolean addWorkToIndex(int decade, int year,
+			BigInteger media_metadata_id) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		boolean result = false;
+		try {
+			tx = session.beginTransaction();
+			Timestamp now = new Timestamp(System.currentTimeMillis());
+			Query query = session
+					.createSQLQuery("SELECT context_index_id FROM Context_Index WHERE work_id = :id ");
+			query.setParameter("id", media_metadata_id);
+			if (!(query.list().isEmpty())) {
+				BigInteger cID = (BigInteger) query.uniqueResult();
+
+				query = session
+						.createSQLQuery("UPDATE Context_Index SET decade = :dec, year = :y, work_id = :m_id WHERE context_index_id = :con_id ");
+				query.setParameter("dec", decade);
+				query.setParameter("y", year);
+				query.setParameter("m_id", media_metadata_id);
+				query.setParameter("con_id", cID);
+
+				query.executeUpdate();
+
+			} else {
+				query = session
+						.createSQLQuery("INSERT INTO Context_Index (decade, year, work_id ) "
+								+ "VALUES (:dec, :y, :m_id) ");
+				query.setParameter("dec", decade);
+				query.setParameter("y", year);
+				query.setParameter("m_id", media_metadata_id);
+
+				query.executeUpdate();
+			}
+			tx.commit();
+			result = true;
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+			result = false;
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
+	public boolean addFamousPersonToIndex(int decade, int year,
+			double distance, BigInteger famous_id, Integer city_id,
+			int coord_trust) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		boolean result = false;
+		try {
+			tx = session.beginTransaction();
+			Timestamp now = new Timestamp(System.currentTimeMillis());
+			Query query = session
+					.createSQLQuery("SELECT context_index_id FROM Context_Index WHERE famous_id = :id ");
+			query.setParameter("id", famous_id);
+			if (!(query.list().isEmpty())) {
+				BigInteger cID = (BigInteger) query.uniqueResult();
+
+				query = session
+						.createSQLQuery("UPDATE Context_Index SET decade = :dec, year = :y, distance = :dist, famous_id = :f_id, city_id = :c_id, "
+								+ "coordinates_trust = :c_tr WHERE context_index_id = :con_id ");
+				query.setParameter("dec", decade);
+				query.setParameter("y", year);
+				query.setParameter("dist", distance);
+				query.setParameter("f_id", famous_id);
+				query.setParameter("c_id", city_id);
+				query.setParameter("c_tr", coord_trust);
+				query.setParameter("con_id", cID);
+
+				query.executeUpdate();
+
+			} else {
+				query = session
+						.createSQLQuery("INSERT INTO Context_Index (decade, year, distance, famous_id, city_id, coordinates_trust) "
+								+ "VALUES (:dec, :y, :dist, :f_id, :c_id, :c_tr) ");
+				query.setParameter("dec", decade);
+				query.setParameter("y", year);
+				query.setParameter("dist", distance);
+				query.setParameter("f_id", famous_id);
+				query.setParameter("c_id", city_id);
+				query.setParameter("c_tr", coord_trust);
+
+				query.executeUpdate();
+			}
+			tx.commit();
+			result = true;
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+			result = false;
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
+	public BigInteger addMedia(Media photo) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		BigInteger photoID = null;
 		Media tmp = null;
 		try {
 			tx = session.beginTransaction();
@@ -231,13 +355,13 @@ public class Database {
 			if (!(query.list().isEmpty())) {
 				Object[] o = (Object[]) query.uniqueResult();
 
-				photo.setMedia_id((Integer) o[0]);
+				photo.setMedia_id((BigInteger) o[0]);
 
 				if (o[1] != null) {
-					photo.getLocation().setLocation_id((Integer) o[1]);
+					photo.getLocation().setLocation_id((BigInteger) o[1]);
 				}
 				if (o[2] != null) {
-					photo.getTakenDate().setFuzzy_date_id((Integer) o[2]);
+					photo.getTakenDate().setFuzzy_date_id((BigInteger) o[2]);
 				}
 
 				session.update(photo);
@@ -259,10 +383,10 @@ public class Database {
 		return photoID;
 	}
 
-	public Integer addParticipant(Participant part) {
+	public BigInteger addParticipant(Participant part) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		Integer personID = null;
+		BigInteger personID = null;
 		try {
 			tx = session.beginTransaction();
 			/*
@@ -291,11 +415,11 @@ public class Database {
 
 	// DEVO RICORDARMI DI CAMBIARE UNA COLONNA DI TIPO TEXT A VARCHAR, SE NO NON
 	// VA
-	public Integer addParticipant_test(Participant part) {
+	public BigInteger addParticipant_test(Participant part) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		Integer personID = null;
-		Integer eventID = null;
+		BigInteger personID = null;
+		BigInteger eventID = null;
 		try {
 			tx = session.beginTransaction();
 			Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -303,7 +427,8 @@ public class Database {
 					.createQuery("SELECT person_id FROM Person WHERE source_url = :url");
 			query.setParameter("url", part.getPerson().getSource_url());
 			if (!(query.list().isEmpty())) {
-				part.getPerson().setPerson_id((Integer) (query.list().get(0)));
+				part.getPerson().setPerson_id(
+						(BigInteger) (query.list().get(0)));
 				session.update(part.getPerson());
 			} else {
 				session.saveOrUpdate(part.getPerson());
@@ -335,22 +460,23 @@ public class Database {
 		return personID;
 	}
 
-	public Integer addWork(Media_Metadata mediaMD) {
+	public BigInteger addWork(Media_Metadata mediaMD) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		Integer workID = null;
+		BigInteger workID = null;
 		try {
 			tx = session.beginTransaction();
 			Query query = session
-					.createSQLQuery("SELECT media_metadata_id, fuzzy_releasedate FROM Media_Metadata WHERE source_url = :url");
+					.createSQLQuery("SELECT work_id, fuzzy_releasedate FROM Works WHERE source_url = :url");
 			query.setParameter("url", mediaMD.getSource_url());
 			if (!(query.list().isEmpty())) {
 				Object[] o = (Object[]) query.uniqueResult();
 
-				mediaMD.setMedia_metadata_id((Integer) o[0]);
+				mediaMD.setMedia_metadata_id((BigInteger) o[0]);
 
 				if (o[1] != null) {
-					mediaMD.getReleaseDate().setFuzzy_date_id((Integer) o[1]);
+					mediaMD.getReleaseDate()
+							.setFuzzy_date_id((BigInteger) o[1]);
 				}
 
 				session.update(mediaMD);
@@ -424,13 +550,38 @@ public class Database {
 		}
 	}
 
+	public void addCoords(Location l) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		BigInteger locationID = null;
+		try {
+			tx = session.beginTransaction();
+			System.out.println("aggiorno " + l.getTextual());
+			Query query = session
+					.createQuery("UPDATE Location SET lat = :lat , lon = :lon WHERE location_textual = :name");
+			query.setParameter("name", l.getTextual());
+			query.setParameter("lat", l.getLat());
+			query.setParameter("lon", l.getLon());
+			query.executeUpdate();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
 	public List getCities() {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Event> cities = null;
 		try {
 			tx = session.beginTransaction();
-			cities = session.createQuery("FROM City WHERE region <> 'Trentino-Alto Adige' ").list();
+			cities = session.createQuery(
+					"FROM City WHERE region <> 'Trentino-Alto Adige' ").list();
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null) {
@@ -445,13 +596,40 @@ public class Database {
 		return cities;
 	}
 
+	public List getLocations() {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Location> locations = null;
+		try {
+			tx = session.beginTransaction();
+			locations = session
+					.createQuery(
+							"FROM Location WHERE lat IS NULL OR lon IS NULL AND location_textual IS NOT NULL ")
+					.list();
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return locations;
+	}
+
 	public List getEvents() {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Event> events = null;
 		try {
 			tx = session.beginTransaction();
-			events = session.createQuery("FROM Event").list();
+			events = session
+					.createQuery(
+							"FROM Event where location_id IS NOT NULL AND fuzzy_startdate IS NOT NULL ")
+					.list();
 			System.out.println("Inizializzo date e luoghi");
 			for (Event ev : events) {
 				Hibernate.initialize(ev.getStartDate());
@@ -478,7 +656,9 @@ public class Database {
 		List<Media_Metadata> mds = null;
 		try {
 			tx = session.beginTransaction();
-			mds = session.createQuery("FROM Media_Metadata").list();
+			mds = session.createQuery(
+					"FROM Media_Metadata WHERE resource_url IS NOT NULL")
+					.list();
 			System.out.println("Inizializzo date");
 			for (Media_Metadata md : mds) {
 				if (md.getReleaseDate() != null) {
@@ -505,17 +685,16 @@ public class Database {
 		List<Person> people = null;
 		try {
 			tx = session.beginTransaction();
-			people = session.createQuery("FROM Person WHERE famous = 1").list();
-			System.out.println("Inizializzo date e luoghi");
+			people = session
+					.createQuery(
+							"FROM Person WHERE (birthplace_id IS NOT NULL AND birthdate_fuzzy_id IS NOT NULL) OR (birthplace_id IS NOT NULL AND deathdate_fuzzy_id IS NOT NULL)")
+					.list();
+			System.out.println("Inizializzo luoghi");
 			for (Person p : people) {
-				Hibernate.initialize(p.getBirth().getLife_event()
-						.getStartDate());
-				Hibernate
-						.initialize(p.getBirth().getLife_event().getLocation());
-				Hibernate.initialize(p.getDeath().getLife_event()
-						.getStartDate());
-				Hibernate
-						.initialize(p.getDeath().getLife_event().getLocation());
+				Hibernate.initialize(p.getBirthPlace());
+				Hibernate.initialize(p.getDeathPlace());
+				Hibernate.initialize(p.getDeathDate());
+				Hibernate.initialize(p.getBirthDate());
 			}
 			tx.commit();
 		} catch (HibernateException e) {
@@ -569,7 +748,8 @@ public class Database {
 							"SELECT city_id, (6378.7*sqrt(POW((0.0174 * (lat - :lat)),2) +"
 									+ "POW((0.0174 * (lon - :lon) * COS(:lat)),2))) AS distance FROM City "
 									+ "WHERE lat IS NOT null ORDER BY distance ASC;")
-					.setDouble("lat", lat).setDouble("lon", lon).setDouble("lat", lat).list().get(0));
+					.setDouble("lat", lat).setDouble("lon", lon)
+					.setDouble("lat", lat).list().get(0));
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null) {
@@ -633,8 +813,8 @@ public class Database {
 				while (iterator.hasNext()) {
 					Object[] row = (Object[]) iterator.next();
 					ev = new Life_Event();
-					ev.setEvent_id((Integer) row[0]);
-					System.out.println((Integer) row[0]);
+					ev.setEvent_id((BigInteger) row[0]);
+					System.out.println((BigInteger) row[0]);
 					ev.setHeadline((String) row[1]);
 					ev.setText((String) row[2]);
 					ev.setType((String) row[3]);

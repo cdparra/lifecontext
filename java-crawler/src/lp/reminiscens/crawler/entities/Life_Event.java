@@ -4,6 +4,7 @@
  */
 package lp.reminiscens.crawler.entities;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 /**
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
  */
 public class Life_Event extends Event {
 
-    private Integer life_event_id;
+    private BigInteger life_event_id;
     private String headline;
     private String type;
     private String text;
@@ -55,11 +56,11 @@ public class Life_Event extends Event {
     }
 
     
-    public Integer getLife_event_id() {
+    public BigInteger getLife_event_id() {
         return life_event_id;
     }
 
-    public void setLife_event_id(Integer life_event_id) {
+    public void setLife_event_id(BigInteger life_event_id) {
         this.life_event_id = life_event_id;
     }
 

@@ -4,6 +4,7 @@
  */
 package lp.reminiscens.crawler.entities;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 /**
@@ -12,18 +13,19 @@ import java.sql.Timestamp;
  */
 public class Person {
 
-    private Integer person_id;
+    private BigInteger person_id;
     private String firstName;
     private String lastName;
     private String fullName;
-    private Boolean famous;
     private String famous_for;
     private String source;
     private String source_url;
     private String gender;
+    private Location deathPlace;
+    private Fuzzy_Date deathDate;
     private String picture_url;
-    private Participant birth;
-    private Participant death;
+    private Location birthPlace;
+    private Fuzzy_Date birthDate;
     private Timestamp last_update;
     private String creator_type;
     private String locale;
@@ -44,11 +46,11 @@ public class Person {
     public Person() {
     }
 
-    public Integer getPerson_id() {
+    public BigInteger getPerson_id() {
         return person_id;
     }
 
-    public void setPerson_id(Integer person_id) {
+    public void setPerson_id(BigInteger person_id) {
         this.person_id = person_id;
     }
 
@@ -60,32 +62,40 @@ public class Person {
         this.fullName = fullName;
     }
     
-    public Boolean getFamous() {
-        return famous;
-    }
 
-    
-    public void setFamous(Boolean famous) {
-        this.famous = famous;
-    }
-    
-    public Participant getBirth() {
-        return birth;
-    }
+    public Location getDeathPlace() {
+		return deathPlace;
+	}
 
-    public void setBirth(Participant birth) {
-        this.birth = birth;
-    }
+	public void setDeathPlace(Location deathPlace) {
+		this.deathPlace = deathPlace;
+	}
 
-    public Participant getDeath() {
-        return death;
-    }
+	public Fuzzy_Date getDeathDate() {
+		return deathDate;
+	}
 
-    public void setDeath(Participant death) {
-        this.death = death;
-    }
+	public void setDeathDate(Fuzzy_Date deathDate) {
+		this.deathDate = deathDate;
+	}
 
-    public String getLocale() {
+	public Location getBirthPlace() {
+		return birthPlace;
+	}
+
+	public void setBirthPlace(Location birthPlace) {
+		this.birthPlace = birthPlace;
+	}
+
+	public Fuzzy_Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Fuzzy_Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getLocale() {
         return locale;
     }
 
