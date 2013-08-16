@@ -1,6 +1,0 @@
-
-dependencies {
-    compile project( ':hibernate-core' )
-    compile( libraries.proxool )
-    testCompile project( ':hibernate-testing' )
-}

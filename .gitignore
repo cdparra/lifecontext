@@ -4,6 +4,7 @@
 *.properties
 *.metadata/
 *.settings/
+.classpath
 web/META-INF/context.xml
 *.buildpath
 *.project
@@ -11,7 +12,9 @@ web/META-INF/context.xml
 Reminiscens-booklet/bin/
 Reminiscens-booklet/build/
 java-crawler/build/
-config/settings.rb.local
-config/settings.rb
+RESTapi/config/settings.rb.local
+RESTapi/config/settings.rb
 Reminiscens-booklet/dist/
 thesis/sigproc-sp-comments.pdf
+java-crawler/lib/*
+java-crawler/lib-copy
