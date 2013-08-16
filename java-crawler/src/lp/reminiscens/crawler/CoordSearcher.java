@@ -4,12 +4,8 @@
  */
 package lp.reminiscens.crawler;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -55,6 +51,7 @@ public class CoordSearcher {
 	}
 
 	// "main" function used once to add cities to reminiscens.City
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws MalformedURLException,
 			UnsupportedEncodingException, IOException, JsonParseException {
 
@@ -66,8 +63,7 @@ public class CoordSearcher {
 		if (mode) {
 			List<Location> locations = coord.db.getLocations();
 			
-			for (Location l : locations) {
-				
+			for (Location l : locations) {	
 				try {			
 					out = coord.getJsonByGoogle(l.getTextual());					
 					coord.parseGeoJson(out, l);

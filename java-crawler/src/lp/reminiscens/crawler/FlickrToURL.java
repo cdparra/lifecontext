@@ -23,6 +23,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.apache.commons.configuration.*;
 
 public class FlickrToURL {
 
@@ -70,7 +71,14 @@ public class FlickrToURL {
 		FlickrQuery_license = "&license=1%2C2%2C4%2C5%2C7"; // creative commons
 		FlickrQuery_tag = "&tags=";
 		FlickrQuery_key = "&api_key=";
-		FlickrApiKey = "b70a9e175b81d1e4cd19fd652f0af12a";
+		
+		try {
+			Configuration config = new PropertiesConfiguration("lifecontext.utils.config");
+			FlickrApiKey = config.getProperty("flickr.apikey").toString();
+		} catch (ConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		photos = new HashSet<Media>();
 	}

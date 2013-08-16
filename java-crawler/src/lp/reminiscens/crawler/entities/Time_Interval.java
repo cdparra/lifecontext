@@ -29,9 +29,6 @@ public class Time_Interval {
     }
 
     public static void main(String[] args) {
-        String d1 = "1979-02-01";
-        String d2 = "1981-02-01";
-        //Date d3=new Date(1352070151);
         Date d3 = new Date(1352048409 * 1000L);
         System.out.println(d3);
         System.out.println(System.currentTimeMillis());

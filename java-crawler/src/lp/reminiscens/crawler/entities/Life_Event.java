@@ -23,12 +23,9 @@ public class Life_Event extends Event {
     private Timestamp last_update;
     private Timestamp contribution_date;
     private Location location;
-    private Fuzzy_Date startDate;
-    private Fuzzy_Date endDate;
-    //private List<Participant> participations;
+      //private List<Participant> participations;
     private Participant participation;
-    private String locale;
-
+   
     public Life_Event(){
     //participations=new ArrayList<Participant>();
     }
